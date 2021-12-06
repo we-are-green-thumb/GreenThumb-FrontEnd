@@ -2,14 +2,13 @@
 
 <template>
   <div id="app">
-   <Header></Header>
-   <NavigationBar></NavigationBar>
-   <PlantRegister></PlantRegister>
-   <MyplantList></MyplantList>
-   <FollowerPlantList></FollowerPlantList>
     <plant-header></plant-header>
     <plant-navibar></plant-navibar>
+    <plant-register></plant-register>
+    <plant-mylist></plant-mylist>
+    <plant-followrlist></plant-followrlist>
     <plant-search></plant-search>
+    <plant-resultlist></plant-resultlist>
     <plant-footer></plant-footer>
   </div>
 </template>
@@ -22,19 +21,19 @@ import MyplantList from './components/main/MyplantList.vue'
 import PlantRegister from './components/main/PlantRegister.vue'
 import Footer from './components/Footer.vue'
 import Header from './components/Header.vue'
+import PlantResultList from './components/main/PlantResultList.vue'
 // import ErrorPage from './components/errorPage.vue'
 
 export default {
   name: 'App',
   components: {
-    NavigationBar,
-    FollowerPlantList,
-    //Header,
-    MyplantList,
-    PlantRegister,
     'plant-header' : Header,
     'plant-navibar': NavigationBar,
+    'plant-register' : PlantRegister,
+    'plant-mylist' : MyplantList,
+    'plant-followrlist' : FollowerPlantList,
     'plant-search' : PlantSearchBar,
+    'plant-resultlist' : PlantResultList,
     'plant-footer' : Footer,
     
   }
