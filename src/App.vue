@@ -7,7 +7,9 @@
     <plant-register></plant-register>
     <plant-mylist></plant-mylist>
     <plant-followrlist></plant-followrlist>
+    <hr>
     <plant-search></plant-search>
+    <br><br><br>
     <plant-resultlist></plant-resultlist>
     <plant-footer></plant-footer>
   </div>
@@ -45,8 +47,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: block;
+
 }
+
+
 </style>
