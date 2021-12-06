@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="headerBtn">
     <nav v-if="loginCheck">
       <button>로그아웃</button>
       <button>마이페이지</button>
@@ -22,4 +22,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.headerBtn {
+  float: right;
+}
+</style>

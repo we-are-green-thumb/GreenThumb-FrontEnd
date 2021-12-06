@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: 'PlantResultList'
+  name: 'PlantResultList',
 
 }
 </script>
@@ -53,7 +53,7 @@ export default {
     text-align: center;
 	display: grid;
 	grid-template-columns: 180px 180px 180px 180px 180px;
-	grid-template-rows: 250px 250px 250px 250px 250px;
+	grid-template-rows: 250px 250px 250px ;
 }
 
 .box {

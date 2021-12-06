@@ -7,6 +7,8 @@
     <hr size="5px" />
     <plant-register></plant-register>
     <plant-mylist></plant-mylist>
+
+    <br /><br /><br />
     <plant-followrlist></plant-followrlist>
     <br /><br />
     <hr size="5px" />
@@ -72,7 +74,7 @@ button {
 .shadow {
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
   display: block;
 
 }
