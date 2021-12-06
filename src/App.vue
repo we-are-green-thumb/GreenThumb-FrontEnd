@@ -1,65 +1,28 @@
 <template>
   <div id="app">
-    <todo-header></todo-header>
-    <!-- <todo-input></todo-input>
-    <todo-list></todo-list> -->
-    <todo-footer></todo-footer>
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-
-import TodoHeader from './components/TodoHeader.vue'
-// import TodoInput from './components/TodoInputs.vue'
-// import TodoList from './components/TodoList.vue'
-import TodoFooter from './components/TodoFooter.vue'
-
-
-// var my_cmp = {
-//   template: '<div>my component</div>'
-// };
-
-
-// new vue({
-//   el: "app",
-//   components: {
-//     'my-cmp' : my_cmp
-//   }
-
-// });
-
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
+  name: 'App',
   components: {
-    // 컴포넌트 태그명 : 컴포넌트 내용
-   'todo-header' : TodoHeader,
-  //  'todo-input' : TodoInput,
-  //  'todo-list' : TodoList,
-   'todo-footer' : TodoFooter
+    HelloWorld
   }
 }
-
-
 </script>
 
 <style>
-
-body {
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: azure;
+  color: #2c3e50;
+  margin-top: 60px;
 }
-
-input {
-  border-style: groove;
-  width: 200px;
-}
-
-button {
-  border-style: groove;
-}
-
-.shadow {
-  box-shadow: 5px 10px 10px rgb(49, 50, 53);
-}
-
 </style>
