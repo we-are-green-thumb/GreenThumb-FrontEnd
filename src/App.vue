@@ -1,16 +1,31 @@
+
+
 <template>
   <div id="app">
-   <NavigationBar></NavigationBar>
+    <plant-header></plant-header>
+    <plant-navibar></plant-navibar>
+
+    <plant-search></plant-search>
+
+    <plant-footer></plant-footer>
   </div>
 </template>
 
 <script>
+import PlantSearchBar from './components/main/PlantSearchBar.vue'
 import NavigationBar from './components/NavigationBar.vue'
+import Footer from './components/Footer.vue'
+import Header from './components/Header.vue'
+// import ErrorPage from './components/errorPage.vue'
 
 export default {
   name: 'App',
   components: {
-    NavigationBar
+    'plant-header' : Header,
+    'plant-navibar': NavigationBar,
+    'plant-search' : PlantSearchBar,
+    'plant-footer' : Footer,
+    
   }
 }
 </script>
