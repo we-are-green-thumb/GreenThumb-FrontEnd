@@ -1,10 +1,21 @@
 <template>
-  <h1> 살식마 </h1>
+      <v-card-text class="white--text">
+        
+        <br>
+        {{ new Date().getFullYear() }} — <strong>살식마헬퍼</strong>
+      </v-card-text>
 </template>
 
 <script>
   export default {
-   
+    data: () => ({
+      icons: [
+        // 'mdi-facebook',
+        // 'mdi-twitter',
+        // 'mdi-linkedin',
+        // 'mdi-instagram',
+      ],
+    }),
   }
 </script>
 
