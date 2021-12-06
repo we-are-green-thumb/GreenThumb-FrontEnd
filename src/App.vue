@@ -10,8 +10,8 @@
     <plant-followrlist></plant-followrlist>
     <br /><br />
     <hr size="5px" />
-
     <plant-search></plant-search>
+    <br><br><br>
     <plant-resultlist></plant-resultlist>
     <plant-footer></plant-footer>
   </div>
@@ -48,7 +48,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
   display: block
@@ -72,5 +71,11 @@ button {
 }
 .shadow {
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
+  color: #2c3e50;
+  margin-top: 60px;
+  display: block;
+
 }
+
+
 </style>
