@@ -8,8 +8,16 @@ const IndexMyplant = () => {
   return import("../views/myplant/Indexmyplant.vue")
 }
 const modal = () => {
-  return import("../views/myplant/Modal.vue")
+  return import("../components/myPlant/Modal.vue")
 }
+
+const editpage = () => {
+  return import("../views/myPage/EditUser.vue")
+}
+const community = () => {
+  return import("../views/community/IndexCommunity.vue")
+}
+
 
 const routes = [
   {
@@ -25,8 +33,30 @@ const routes = [
   },
   {
     path : '/modal',
-    name : 'modal',
+    name : 'Modal',
     component : modal
+  }, 
+  {
+    path : '/mypage/editpage',
+    name : 'editpage',
+    component : editpage,
+    // beforeEnter: (to, from, next) => {
+    //   // console.log(to,from);
+    //   // console.log(to.path);
+    //   // console.log(from.path);
+    //   // next();
+
+    //   // if(from.path ==="/mypage"){
+    //   //   next();
+    //   // }else{
+    //   //   next('/');
+    //   // }
+    // }
+  }, 
+  {
+    path : '/community',
+    name : 'community',
+    component : community
   }, 
 ]
 
