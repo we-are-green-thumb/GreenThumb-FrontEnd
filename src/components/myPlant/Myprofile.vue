@@ -2,7 +2,7 @@
     <div class="profileform">
         <ul>
             <li>
-                <span><h3>빙봉의 식물들</h3></span>
+                <span><p>{{userId}}의 식물들</p></span>
                 <a class="followercheck" href="#">팔로우 추가</a>                
             </li>
             <li>
@@ -22,7 +22,11 @@
 
 <script>
 export default {
-    
+    computed: {
+        userId() {
+            return this.$route.params.userId
+        }
+    }
 }
 </script>
 
