@@ -2,13 +2,20 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import IndexMain from '../views/main/IndexMain.vue'
+
 Vue.use(VueRouter)
 
 const IndexMyplant = () => {
   return import("../views/myplant/Indexmyplant.vue")
 }
 const modal = () => {
-  return import("../views/myplant/Modal.vue")
+  return import("../components/myPlant/Modal.vue")
+}
+const Detailmyplant = () => {
+  return import("../views/myplant/Detailmyplant.vue")
+}
+const Hospital = () => {
+  return import("../views/hospital/PlantHospital.vue")
 }
 
 const routes = [
@@ -23,6 +30,18 @@ const routes = [
     name : 'IndexMyplant',
     component : IndexMyplant
   },
+
+  {
+  path : '/myplant/:userId/:plantId',
+  name : 'Detailmyplant',
+  component : Detailmyplant
+  },
+  {
+  path : '/hospital',
+  name : 'Hospital',
+  component : Hospital
+  },
+
   {
     path : '/modal',
     name : 'modal',
