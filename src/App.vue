@@ -7,16 +7,23 @@
     <hr size="5px" />
     <plant-register></plant-register>
     <plant-mylist></plant-mylist>
-
-    <br /><br /><br />
     <plant-followrlist></plant-followrlist>
-    <br /><br />
     <hr size="5px" />
     <plant-search></plant-search>
     <br><br><br>
     <plant-resultlist></plant-resultlist>
     <plant-footer></plant-footer> -->
-  <modal></modal>
+
+
+    <!-- <hr size="10px" color="red"> -->
+    <!-- 내 식물 페이지 -->
+    <!-- <myplant-profile></myplant-profile>
+    <myplant-plantlist></myplant-plantlist> -->
+
+    <router-view/>
+
+<--  <modal></modal> -->
+
 
   </div>
 </template>
@@ -31,7 +38,39 @@
 // import Header from "./components/Header.vue";
 // import PlantResultList from "./components/main/PlantResultList.vue";
 // import ErrorPage from './components/errorPage.vue'
-import modal from './components/myplant/modal.vue'
+// // 내 식물 페이지
+// import MyplantRealList from "./components/myPlant/MyplantRealList.vue"
+// import Myprofile from "./components/myPlant/Myprofile.vue"
+// import modal from './components/myplant/modal.vue'
+
+export default {
+
+  name: "app",
+
+  // data : () => ({
+  //   drawer : null
+  // }),
+  // props : {
+  //   source : String
+  // }
+
+  // name: "App",
+  // components: {
+  //   "plant-header": Header,
+  //   "plant-navibar": NavigationBar,
+  //   "plant-register": PlantRegister,
+  //   "plant-mylist": MyplantList,
+  //   "plant-followrlist": FollowerPlantList,
+  //   "plant-search": PlantSearchBar,
+  //   "plant-resultlist": PlantResultList,
+  //   "plant-footer": Footer,
+
+  //   //내 식물 페이지
+  //   "myplant-plantlist" : MyplantRealList,
+  //   "myplant-profile" : Myprofile,
+  // },
+
+
 
 export default {
   name: "App",
@@ -44,9 +83,10 @@ export default {
     // "plant-search": PlantSearchBar,
     // "plant-resultlist": PlantResultList,
     // "plant-footer": Footer,
-  "modal":modal,
+    //"modal":modal,
 
   },
+
 };
 </script>
 

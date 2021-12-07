@@ -1,52 +1,30 @@
 <template>
-  <!-- <div class =" imageList" v-if="logincheck">
-      <img src="../../assets/images/sample_02.png" width="160" height="180" >
-      <img src="../../assets/images/sample_02.png" width="160" height="180">
-  </div>
-  <div class =" imageList" v-else>
-      <img src="../../assets/images/sample_01.png" width="160" height="180">
-      <img src="../../assets/images/sample_01.png" width="160" height="180">
-  </div> -->
-  <div>
-    <div v-if="logincheck">
-      <ui class="containerB">
-        <li>
-          <img class="boxB"
-            src="../../assets/images/sample_02.png"
-            width="160"
-            height="180"
-          />
-        </li>
-        <li>
-          <img class="boxB"
-            src="../../assets/images/sample_02.png"
-            width="160"
-            height="180"
-          />
-        </li>
-      </ui>
-    </div>
+  <ul class="myplantcontainer">
+    <!-- 내 식물 -->
+      <li class="myplantform">
+        <div>
+            <img class="imgSize" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2018/08/urbanbrush-20180822082426113204.png" >
+        </div>
+        <div class="plantcontent" >
+                <h3> 해딩이 </h3><br>
+                <a> 3일 뒤 물을 주세요 </a><br>
+                <a> 온도는 10도 적당합니다. </a><br>
+        </div>
+      </li>
 
-    <div v-else>
-      <ui class="containerB">
-        <li>
-          <img class="boxB"
-            src="../../assets/images/sample_01.png"
-            width="160"
-            height="180"
-          />
-        </li>
-        <li>
-          <img class="boxB"
-            src="../../assets/images/sample_01.png"
-            width="160"
-            height="180"
-          />
-        </li>
-      </ui>
-    </div>
-  </div>
+      <li class="myplantform">
+        <div>
+            <img class="imgSize" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2018/08/urbanbrush-20180822082426113204.png" >
+        </div>
+        <div class="plantcontent" >
+                <h3> 해딩이 </h3><br>
+                <a> 3일 뒤 물을 주세요 </a><br>
+                <a> 온도는 10도 적당합니다. </a><br>
+        </div>
+      </li>
+  </ul>
 </template>
+
 
 <script>
 export default {
@@ -60,22 +38,40 @@ export default {
 </script>
 
 <style>
-.imageList {
-  text-align: center;
+
+.myplantcontainer {
+	display: grid;
+	grid-template-columns: 450px 450px;
+	grid-template-rows: 210px;
 }
 
-.containerB {
-  text-align: center;
-  float: center;
-  display: grid;
-  grid-template-columns: 180px 180px;
-  grid-template-rows: 250px 250px;
+ul {
+  margin: 0;
+  padding : 0 0 0 10px;
+  
 }
 
-.boxB {
+.myplantform {
+
+  background-color: lightgrey;
+  border-radius: 15px;
+  margin: 0 10px 10px 5px ;
+}
+.imgSize {
   width: 160px;
   height: 180px;
-  display: inline-block;
-  border-radius: 15px;
+  vertical-align: center;
+  padding: 10px 10px 10px 10px;
 }
+
+.plantcontent {
+  float: center;
+  width: 180px;
+  height: 120px;
+  vertical-align: 70px;
+  text-align: left;
+  font-size: 15px;
+  padding: 5px 16px 0 10px
+}
+
 </style>

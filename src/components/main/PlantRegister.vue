@@ -1,30 +1,28 @@
 <template>
-  <div>
-    <div v-if="loginCheck">
-      
-    </div>
-    <div  v-else>
-      <h1 >로그인 후 식물을 등록해 보세요!</h1>
-      <!-- <div class="imageList"> -->
-        <!-- <img src="../../assets/images/logo.png">
-        <img src="../../assets/images/logo.png"> -->
+<div>
+ <h2>로그인 후 식물을 등록해보세요!</h2>
+<ul class="myplantcontainer" >
+    <li class="myplantform">
+      <div>
+          <img class="imgSize" src="https://png.pngtree.com/png-clipart/20210420/ourlarge/pngtree-creative-black-and-white-monochrome-graffiti-potted-plant-png-image_3223287.jpg" >
+      </div>
+      <div class="plantcontent" >
+              <h3> 식물을 등록해주세요 </h3><br>
+      </div>
+    </li>
 
-        <ui class="containerA">
-            <li>
-                <a> <img class="boxA" src = "../../assets/images/logo.png"> </a>
-            </li>
-            <li>
-                <a> <img class="boxA" src = "../../assets/images/logo.png"> </a>
-            </li>
-        </ui>
-      <!-- </div> -->
-
-      
-    </div>
-
-  </div>
-
+    <li class="myplantform">
+      <div>
+          <img class="imgSize" src="https://png.pngtree.com/png-clipart/20210420/ourlarge/pngtree-creative-black-and-white-monochrome-graffiti-potted-plant-png-image_3223287.jpg" >
+      </div>
+      <div class="plantcontent" >
+              <h3> 식물을 등록해주세요 </h3><br>
+      </div>
+    </li>
+</ul>
+</div>
 </template>
+
 
 <script>
 export default {
@@ -38,24 +36,40 @@ export default {
 </script>
 
 <style>
-  .imageList{
-  text-align: center;
-  
-    /* vertical-align: middle; */
-  }
 
-  .containerA {
-    text-align: center;
-     float: center;
+.myplantcontainer {
 	display: grid;
-	grid-template-columns: 180px 180px ;
-	grid-template-rows: 250px 250px ;
+	grid-template-columns: 450px 450px;
+	grid-template-rows: 210px;
 }
 
-.boxA {
+ul {
+  margin: 0;
+  padding : 0 0 0 10px;
+  
+}
+
+.myplantform {
+
+  background-color: lightgrey;
+  border-radius: 15px;
+  margin: 0 10px 10px 5px ;
+  
+}
+.imgSize {
   width: 160px;
   height: 180px;
-  display: inline-block;
-  border-radius: 15px;
+  vertical-align: center;
+  padding: 10px 10px 10px 10px;
+}
+
+.plantcontent {
+  float: center;
+  width: 180px;
+  height: 120px;
+  vertical-align: 70px;
+  text-align: left;
+  font-size: 15px;
+  padding: 5px 16px 0 10px
 }
 </style>
