@@ -3,10 +3,12 @@
     <nav v-if="loginCheck">
       <button>로그아웃</button>
       <button>마이페이지</button>
+       <br><br><br>
     </nav>
     <nav v-else>
       <button>로그인</button>
       <button>회원가입</button>
+      <br><br><br>
     </nav>
   </div>
 </template>
@@ -24,6 +26,9 @@ export default {
 
 <style>
 .headerBtn {
-  float: right;
+  float: left;
+  /* float: right; */
+
 }
+
 </style>
