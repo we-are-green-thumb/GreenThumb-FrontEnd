@@ -6,8 +6,8 @@
        <br><br><br>
     </nav>
     <nav v-else>
-      <button>로그인</button>
-      <button>회원가입</button>
+      <router-link :to="{name:'loginform'}">로그인</router-link>
+      <router-link :to="{name:'register'}">회원가입</router-link>
       <br><br><br>
     </nav>
   </div>
@@ -30,5 +30,6 @@ export default {
   /* float: right; */
 
 }
+
 
 </style>
