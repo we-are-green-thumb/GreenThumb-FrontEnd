@@ -1,6 +1,6 @@
 <template>
     <div>
-    <!-- <plant-header></plant-header>
+    <plant-header></plant-header>
     <br /><br /><br />
     <plant-navibar></plant-navibar>
     <br /><br />
@@ -12,16 +12,8 @@
     <plant-search></plant-search>
     <br><br><br>
     <plant-resultlist></plant-resultlist>
-    <plant-footer></plant-footer> -->
+    <plant-footer></plant-footer>
 
-    <Header/>
-    <NavigationBar/>
-    <PlantRegister/>
-    <MyplantList/>
-    <FollowerPlantList/>
-    <PlantSearchBar/>
-    <PlantResultList/>
-    <Footer/>
     </div>
 </template>
 
@@ -38,22 +30,15 @@ import PlantResultList from "../../components/main/PlantResultList.vue";
 export default {
     name: "IndexMain",
     components:{
-    // "plant-header": Header,
-    // "plant-navibar": NavigationBar,
-    // "plant-register": PlantRegister,
-    // "plant-mylist": MyplantList,
-    // "plant-followrlist": FollowerPlantList,
-    // "plant-search": PlantSearchBar,
-    // "plant-resultlist": PlantResultList,
-    // "plant-footer": Footer,
-    Header,
-    NavigationBar,
-    PlantRegister,
-    MyplantList,
-    FollowerPlantList,
-    PlantSearchBar,
-    PlantResultList,
-    Footer,
+    "plant-header": Header,
+    "plant-navibar": NavigationBar,
+    "plant-register": PlantRegister,
+    "plant-mylist": MyplantList,
+    "plant-followrlist": FollowerPlantList,
+    "plant-search": PlantSearchBar,
+    "plant-resultlist": PlantResultList,
+    "plant-footer": Footer,
+    
     }
 }
 
