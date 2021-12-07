@@ -28,12 +28,12 @@
 
 <script>
 export default {
-  // // name: "MyplantList",
-  // data() {
-  //   return {
-  //     logincheck: "false",
-  //   };
-  // },
+  // name: "MyplantList",
+  data() {
+    return {
+      logincheck: "false",
+    };
+  },
 };
 </script>
 

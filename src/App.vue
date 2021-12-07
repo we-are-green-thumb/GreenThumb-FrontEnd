@@ -14,12 +14,17 @@
     <plant-resultlist></plant-resultlist>
     <plant-footer></plant-footer> -->
 
+
     <!-- <hr size="10px" color="red"> -->
     <!-- 내 식물 페이지 -->
     <!-- <myplant-profile></myplant-profile>
     <myplant-plantlist></myplant-plantlist> -->
 
     <router-view/>
+
+<--  <modal></modal> -->
+
+
   </div>
 </template>
 
@@ -36,6 +41,7 @@
 // // 내 식물 페이지
 // import MyplantRealList from "./components/myPlant/MyplantRealList.vue"
 // import Myprofile from "./components/myPlant/Myprofile.vue"
+// import modal from './components/myplant/modal.vue'
 
 export default {
 
@@ -63,6 +69,24 @@ export default {
   //   "myplant-plantlist" : MyplantRealList,
   //   "myplant-profile" : Myprofile,
   // },
+
+
+
+export default {
+  name: "App",
+  components: {
+    // "plant-header": Header,
+    // "plant-navibar": NavigationBar,
+    // "plant-register": PlantRegister,
+    // "plant-mylist": MyplantList,
+    // "plant-followrlist": FollowerPlantList,
+    // "plant-search": PlantSearchBar,
+    // "plant-resultlist": PlantResultList,
+    // "plant-footer": Footer,
+    //"modal":modal,
+
+  },
+
 };
 </script>
 
