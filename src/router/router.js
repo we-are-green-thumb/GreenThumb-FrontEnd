@@ -5,6 +5,10 @@ import IndexMain from '../views/main/IndexMain.vue'
 
 Vue.use(VueRouter)
 
+const IndexMyplant = () => {
+  return import("../views/myplant/Indexmyplant.vue")
+}
+
 const routes = [
   {
     path : '/',
@@ -13,9 +17,9 @@ const routes = [
   },    
   
   {
-    path : '/myplant',
+    path : '/myplant/:userId',
     name : 'IndexMyplant',
-    component : () => import('../views/myplant/Indexmyplant.vue')
+    component : IndexMyplant
   },
 ]
 
