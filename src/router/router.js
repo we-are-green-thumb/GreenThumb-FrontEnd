@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import IndexMain from '../views/main/IndexMain.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,6 +16,11 @@ const routes = [
     name : 'IndexMyplant',
     component : () => import('../views/myplant/Indexmyplant.vue')
   },
+  {
+    path : '/modal',
+    name : 'modal',
+    component : () => import('../components/myPlant/modal.vue')
+  }, 
 ]
 
 const router = new VueRouter({
