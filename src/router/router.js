@@ -7,6 +7,9 @@ Vue.use(VueRouter)
 const IndexMyplant = () => {
   return import("../views/myplant/Indexmyplant.vue")
 }
+const modal = () => {
+  return import("../views/myplant/Modal.vue")
+}
 
 const routes = [
   {
@@ -23,7 +26,7 @@ const routes = [
   {
     path : '/modal',
     name : 'modal',
-    component : () => import('../components/myPlant/modal.vue')
+    component : modal
   }, 
 ]
 
