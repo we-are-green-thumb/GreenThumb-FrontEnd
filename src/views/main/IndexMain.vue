@@ -22,9 +22,6 @@
     <PlantSearchBar/>
     <PlantResultList/>
     <Footer/>
-
-
-
     </div>
 </template>
 
