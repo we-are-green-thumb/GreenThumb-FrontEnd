@@ -1,27 +1,36 @@
 <template>
   <div id="app">
+    <Header/>
+    <NavigationBar/>
     <router-view/>
+    <Footer/>
+
   </div>
 </template>
 
 <script>
+import Footer from "./components/Footer.vue";
+import NavigationBar from "./components/NavigationBar.vue"
+import Header from "./components/Header.vue";
 
 export default {
   name: "app",
-  components: {  },
-
+  components : {
+    Footer,
+    Header,
+    NavigationBar
+  }
 }
 </script>
 
 <style>
 #app {
+  display: block;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 60px;
-  display: block
-
 }
 hr {
   background-color: #009900;
