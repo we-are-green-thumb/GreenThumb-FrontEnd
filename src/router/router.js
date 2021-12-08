@@ -12,14 +12,22 @@ const IndexMyplant = () => {
   return import("../views/myplant/Indexmyplant.vue");
 };
 const modal = () => {
-  return import("../components/myPlant/Modal.vue");
-};
+  return import("../components/myPlant/Modal.vue")
+}
 const Detailmyplant = () => {
   return import("../views/myplant/Detailmyplant.vue");
 };
 const Hospital = () => {
   return import("../views/hospital/PlantHospital.vue");
 };
+
+const editpage = () => {
+  return import("../views/myPage/EditUser.vue")
+}
+const community = () => {
+  return import("../views/community/IndexCommunity.vue")
+}
+
 
 const routes = [
   {
@@ -40,6 +48,29 @@ const routes = [
     component: Detailmyplant,
   },
   {
+  {
+    path : '/mypage/editpage',
+    name : 'editpage',
+    component : editpage,
+    // beforeEnter: (to, from, next) => {
+    //   // console.log(to,from);
+    //   // console.log(to.path);
+    //   // console.log(from.path);
+    //   // next();
+
+    //   // if(from.path ==="/mypage"){
+    //   //   next();
+    //   // }else{
+    //   //   next('/');
+    //   // }
+    // }
+  }, 
+  {
+    path : '/community',
+    name : 'community',
+    component : community
+  }, 
+]
     path: "/hospital",
     name: "Hospital",
     component: Hospital,

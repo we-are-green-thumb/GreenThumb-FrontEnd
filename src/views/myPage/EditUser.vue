@@ -1,0 +1,47 @@
+<template>
+    <div>
+       <!-- 9 회원수정  -->
+       <plantHeader></plantHeader>
+      <br><br>
+        <plantNav></plantNav>
+      <br><br>
+        <hr size="5px">
+        <MyPageNav></MyPageNav>
+      <br><br>   
+        <MyInfo></MyInfo>
+      <br><br>
+
+       <WithdrawUser></WithdrawUser>
+    <!-- <LeftSideBar></LeftSideBar> -->
+    <plantFooter></plantFooter>
+    </div>
+</template>
+<script>
+import Footer from '../../components/Footer.vue';
+import Header from '../../components/Header.vue';
+import NavigationBar from "../../components/NavigationBar.vue";
+// import LeftSideBar from '../../components/myPage/LeftSideBar.vue';
+import MyPageNav from '../../components/myPage/MyPageNav.vue';
+import MyInfo from '../../components/myPage/MyInfo.vue';
+import WithdrawUser from '../../components/myPage/WithdrawUser.vue';
+
+
+
+export default {
+    name: "EditUser",
+
+  components: { 
+    "plantHeader":Header ,
+    "plantNav":NavigationBar ,
+    "plantFooter":Footer ,
+    // "LeftSideBar":LeftSideBar,
+    "MyPageNav":MyPageNav,
+    "MyInfo":MyInfo,
+    "WithdrawUser":WithdrawUser,
+    },
+    
+}
+</script>
+<style>
+    
+</style>
