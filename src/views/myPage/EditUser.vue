@@ -40,6 +40,13 @@ export default {
     "WithdrawUser":WithdrawUser,
     },
     
+  beforeRouteEnter (to, from, next) {
+      if(from.path ==="/mypage"){
+          next();
+        }else{
+          next('/');
+        }
+  }
 }
 </script>
 <style>

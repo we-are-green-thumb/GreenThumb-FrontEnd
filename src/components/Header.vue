@@ -1,17 +1,13 @@
 <template>
   <div class="headerBtn">
     <nav v-if="loginCheck">
-      <!-- <button>로그아웃</button>
-      <button>마이페이지</button> -->
-      <v-btn color="red">로그아웃</v-btn>
-      <v-btn color="red">마이페이지</v-btn>
+      <v-btn color="red" >  <router-link :to="{name:'loginform'}" style="text-decoration:none" >로그아웃</router-link> </v-btn>
+      <v-btn color="red" >  <router-link :to="{name:'loginform'}" style="text-decoration:none" >마이페이지</router-link> </v-btn>
        <br><br><br>
     </nav>
     <nav v-else>
-     <!-- <v-btn color="red">로그인</v-btn>
-      <v-btn color="red">회원가입</v-btn> -->
-      <router-link :to="{name:'loginform'}">로그인</router-link>
-      <router-link :to="{name:'register'}">회원가입</router-link>
+      <v-btn color="red" >  <router-link :to="{name:'loginform'}" style="text-decoration:none" >로그인</router-link> </v-btn>
+      <v-btn color="red" >  <router-link :to="{name:'loginform'}" style="text-decoration:none" >회원가입</router-link> </v-btn>
       <br><br><br>
     </nav>
   </div>
@@ -33,6 +29,7 @@ export default {
   /* float: left; */
   float: right;
   text-align: right;
+  text-decoration:none
 }
 
 
