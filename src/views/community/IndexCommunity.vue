@@ -20,8 +20,7 @@ export default {
     // "plantHeader":Header ,
     // "plantNav":NavigationBar ,
     "comNav":CommunityNav,
-    }
-},
+    },
   methods: {
     test() {
       axios.get("https://reqres.in/api/users?page=2").then(function (response) {
