@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <section id="blue-box" class="box">
-        <ui class="container">
+        <ul class="container">
             <li>
                 <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
                 <a> 식물명(해바라기) </a><br>
@@ -32,7 +32,7 @@
                 <a> 식물명(해바라기) </a><br>
                 <a> 식물별명(해딩) </a>
             </li>                                                             
-        </ui>
+        </ul>
         
         
     </section>

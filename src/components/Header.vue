@@ -31,6 +31,8 @@ export default {
   text-align: right;
   text-decoration:none
 }
-
+ hr {
+  background-color: #009900;
+}
 
 </style>
