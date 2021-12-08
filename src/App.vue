@@ -1,45 +1,45 @@
 <template>
-  <div id="app">
-    <Header/>
-    <br>
-    <br>
-    <br>
-    <NavigationBar/> 
+  <!-- <div id="app">
+    <Header/> -->
+    <!-- <br> -->
+    <!-- <br> -->
+    <!-- <br> -->
+    <!-- <NavigationBar/> 
     <router-view/>
      <Footer/>
-  </div>
+  </div> -->
+    <router-view/>
 </template>
 
 <script>
-import Footer from "./components/Footer.vue";
-import NavigationBar from "./components/NavigationBar.vue"
-import Header from "./components/Header.vue";
+// import Footer from "./components/Footer.vue";
+// import NavigationBar from "./components/NavigationBar.vue"
+// import Header from "./components/Header.vue";
 
 export default {
   name: "app",
   components : {
-    Footer,
-    Header,
-    NavigationBar
+    // Footer,
+    // Header,
+    // NavigationBar
   }
 }
 </script>
 
 <style>
-#app {
+/* #app {
   display: block;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
-}
-hr {
+  margin-top: 0px;
+} */
+/* hr {
   background-color: #009900;
 }
 
 body {
-  /* text-align: center; */
   background-color: #f6f6f6;
   margin-top: 0px;
 }
@@ -55,5 +55,5 @@ button {
   color: #2c3e50;
   margin-top: 0px;
   display: block;
-}
+} */
 </style>
