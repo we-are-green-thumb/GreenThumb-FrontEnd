@@ -8,10 +8,10 @@
        <br><br><br>
     </nav>
     <nav v-else>
-      <!-- <button>로그인</button>
-      <button>회원가입</button> -->
-      <v-btn color="red">로그인</v-btn>
-      <v-btn color="red">회원가입</v-btn>
+     <!-- <v-btn color="red">로그인</v-btn>
+      <v-btn color="red">회원가입</v-btn> -->
+      <router-link :to="{name:'loginform'}">로그인</router-link>
+      <router-link :to="{name:'register'}">회원가입</router-link>
       <br><br><br>
     </nav>
   </div>
@@ -34,5 +34,6 @@ export default {
   float: right;
   text-align: right;
 }
+
 
 </style>

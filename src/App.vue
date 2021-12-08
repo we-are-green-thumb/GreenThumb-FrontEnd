@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <!-- <Header/>
+    <Header/>
     <br>
     <br>
-    <br> -->
-    <!-- <NavigationBar/> -->
+    <br>
+    <NavigationBar/> 
     <router-view/>
-    <!-- <Footer/> -->
-  <!-- <EditUser></EditUser> -->
+     <Footer/>
   </div>
 </template>
 
