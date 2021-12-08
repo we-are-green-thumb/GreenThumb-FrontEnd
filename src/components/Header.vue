@@ -26,7 +26,6 @@ export default {
 
 <style>
 .headerBtn {
-  /* float: left; */
   float: right;
   text-align: right;
   text-decoration:none
