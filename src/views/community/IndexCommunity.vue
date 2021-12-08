@@ -1,36 +1,27 @@
 <template>
-  <div width="100%">
-    <plantHeader></plantHeader>
+  <div class="aaa">
+    <!-- <plantHeader></plantHeader>
     <br /><br />
     <plantNav></plantNav>
     <br /><br />
-    <br /><br />
-    <hr size="5px" />
-    <v-btn @click="test">클릭</v-btn>
+    <br /><br /> -->
+    <hr size="5px">
     <comNav></comNav>
   </div>
 </template>
 <script>
-import Header from "../../components/Header.vue";
-import NavigationBar from "../../components/NavigationBar.vue";
+// import Header from '../../components/Header.vue';
+// import NavigationBar from "../../components/NavigationBar.vue";
 import CommunityNav from "../../components/community/CommunityNav.vue";
 import axios from "axios";
 
 export default {
-data() {
-    return {
-        user:{
-            name :"",
-            age :""
-        }
+    components : {
+    // "plantHeader":Header ,
+    // "plantNav":NavigationBar ,
+    "comNav":CommunityNav,
     }
 },
-
-  components: {
-    plantHeader: Header,
-    plantNav: NavigationBar,
-    comNav: CommunityNav,
-  },
   methods: {
     test() {
       axios.get("https://reqres.in/api/users?page=2").then(function (response) {
@@ -44,4 +35,8 @@ data() {
   },
 };
 </script>
-<style></style>
+<style>
+.aaa{
+  width: 100%;
+}
+</style>
