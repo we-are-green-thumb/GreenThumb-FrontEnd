@@ -10,9 +10,11 @@
 <script>
 import uploadPlant from "../../components/Hospital/HosPlant.vue";
 import resultHospital from "../../components/Hospital/HosResultPlant.vue";
-import axios from "axios"
+// import axios from "axios"
+import http from '@/util/http-common'
 
 export default {
+
   name: "Hospital",
   components: {
     resultHospital,
@@ -20,8 +22,8 @@ export default {
   },
   methods : {
     test() {
-      axios
-      .get('https://reqres.in/api/users?page=2')
+      http
+      .get('/user/1')
       .then(res => {
         // handle success
         console.log(res);
