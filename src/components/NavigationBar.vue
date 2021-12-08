@@ -2,10 +2,10 @@
      <!-- <nav-form> -->
        <div class="nav">
           <nav>
-            <v-btn color="red">내 식물</v-btn>
-            <v-btn color="red">커뮤니티</v-btn>     
-            <v-btn color="red">식물병원</v-btn>     
-            <router-link :to="{name:'Hospital'}">식물병원</router-link>          
+
+        <v-btn color="red" >  <router-link :to="{name:'loginform'}" style="text-decoration:none" >내 식물</router-link> </v-btn>
+        <v-btn color="red" >  <router-link :to="{name:'community'}" style="text-decoration:none" >커뮤니티</router-link> </v-btn>
+        <v-btn color="red" >  <router-link :to="{name:'Hospital'}" style="text-decoration:none" >식물병원</router-link> </v-btn>
           </nav>
           </div>
 </template>

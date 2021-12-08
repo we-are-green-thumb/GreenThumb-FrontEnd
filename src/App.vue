@@ -11,18 +11,16 @@
 </template>
 
 <script>
-// import Footer from "./components/Footer.vue";
-// import NavigationBar from "./components/NavigationBar.vue"
-// import Header from "./components/Header.vue";
-// import EditUser from "./views/myPage/EditUser.vue";
+import Footer from "./components/Footer.vue";
+import NavigationBar from "./components/NavigationBar.vue"
+import Header from "./components/Header.vue";
 
 export default {
   name: "app",
   components : {
-    // EditUser
-    // Footer,
-    // Header,
-    // NavigationBar
+    Footer,
+    Header,
+    NavigationBar
   }
 }
 </script>
