@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="alal">
     <h2>Log In</h2>
     <form @submit="onSubmit">
       <div>
@@ -29,4 +29,7 @@ export default {
 </script>
 
 <style>
+.alal {
+  width: 100%;
+}
 </style>
