@@ -3,7 +3,7 @@
           <nav>
             <button>내 식물</button>          
             <button>커뮤니티</button>          
-            <button>식물병원</button>          
+            <router-link :to="{name:'Hospital'}">식물병원</router-link>          
           </nav>
 </template>
 
