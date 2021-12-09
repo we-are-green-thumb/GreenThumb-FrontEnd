@@ -27,7 +27,9 @@ const editpage = () => {
 const community = () => {
   return import("../views/community/IndexCommunity.vue")
 }
-
+const PostDetail = () => {
+  return import("../views/post/PostDetail.vue")
+}
 
 const routes = [
   {
@@ -84,6 +86,11 @@ const routes = [
     path: "/user2/register",
     name: "register",
     component: register,
+  },
+  {
+    path: "/post/postDetail",
+    name: "PostDetail",
+    component: PostDetail,
   },
 ];
 
