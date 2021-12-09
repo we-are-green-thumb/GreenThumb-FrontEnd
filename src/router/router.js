@@ -31,6 +31,10 @@ const PostDetail = () => {
   return import("../views/post/PostDetail.vue")
 }
 
+const test = () => {
+  return import("../views/test.vue")
+}
+
 const routes = [
   {
     path: "/",
@@ -39,7 +43,7 @@ const routes = [
   },
 
   {
-    path: "/myplant/:userId",
+    path: "/myplant",
     name: "IndexMyplant",
     component: IndexMyplant,
   },
@@ -92,6 +96,14 @@ const routes = [
     name: "PostDetail",
     component: PostDetail,
   },
+
+  {
+    path: "/test",
+    name: "test",
+    component: test,
+
+  },
+
 ];
 
 const router = new VueRouter({

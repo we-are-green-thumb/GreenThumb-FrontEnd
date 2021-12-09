@@ -3,11 +3,11 @@
     <div class="profileform">
         <ul>
             <li>
-                <span ><p>{{userNickname}}의 식물들</p></span>
+                <span ><p>{{userInfo.userNickname}}의 식물들!</p></span>
                 <a class="followercheck" href="#">팔로우 추가</a>                
             </li>
             <li>
-                <span><p>{{userProfile}}</p></span>
+                <span><p>{{userInfo.userProfile}}</p></span>
             </li>
             <li>
                 <span><a href="#">팔로우</a>13.5</span>
@@ -22,29 +22,33 @@
 </template>
 
 <script>
-import http from "@/util/http-common";
+// import http from "@/util/http-common";
+import { mapState } from 'vuex';
 
 
 export default {
-   data () {
-    return {
-        userNickname : "",
-        userProfile : ""
-        };
+//    data () {
+//     return {
+//         userNickname : "",
+//         userProfile : ""
+//         };
+//     },
+    computed : {
+        ...mapState(["userInfo"])
     },
-    created (){
-      http
-        .get('/user/1')
-        .then(res => {
-            this.userNickname = res.data.userNickname;
-            this.userProfile = res.data.userProfile;
-        })
-        .catch(err => {
-            console.log(err);
-        })
-        .then(() => {
-        })
-    }
+    // created (){
+    //   http
+    //     .get('/user/1')
+    //     .then(res => {
+    //         this.userNickname = res.data.userNickname;
+    //         this.userProfile = res.data.userProfile;
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+    //     .then(() => {
+    //     })
+    // }
 }
 
 </script>
