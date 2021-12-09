@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 import IndexMain from "../views/main/IndexMain.vue";
 import findPassword from "../views/account/findpassword.vue";
 import register from "../views/account/registerform.vue";
-import loginform from "../views/account/loginform.vue";
+import loginform from "../views/account/Login.vue";
 
 Vue.use(VueRouter);
 
