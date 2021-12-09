@@ -2,11 +2,12 @@ import Vue from 'vue'
 import router from './router/router'
 import App from './App.vue'
 import Vuetify from 'vuetify'
+import store from './store'
 import 'vuetify/dist/vuetify.min.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 // import axios from "axios";
 
 Vue.use(Vuetify);
-import '@fortawesome/fontawesome-free/js/all.js'
 
 Vue.config.productionTip = false
 // Vue.prototype.$axios = axios
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
   router,
+  store,
   vuetify: new Vuetify(),
 }).$mount('#app')
 
