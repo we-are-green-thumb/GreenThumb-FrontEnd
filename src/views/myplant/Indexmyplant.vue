@@ -3,6 +3,7 @@
         <Myprofile/>
         <MyplantRealList/>
     </div>
+    
 </template>
 <script>
 
@@ -10,12 +11,14 @@
 import MyplantRealList from "../../components/myPlant/MyplantRealList.vue"
 import Myprofile from "../../components/myPlant/Myprofile.vue"
 
+
 export default {
     name: "IndexMyplant",
     components: { 
         Myprofile, 
         MyplantRealList, 
     },
+    
     
 }
 

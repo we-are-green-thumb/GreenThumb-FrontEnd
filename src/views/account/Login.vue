@@ -36,6 +36,7 @@ import {mapState, mapActions} from "vuex"
 export default {
   data: () => ({
     valid: true,
+    // allUser: [],
     password: "",
     email: "",
     emailRules: [
