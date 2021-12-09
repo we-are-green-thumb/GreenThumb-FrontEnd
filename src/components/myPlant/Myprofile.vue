@@ -1,7 +1,6 @@
 <template>
 
     <div class="profileform">
-        <v-btn @click="test"></v-btn>
         <ul>
             <li>
                 <span ><p>{{userNickname}}의 식물들</p></span>
@@ -33,27 +32,20 @@ export default {
         userProfile : ""
         };
     },
-    // computed: {
-    //     userId() {
-    //         return this.$route.params.userId
-    //     }
-    // },
-    methods : {
-    test() {
+    created (){
       http
-      .get('/user/1')
-      .then(res => {
-        this.userNickname = res.data.userNickname;
-        this.userProfile = res.data.userProfile;
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .then(() => {
-      })
+        .get('/user/1')
+        .then(res => {
+            this.userNickname = res.data.userNickname;
+            this.userProfile = res.data.userProfile;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .then(() => {
+        })
     }
-  }
-};
+}
 
 </script>
 

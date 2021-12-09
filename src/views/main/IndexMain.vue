@@ -1,7 +1,7 @@
 <template>
     <div class="aaa">
-        <Header/>
-        <NavigationBar/> 
+        <!-- <Header/>
+        <NavigationBar/>  -->
         <plant-register></plant-register>
         <plant-mylist></plant-mylist>
         <plant-followrlist></plant-followrlist>
@@ -20,8 +20,8 @@ import MyplantList from "../../components/main/MyplantList.vue";
 import PlantRegister from "../../components/main/PlantRegister.vue";
 import PlantResultList from "../../components/main/PlantResultList.vue";
 import Footer from "../../components/Footer.vue";
-import NavigationBar from "../../components/NavigationBar.vue"
-import Header from "../../components/Header.vue";
+// import NavigationBar from "../../components/NavigationBar.vue"
+// import Header from "../../components/Header.vue";
 
 export default {
     name: "IndexMain",
@@ -32,8 +32,8 @@ export default {
     "plant-search": PlantSearchBar,
     "plant-resultlist": PlantResultList,
     Footer,
-    Header,
-    NavigationBar
+    // Header,
+    // NavigationBar
     }
 }
 

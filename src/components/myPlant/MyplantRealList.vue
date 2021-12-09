@@ -1,6 +1,6 @@
 <template>
   <div class="place">
-    <v-btn @click="test1">클릭</v-btn>
+    <!-- <v-btn @click="test1">클릭</v-btn> -->
 
     <ul class="myplantcontainer">
       <li class="myplantform">
@@ -39,9 +39,8 @@ export default {
       myplant: [],
     };
   },
-  methods: {
-    test1() {
-      http
+  created(){
+     http
         .get("/user/1/plantslist")
         .then((res) => {
           this.myplant = res.data;
@@ -51,8 +50,7 @@ export default {
           console.log(err);
         })
         .then(() => {});
-    },
-  },
+  }
 };
 </script>
 <style>
