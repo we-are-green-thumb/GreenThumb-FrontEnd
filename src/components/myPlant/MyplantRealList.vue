@@ -31,7 +31,9 @@
 </template>
 
 <script>
-import http from "@/util/http-common";
+// import http from "@/util/http-common";
+import { mapState } from 'vuex';
+
 
 export default {
   data() {
@@ -39,18 +41,21 @@ export default {
       myplant: [],
     };
   },
-  created(){
-     http
-        .get("/user/1/plantslist")
-        .then((res) => {
-          this.myplant = res.data;
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .then(() => {});
+  computed : {
+    ...mapState(["myplant"])
   }
+  // created(){
+  //    http
+  //       .get("/user/1/plantslist")
+  //       .then((res) => {
+  //         this.myplant = res.data;
+  //         console.log(res.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       })
+  //       .then(() => {});
+  // }
 };
 </script>
 <style>

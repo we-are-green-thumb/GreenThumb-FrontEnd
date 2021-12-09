@@ -38,14 +38,14 @@ export default {
     MyInfo: MyInfo,
     WithdrawUser: WithdrawUser,
   },
-
-  beforeRouteEnter(to, from, next) {
-    if (from.path === "/mypage") {
-      next();
-    } else {
-      next("/");
-    }
-  },
+// 해당 코드 router에서 처리함
+  // beforeRouteEnter(to, from, next) {
+  //   if (from.path === "/mypage") {
+  //     next();
+  //   } else {
+  //     next("/");
+  //   }
+  // },
   methods: {
     test() {
       axios

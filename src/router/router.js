@@ -5,8 +5,29 @@ import IndexMain from "../views/main/IndexMain.vue";
 import findPassword from "../views/account/findpassword.vue";
 import register from "../views/account/registerform.vue";
 import loginform from "../views/account/Login.vue";
+import store from "../store"
 
 Vue.use(VueRouter);
+
+
+const rejectAuthuser = (to, from, next) => {
+  if(store.state.isLogin === true){
+    alert("이미 로그인했어요!")
+    next("/")
+  }else {
+    next()
+  }
+}
+
+const checkInUser = (to, from, next) => {
+  if(store.state.isLogin === true){
+    next()
+  }else {
+    next("/login")
+    alert("로그인을 부탁드려요!")
+  }
+}
+
 
 const IndexMyplant = () => {
   return import("../views/myplant/Indexmyplant.vue");
@@ -31,6 +52,10 @@ const PostDetail = () => {
   return import("../views/post/PostDetail.vue")
 }
 
+const test = () => {
+  return import("../views/test.vue")
+}
+
 const routes = [
   {
     path: "/",
@@ -39,7 +64,7 @@ const routes = [
   },
 
   {
-    path: "/myplant/:userId",
+    path: "/myplant",
     name: "IndexMyplant",
     component: IndexMyplant,
   },
@@ -52,6 +77,7 @@ const routes = [
   {
     path : '/mypage/editpage',
     name : 'editpage',
+    beforeEnter : checkInUser,
     component : editpage,
   }, 
   {
@@ -73,6 +99,7 @@ const routes = [
   {
     path: "/login",
     name: "loginform",
+    beforeEnter: rejectAuthuser,
     component: loginform,
   },
 
@@ -85,6 +112,7 @@ const routes = [
   {
     path: "/user2/register",
     name: "register",
+    beforeEnter : rejectAuthuser,
     component: register,
   },
   {
@@ -92,6 +120,14 @@ const routes = [
     name: "PostDetail",
     component: PostDetail,
   },
+
+  {
+    path: "/test",
+    name: "test",
+    component: test,
+
+  },
+
 ];
 
 const router = new VueRouter({
