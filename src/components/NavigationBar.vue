@@ -6,7 +6,6 @@
             <v-btn color="red" >  <router-link :to="{name:'Hospital'}" style="text-decoration:none" >식물병원</router-link> </v-btn>
           </section>
         <hr size="50px" />
-
           </div>
 </template>
 
