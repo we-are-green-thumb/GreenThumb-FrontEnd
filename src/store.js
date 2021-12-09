@@ -23,23 +23,25 @@ export default new Vuex.Store({
       },
     ],
     isLogin: false,
-    isLonginError: false,
+    isLoginError: false,
   },
-  mutation: {
+  mutations: {
     //로그인 성공시  /payload 뜻.전송되는 데이터
     loginSuccess(state, payload) {
       state.isLogin = true
-      console.log(state.isLogin)
-      state.isLonginError = false
-      console.log(state.isLonginError)
+      state.isLoginError = false
       state.userInfo = payload
-      console.log(payload,'안녕')
     },
     //로그인 실패시
     loginFail(state) {
       state.isLogin = false
-      state.isLonginError = true
+      state.isLoginError = true
     },
+    logouted(state){
+      state.isLogin = false
+      state.isLoginError = false
+      state.userInfo = null
+    }
   },
   // 행위 시도
   actions: {
@@ -56,10 +58,15 @@ export default new Vuex.Store({
         else {
           alert("로그인이 완료되었습니다.")
           commit("loginSuccess", selectUser)
-          router.push({name: "test" })
-          console.log("도대체 이게 뭐야", selectUser)
+          router.push({name: "IndexMyplant"})
         }
       }
     },
+    logout({commit}){
+      alert('로그아웃 되었습니다.')
+      commit("logouted")
+      router.push({name: "IndexMain"})
+    }
+    
   },
 });
