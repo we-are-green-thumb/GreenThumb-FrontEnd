@@ -1,24 +1,16 @@
 <template>
   <div class="mainCommunity">
-    <plantHeader></plantHeader>
-    <br /><br />
-    <plantNav></plantNav>
-    <br /><br />
-    <br /><br />
+    
     <SearchResult></SearchResult>
     <!-- <v-btn @click="test"> 클릭</v-btn> -->
   </div>
 </template>
 <script>
-import Header from '../../components/Header.vue';
-import NavigationBar from "../../components/NavigationBar.vue";
 import SearchResult from "../../components/community/SearchResult.vue";
 // import axios from "axios";
 
 export default {
     components : {
-    "plantHeader":Header ,
-    "plantNav":NavigationBar ,
     "SearchResult" : SearchResult,
     },
   methods: {
