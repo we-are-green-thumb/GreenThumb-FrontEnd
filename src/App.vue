@@ -5,8 +5,17 @@
     </v-system-bar>
     <v-app-bar app color="white" flat>
       <v-tabs centered class="ml-n9" color="grey darken-1">
-        <v-tab v-for="link in links" :key="link">
-         <router-link  :to="{name:'loginform'}" style="text-decoration:none" > {{ link }}   </router-link> 
+        <!-- <v-tab v-for="link in links" :key="link">
+          <router-link :to="{name: '`{{link.path}}`' }" style="text-decoration:none"  >  {{ link.title }} </router-link>
+        </v-tab> -->
+        <v-tab>
+          <router-link :to="{name: 'loginform' }" style="text-decoration:none; color: hsl(94, 10%, 46%);">  내 식물 </router-link>
+        </v-tab>
+        <v-tab>
+          <router-link :to="{name: 'community' }" style="text-decoration:none; color: hsl(94, 10%, 46%);"  >  커뮤니티 </router-link>
+        </v-tab>
+        <v-tab>
+          <router-link :to="{name: 'Hospital' }" style="text-decoration:none; color: hsl(94, 10%, 46%);"  > 식물병원</router-link>
         </v-tab>
       </v-tabs>
       <!-- <v-avatar
@@ -46,7 +55,6 @@ export default {
     Header,
   },
   data: () => ({
-    links: ["내 식물", "커뮤니티", "식물병원"],
   }),
 };
 </script>
