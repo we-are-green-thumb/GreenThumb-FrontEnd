@@ -32,9 +32,9 @@ const checkInUser = (to, from, next) => {
 const IndexMyplant = () => {
   return import("../views/myplant/Indexmyplant.vue");
 };
-const modal = () => {
-  return import("../components/myPlant/Modal.vue")
-}
+// const modal = () => {
+//   return import("../components/myPlant/Modal.vue")
+// }
 const Detailmyplant = () => {
   return import("../views/myplant/Detailmyplant.vue");
 };
@@ -91,11 +91,11 @@ const routes = [
     component: Hospital,
   },
 
-  {
-    path: "/modal",
-    name: "modal",
-    component: modal,
-  },
+  // {
+  //   path: "/modal",
+  //   name: "modal",
+  //   component: modal,
+  // },
   {
     path: "/login",
     name: "loginform",

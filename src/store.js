@@ -48,30 +48,59 @@ export default new Vuex.Store({
   },
   // 행위 시도
   actions: {
-    login({ state, commit }, loginObj) {
-      // 데이터를 넣는 부분이 메소드
-      let selectUser = null
-      console.log(state.allUsers);
-      state.allUsers.forEach((user) => {
-        if (user.userName === loginObj.email) selectUser = user
-      })
-      if (selectUser === null)
-        alert("존재하지 않는 아이디에요.") & commit("loginFail")
-      else {
-        if (selectUser.userPassword !== loginObj.password)
-          alert("아이디와 비밀번호가 일치하지 않아요.") & commit("loginFail")
-        else {
-          alert("로그인이 완료되었습니다.")
-          commit("loginSuccess", selectUser)
-          router.push({name: "IndexMyplant"})
+    login({ commit }, loginObj) {
+      http
+      .post('https://reqres.in/api/login', loginObj)
+      .then((res) => {
+        let token = res.data.token
+        let config = {
+          headers: {
+            "access-token" : token
+          }
         }
-      }
-    },
+        http
+        .get("https://reqres.in/api/users/2", config)
+        .then((response) => {
+          let userInfo ={
+            id: response.data.data.id,
+            email: response.data.data.email
+          }
+          commit('loginSuccess', userInfo)
+        })
+        .catch((error) => {
+          console.log(error);
+          alert('로그인을 실패했어요.')
+        })
+        .then(() => {
+        }
+      )  
+    })
+  },
+      
+    
+    // // 데이터를 넣는 부분이 메소드
+      // let selectUser = null
+      // state.allUsers.forEach((user) => {
+      //   if (user.userName === loginObj.email) selectUser = user
+      // })
+      // if (selectUser === null)
+      //   alert("존재하지 않는 아이디에요.") & commit("loginFail")
+      // else {
+      //   if (selectUser.userPassword !== loginObj.password)
+      //     alert("아이디와 비밀번호가 일치하지 않아요.") & commit("loginFail")
+      //   else {
+      //     alert("로그인이 완료되었습니다.")
+      //     commit("loginSuccess", selectUser)
+      //     router.push({name: "IndexMyplant"})
+      //   }
+      // }
+    // },
     logout({commit}){
       alert('로그아웃 되었습니다.')
       commit("logouted")
       router.push({name: "IndexMain"})
     }
-    
-  },
-});
+  }
+})
+
+  
