@@ -45,40 +45,20 @@ export default {
     ],
 
   }),
-//   created() {
-//     http
-//       .get("/user")
-//       .then((res) => {
-//         this.allUsers = res.data;
-//         console.log(res.data);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       })
-//       .then(() => {});
-//   },
+
 computed : {
-    ...mapState(["isLogin", "isLonginError"])
+    ...mapState(["isLogin", "isLonginError"]),
+    // ...mapState({allUser: state => state.allUser})
 },
   methods: {
       ...mapActions(["login"])
-    // login() {
-    //   let selectUser = null;
-    //   this.allUsers.forEach((user) => {
-    //     if (user.userName === this.email) selectUser = user;
-    //   });
-    //   if (selectUser === null) alert("존재하지 않는 아이디에요.");
-    //   else {
-    //     // if (selectUser.userPassword !== this.password)
-    //     //   alert("아이디와 비밀번호가 일치하지 않아요.")
-    //     // else {
-    //     // alert('로그인이 완료되었습니다.')
-    //     selectUser.userPassword !== this.password
-    //       ? alert("아이디와 비밀번호가 일치하지 않아요.") & console.log(this.loginSucess)
-    //       : alert("로그인이 완료되었습니다.") & (this.loginSucess = true) & console.log(this.loginSucess)
-    //   }
+
     },
-//   },
+      beforeCreate() {
+      this.$store.getters.loginCheck;
+      
+      },
+
   validate() {
     this.$refs.form.validate();
   },
