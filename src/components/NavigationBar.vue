@@ -1,23 +1,12 @@
 <template lang="">
-     <!-- <nav-form> -->
-        <div class="search-bar">
-          <select v-model="target" class="btn-front" for="navSearch">
-            <option value="hospital">병원 검색</option>
-            <option value="feed">피드 검색</option>
-          </select>
-          <input
-            class="input-search"
-            type="text"
-            v-model="word"
-            @keyup.enter="search"
-            placeholder
-            id="navSearch"
-          />
-          <button @click="search" class="btn-search" style="outline:0;">
-            <b-icon-search scale="1"></b-icon-search>
-          </button>
-        </div>
-        
+       <!-- <div class="nav"> -->
+          <section>
+              <router-link :to="{name:'loginform'}" style="text-decoration:none" >내 식물</router-link> 
+            <router-link :to="{name:'community'}" style="text-decoration:none" >커뮤니티</router-link>
+            <v-btn color="red" >  <router-link :to="{name:'Hospital'}" style="text-decoration:none" >식물병원</router-link> </v-btn>
+          </section>
+        <!-- <hr size="50px" /> -->
+          <!-- </div> -->
 </template>
 
 <script>
@@ -26,6 +15,13 @@ export default {
 }
 </script>
 
-<style lang="">
-    
+<style>
+    .nav {
+  float: right;
+  text-align: right;
+  width: 100%;
+}
+ hr {
+  background-color: #009900;
+}
 </style>
