@@ -1,29 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import router from "./router/router";
-// import http from "@/util/http-common"
+import http from "@/util/http-common"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+
   state: {
     userInfo: null,
-    allUsers: [
-      {
-        userName: "follower123@naver.com",
-        userPassword: "aa",
-        userNickname: "팔로워1",
-        userProfile: "안녕 내이름은 모아나",
-      },
-      {
-        userName: "followee456@naver.com",
-        userPassword: "aa",
-        userNickname: "팔로위2",
-        userProfile: "난 살식을 즐겨 ㅠ",
-      },
-    ],
+    allUsers: [],
     isLogin: false,
     isLoginError: false,
+  
   },
   mutations: {
     //로그인 성공시  /payload 뜻.전송되는 데이터
@@ -43,10 +32,26 @@ export default new Vuex.Store({
       state.userInfo = null
     }
   },
+  getters : {
+    loginCheck: function (state){
+      http
+            .get("/user")
+            .then((res) => {
+              console.log(res.data);
+              return state.allUsers = res.data;
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+            .then(() => {});
+    }
+  },
   // 행위 시도
   actions: {
     login({ state, commit }, loginObj) {
+      // 데이터를 넣는 부분이 메소드
       let selectUser = null
+      console.log(state.allUsers);
       state.allUsers.forEach((user) => {
         if (user.userName === loginObj.email) selectUser = user
       })
