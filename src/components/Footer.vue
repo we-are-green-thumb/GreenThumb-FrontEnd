@@ -1,7 +1,5 @@
 <template>
-      <v-card-text class="white--text">
-        
-        <br>
+      <v-card-text class="white--text"><br>ㄴㄴ
         {{ new Date().getFullYear() }} — <strong>살식마헬퍼</strong>
       </v-card-text>
 </template>
