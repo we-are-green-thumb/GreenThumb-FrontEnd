@@ -20,60 +20,45 @@
             label="비밀번호 입력하기"
             required
           ></v-text-field>
-          <v-btn @click="login">로그인</v-btn>
+          <v-btn @click="login({email,password})">로그인</v-btn>
         </div>
       </v-flex>
     </v-layout>
+    
   </v-container>
 </template>
 
 
 <script>
-import http from "@/util/http-common";
+// import http from "@/util/http-common"
+import {mapState, mapActions} from "vuex"
 
 export default {
   data: () => ({
     valid: true,
+    // allUser: [],
     password: "",
     email: "",
-    allUsers: [],
     emailRules: [
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
-    isError : false,
-    loginSucess : false,
+
   }),
-  created() {
-    http
-      .get("/user")
-      .then((res) => {
-        this.allUsers = res.data;
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .then(() => {});
-  },
+
+computed : {
+    ...mapState(["isLogin", "isLonginError"]),
+    // ...mapState({allUser: state => state.allUser})
+},
   methods: {
-    login() {
-      let selectUser = null;
-      this.allUsers.forEach((user) => {
-        if (user.userName === this.email) selectUser = user;
-      });
-      if (selectUser === null) alert("존재하지 않는 아이디에요.");
-      else {
-        // if (selectUser.userPassword !== this.password)
-        //   alert("아이디와 비밀번호가 일치하지 않아요.")
-        // else {
-        // alert('로그인이 완료되었습니다.')
-        selectUser.userPassword !== this.password
-          ? alert("아이디와 비밀번호가 일치하지 않아요.") & console.log(this.loginSucess)
-          : alert("로그인이 완료되었습니다.") & (this.loginSucess = true) & console.log(this.loginSucess)
-      }
+      ...mapActions(["login"])
+
     },
-  },
+      beforeCreate() {
+      this.$store.getters.loginCheck;
+      
+      },
+
   validate() {
     this.$refs.form.validate();
   },
