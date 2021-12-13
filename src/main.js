@@ -16,6 +16,11 @@ new Vue({
   vuetify: new Vuetify(),
   store,
   router,
+  beforeCreate(){
+    if(localStorage.getItem != null){
+    this.$store.dispatch("getUserInfo")
+    }
+  },
   render: h => h(App),
 }).$mount('#app')
 

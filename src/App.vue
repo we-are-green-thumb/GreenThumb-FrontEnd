@@ -66,8 +66,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .v-tab {
   font-size: 18px;
+}
+
+ol, ul {
+    list-style: none;
 }
 </style>
