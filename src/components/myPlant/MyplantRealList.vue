@@ -14,7 +14,7 @@
           <h3>식물을 등록해주세요</h3>
         </div>
       </li>
-      <div v-for="(u, i) in myplant" :key="i">
+      <div v-for="(u, i) in userInfo" :key="i">
         <li class="myplantform">
           <div>
             <img class="imgSize" :src="u.imageUrl" />
@@ -23,6 +23,8 @@
             <h3>{{ u.plantNickname }}</h3>
             <a> {{ u.water }}일 뒤 물을 주세요! </a><br />
             <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br />
+            <a> 온도는 {{ u.id }}도가 딱이에요! </a><br />
+            <a> 온도는 {{ i.id }}도가 딱이에요! </a><br />            
           </div>
         </li>
       </div>
@@ -42,7 +44,8 @@ export default {
     };
   },
   computed : {
-    ...mapState(["myplant"])
+    // ...mapState(["myplant"]),
+    ...mapState(["userInfo"])
   }
   // created(){
   //    http
