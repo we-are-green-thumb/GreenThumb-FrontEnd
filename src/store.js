@@ -66,6 +66,7 @@ export default new Vuex.Store({
             email: response.data.data.email
           }
           commit('loginSuccess', userInfo)
+          router.push({name: "IndexMyplant"})
         })
         .catch((error) => {
           console.log(error);
