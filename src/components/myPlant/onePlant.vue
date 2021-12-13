@@ -21,7 +21,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
     .myplantcontainer {
 	display: grid;
 	grid-template-columns: 500px

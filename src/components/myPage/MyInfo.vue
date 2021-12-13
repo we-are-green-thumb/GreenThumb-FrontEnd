@@ -40,7 +40,7 @@
 
     <v-btn
       :disabled="!valid"
-      color="red"
+      color="#55555c"
       class="mr-4"
       @click="validate"
     >
@@ -48,14 +48,14 @@
     </v-btn>
 
     <v-btn
-      color="red"
+      color="#55555c"
       class="mr-4"
       @click="reset"
     >
       Reset Form
     </v-btn>
     <v-btn
-      color="red"
+      color="#55555c"
       @click="resetValidation"
     >
       Reset Validation
@@ -92,7 +92,7 @@ export default {
 .background {
   /* color: bisque; */
     float: center;
-    background-color: bisque;
+    background-color: rgb(172, 172, 180);
 }
 .background form{
     float: right;

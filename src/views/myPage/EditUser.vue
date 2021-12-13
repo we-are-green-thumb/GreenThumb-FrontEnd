@@ -1,13 +1,7 @@
 <template>
   <div>
     <!-- 9 회원수정  -->
-    <plantHeader></plantHeader>
-    <br /><br />
-    <plantNav></plantNav>
-    <br /><br />
-    <hr size="5px" />
     <MyPageNav></MyPageNav>
-    <br /><br />
     <MyInfo></MyInfo>
     <br /><br />
 
@@ -18,8 +12,6 @@
 </template>
 <script>
 import Footer from "../../components/Footer.vue";
-import Header from "../../components/Header.vue";
-import NavigationBar from "../../components/NavigationBar.vue";
 // import LeftSideBar from '../../components/myPage/LeftSideBar.vue';
 import MyPageNav from "../../components/myPage/MyPageNav.vue";
 import MyInfo from "../../components/myPage/MyInfo.vue";
@@ -30,8 +22,6 @@ export default {
   name: "EditUser",
 
   components: {
-    plantHeader: Header,
-    plantNav: NavigationBar,
     plantFooter: Footer,
     // "LeftSideBar":LeftSideBar,
     MyPageNav: MyPageNav,

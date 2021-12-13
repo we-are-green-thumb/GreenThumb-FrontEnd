@@ -11,7 +11,8 @@
       <div class="WidthdrawBtn" v-if="!check">
         <br><br><br>
         <label for="pw">비밀번호를 입력하세요 </label>
-        <input type="text" id="pw" name="pw" /><br /><br />
+        <!-- <input type="text" id="pw" name="pw" /><br /><br /> -->
+        <v-text-field placeholder="비밀번호 입력창" v-model="password"> </v-text-field>
         <!-- <input  type="submit" value="Submit" > -->
         <v-btn >확인</v-btn>
 
@@ -23,7 +24,8 @@
 export default {
   data() {
     return {
-      check : "false"
+      check : "false",
+      password :""
     }
   },
   methods :{

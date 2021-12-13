@@ -4,6 +4,7 @@
     <v-btn  @click="clickQuestion">질문</v-btn>
     <v-btn  @click="clickTrade">나눔&거래</v-btn>
 
+    <v-btn style="float:right"> 글 쓰기 </v-btn>
     <h3>궁금한 것을 물어보세요</h3>
     <v-card class="card">
       <v-card-title>
