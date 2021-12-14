@@ -59,7 +59,15 @@ const test = () => {
 const writepost = () => {
   return import("../views/post/WritePost.vue")
 }
-
+const editpost = () => {
+  return import("../views/post/EditPost.vue")
+}
+const writecomment = () => {
+  return import("../views/comment/WriteComment.vue")
+}
+const editcomment = () => {
+  return import("../views/comment/EditComment.vue")
+}
 const routes = [
   {
     path: "/",
@@ -128,7 +136,21 @@ const routes = [
     name: "PostDetail",
     component: PostDetail,
   },
-
+  {
+    path: "/post/editpost",
+    name: "EditPost",
+    component: editpost,
+  },
+  {
+    path: "/comment/editcomment",
+    name: "EditComment",
+    component: editcomment,
+  },
+  {
+    path: "/comment/writecomment",
+    name: "WriteComment",
+    component: writecomment,
+  },
   {
     path: "/test",
     name: "test",

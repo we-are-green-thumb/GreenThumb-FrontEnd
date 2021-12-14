@@ -2,22 +2,8 @@
     <div>
         <h2> 댓글  {{comments.length}}</h2> 
 
-        <v-btn style="float:right"> 댓글 등록 </v-btn>
+        <v-btn style="float:right"><router-link :to="{name: 'WriteComment' }" style="text-decoration:none; color: hsl(94, 10%, 46%);">댓글 등록 </router-link></v-btn>
         <br><br>
-      <!-- <v-card-title>
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify" 
-          label="Search"
-          single-line
-          hide-details
-        ></v-text-field>
-      </v-card-title>
-      <v-data-table
-        :headers="headers"
-        :items="comments"
-        :search="search"
-      ></v-data-table> -->
         <ul>
             <li v-for="comment in comments" :key="comment"> 
                {{comment.id}} "Places to Be", "Places to See" mdi-facebook cyan darken-1<!-- 내용 -->
