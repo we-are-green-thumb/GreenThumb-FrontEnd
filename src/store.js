@@ -54,9 +54,8 @@ export default new Vuex.Store({
       const password = loginObj.password;
       http.post("/user/login", {"userName":userName,"password":password}).then((res) => {
         console.log('잘가')
-        console.log(res)
         console.log(loginObj)
-        let token = res.data.data;
+        let token = res.data.accessToken;
         console.log(token)
 
         //토큰 -> 멤버 정보 반환 .. 토큰만 저장해두면 새로고침해도 사용가능 local storage에 저장하자. 밑에 새로 만든다.
@@ -89,7 +88,7 @@ export default new Vuex.Store({
             "access-token": token,
           },
         };
-        console.log('{',config,"}")
+        console.log(config)
         http.get("/user/login", {"headers":{"access-token":token}}).then((response) => {
           let userInfo = {
             id: response.data.data.id,
