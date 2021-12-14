@@ -1,9 +1,9 @@
 <template>
   <div style="text-align: center;">
         <a href="#" class="kakao btn">
-          <i class="fas fa-comment"></i> 카카오로 로그인하기
+          <i class="fas fa-comment"></i> 카카오로 회원가입 하기
          </a>
-        <a href="http://localhost:8081/oauth2/authorization/google" class="google btn"><i class="fab fa-google"></i> 구글로 로그인하기
+        <a href="#" class="google btn"><i class="fab fa-google"></i> 구글로 회원가입 하기
         </a>
   </div>
 </template>
