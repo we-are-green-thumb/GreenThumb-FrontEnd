@@ -56,6 +56,10 @@ const test = () => {
   return import("../views/test.vue")
 }
 
+const writepost = () => {
+  return import("../views/post/WritePost.vue")
+}
+
 const routes = [
   {
     path: "/",
@@ -90,7 +94,11 @@ const routes = [
     name: "Hospital",
     component: Hospital,
   },
-
+  {
+    path: "/post/writepost",
+    name: "WritePost",
+    component: writepost,
+  },
   // {
   //   path: "/modal",
   //   name: "modal",
