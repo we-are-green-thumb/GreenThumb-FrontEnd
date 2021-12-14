@@ -15,11 +15,10 @@
       </v-row>
 
       <v-text-field v-model="title" label="제목" required></v-text-field>
-
       <v-text-field v-model="content" label="내용" required></v-text-field>
 
     <input id="chooseFile" type="file" accept="image/*" />
-    <v-btn>완료 </v-btn>
+    <v-btn>수정 완료 </v-btn>
     </v-form>
   </div>
 </template>

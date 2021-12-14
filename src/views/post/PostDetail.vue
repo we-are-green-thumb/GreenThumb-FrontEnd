@@ -42,7 +42,7 @@
                 <br>
                 <br>
                 <div style="float:right">
-                    <v-btn> 작성자 일치 시 수정하기 버튼 활성화 </v-btn>
+                    <v-btn  >  <router-link :to="{name: 'EditPost' }" style="text-decoration:none; color: hsl(94, 10%, 46%);">작성자 일치 시 수정하기 버튼 활성화 </router-link></v-btn>
                     <v-btn> 하트 </v-btn>
                     <v-text >좋아요 20 </v-text>
                 </div>
@@ -51,35 +51,6 @@
                 <hr>
             <comments></comments>
             </v-card>
-          <!-- <v-col v-for="card in cards" :key="card" cols="12" sm="6" md="4">
-            <v-card>
-              <v-img
-                :src="`https://picsum.photos/200/300?image=${getImage()}`"
-                height="300px"
-              >
-                <span
-                  class="text-h5 white--text pl-4 pt-4 d-inline-block"
-                  v-text="card"
-                ></span>
-              </v-img>
-
-              <v-card-actions class="white justify-center">
-                <v-btn
-                  v-for="(social, i) in socials"
-                  :key="i"
-                  :color="social.color"
-                  class="white--text"
-                  fab
-                  icon
-                  small
-                >
-                  <v-icon>{{ social.icon }}</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col> -->
-
-
         </v-row>
       </v-container>
     </v-card>
