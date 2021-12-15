@@ -1,6 +1,5 @@
 <template>
   <div>
-    <form class="modal-content1">
       <div class="container1">
         <h1>회원가입</h1>
         <hr />
@@ -40,19 +39,18 @@
           required
         />
 
-        <button type="submit" class="signupbtn" @click="submitForm">
+        <button v-on:keyup.13="submitForm()" type="submit" class="signupbtn" v-on:click="submitForm()">
           완료
         </button>
       </div>
       <socialSignIn />
-    </form>
   </div>
 </template>
 
 <script>
 import socialSignIn from "../../components/sign/socialSignIn.vue";
 import http from "@/util/http-common";
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 
 export default {
   components: {
@@ -71,7 +69,7 @@ export default {
     };
   },
   computed: {
-    ...mapState({ allUser: (state) => state.allUser }),
+    // ...mapState({ allUser: (state) => state.allUser }),
   },
   methods: {
     checkcheckemail() {
@@ -91,15 +89,19 @@ export default {
           nickName: this.name,
         })
         .then((response) => {
-          console.log(response);
-          alert("회원가입 성공");
+          if(response.data.success == true){
+            alert("회원가입 성공")
+            this.$router.push({ name: 'loginform'})
+          }else{
+            alert("회원가입 실패")
+          }
         })
         .catch((error) => {
-          alert("회원가입 실패");
           console.log(error);
         });
     },
-  },
+    
+    },
 };
 </script>
 

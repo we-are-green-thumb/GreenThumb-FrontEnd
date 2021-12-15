@@ -20,6 +20,9 @@
         <v-tab>
           <router-link :to="{name: 'Hospital' }" style="text-decoration:none; color: hsl(94, 10%, 46%);"  > 식물병원</router-link>
         </v-tab>
+        <v-tab>
+          <a href="https://similarplant.netlify.app/" style="text-decoration:none; color: hsl(94, 10%, 46%);"  >식물MBTI</a>
+        </v-tab>
       </v-tabs>
       <!-- <v-avatar
         class="hidden-sm-and-down"
