@@ -35,7 +35,7 @@ export default new Vuex.Store({
       http
         .get("/user")
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           return (state.allUsers = res.data);
         })
         .catch((err) => {
@@ -47,55 +47,51 @@ export default new Vuex.Store({
   // 행위 시도
   actions: {
     login({ dispatch }, loginObj) {
+      
+        let email = loginObj.email;
+        let password = loginObj.password;
+        
       //로그인 후 토큰 반환
-      console.log('안녕')
-      console.log(loginObj)
-      const email = loginObj.email;
-      const password = loginObj.password;
       http.post("/auth/login", {"email":email,"password":password}).then((res) => {
-        console.log('잘가')
-        console.log(loginObj)
+        
         let token = res.data.accessToken;
-        console.log(res.data)
-        console.log(token)
-
-        //토큰 -> 멤버 정보 반환 .. 토큰만 저장해두면 새로고침해도 사용가능 local storage에 저장하자. 밑에 새로 만든다.
-
-        // http
-        // .get("https://reqres.in/api/users/2", config)
-        // .then((response) => {
-        //   let userInfo ={
-        //     id: response.data.data.id,
-        //     email: response.data.data.email
-        //   }
-        //   commit('loginSuccess', userInfo)
-        //   router.push({name: "IndexMyplant"})
-        // })
+        let id = res.data.id;
+        let Bearer = res.data.tokenType;
 
         //일단 토큰 저장함
         localStorage.setItem("getToken", token);
+        localStorage.setItem("getId", id);
+        localStorage.setItem("getB", Bearer);
+
         // sessionStorage.setItem("getToken",token)
         dispatch("getUserInfo");
-        router.push({ name: "IndexMyplant" });
+        router.push({ name: "IndexMain" });
       });
     },
     getUserInfo({ commit }) {
       if (localStorage.getItem("getToken") !== null) {
         //토큰 -> 멤버 정보 반환 .. 토큰만 저장해두면 새로고침해도 사용가능 local storage에 저장하자. 밑에 새로 만든다.
         let token = localStorage.getItem("getToken");
-        console.log("1번")
+        let id = localStorage.getItem("getId");
+        // let Bearer = localStorage.getItem("getB")
         let config = {
           headers: {
-            "access-token": token,
+            "Token": token,
           },
         };
+        console.log(id)
         console.log(config)
-        http.get("/user/login", {"headers":{"access-token":token}}).then((response) => {
+        http.get("/user/" + id ,{headers:{"Token":`Bearer ${token}`}}).then((response) => {
+          console.log('--------------------------------')
+          console.log(response)
+          console.log(response.data)
+          console.log('왜 안나와 도대체')
           let userInfo = {
-            id: response.data.data.id,
-            email: response.data.data.email,
+            // id: this.id
+            // email: response.data.data.email,
           };
-          console.log("2번",userInfo)
+          console.log('여기 사람있어요!!!!!!')
+          console.log("2번", userInfo)
 
           commit("loginSuccess", userInfo)
             .catch((error) => {
@@ -105,7 +101,8 @@ export default new Vuex.Store({
             .then(() => {});
         });
       } else {
-        console.log("로그아웃 성공");
+        commit("logouted")
+        // console.log("로그아웃 성공")
       }
     },
 
