@@ -76,12 +76,12 @@ export default new Vuex.Store({
         // let Bearer = localStorage.getItem("getB")
         let config = {
           headers: {
-            "Token": token,
+            "Authorization": token,
           },
         };
         console.log(id)
         console.log(config)
-        http.get("/user/" + id ,{headers:{"Token":`Bearer ${token}`}}).then((response) => {
+        http.get("/user/" + id ,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
           console.log('--------------------------------')
           console.log(response)
           console.log(response.data)
