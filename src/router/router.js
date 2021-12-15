@@ -32,9 +32,9 @@ const checkInUser = (to, from, next) => {
 const IndexMyplant = () => {
   return import("../views/myplant/Indexmyplant.vue");
 };
-const modal = () => {
-  return import("../components/myPlant/Modal.vue")
-}
+// const modal = () => {
+//   return import("../components/myPlant/Modal.vue")
+// }
 const Detailmyplant = () => {
   return import("../views/myplant/Detailmyplant.vue");
 };
@@ -56,6 +56,18 @@ const test = () => {
   return import("../views/test.vue")
 }
 
+const writepost = () => {
+  return import("../views/post/WritePost.vue")
+}
+const editpost = () => {
+  return import("../views/post/EditPost.vue")
+}
+const writecomment = () => {
+  return import("../views/comment/WriteComment.vue")
+}
+const editcomment = () => {
+  return import("../views/comment/EditComment.vue")
+}
 const routes = [
   {
     path: "/",
@@ -90,12 +102,16 @@ const routes = [
     name: "Hospital",
     component: Hospital,
   },
-
   {
-    path: "/modal",
-    name: "modal",
-    component: modal,
+    path: "/post/writepost",
+    name: "WritePost",
+    component: writepost,
   },
+  // {
+  //   path: "/modal",
+  //   name: "modal",
+  //   component: modal,
+  // },
   {
     path: "/login",
     name: "loginform",
@@ -120,7 +136,21 @@ const routes = [
     name: "PostDetail",
     component: PostDetail,
   },
-
+  {
+    path: "/post/editpost",
+    name: "EditPost",
+    component: editpost,
+  },
+  {
+    path: "/comment/editcomment",
+    name: "EditComment",
+    component: editcomment,
+  },
+  {
+    path: "/comment/writecomment",
+    name: "WriteComment",
+    component: writecomment,
+  },
   {
     path: "/test",
     name: "test",

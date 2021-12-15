@@ -1,29 +1,63 @@
 <template>
   <div>
-      <form class="modal-content1" >
-    <div class="container1">
-      <h1>회원가입</h1>
-      <hr>
-      <label for="email"><b>이메일</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
+    <form class="modal-content1">
+      <div class="container1">
+        <h1>회원가입</h1>
+        <hr />
+        <label for="email"><b>이메일</b></label>
+        <input
+          v-model="email"
+          type="text"
+          placeholder="Enter Email"
+          name="email"
+          required
+        />
+        <v-btn @click="checkcheckemail">중복체크</v-btn>
 
-      <label for="psw"><b>비밀번호</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+        <label for="psw"><b>비밀번호</b></label>
+        <input
+          v-model="password"
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+        />
 
-      <label for="psw-repeat"><b>비밀번호 확인</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-   
-      <label for="email"><b>관심있는 식물</b></label>
-      <input type="text" placeholder="plant name" name="plant" required>
-        
-      <button type="submit" class="signupbtn">완료</button>
-    </div>
-  </form>
+        <label for="psw-repeat"><b>비밀번호 확인</b></label>
+        <input
+          type="password"
+          placeholder="Repeat Password"
+          name="psw-repeat"
+          required
+        />
+
+        <label for="email"><b>닉네임</b></label>
+        <input
+          v-model="name"
+          type="text"
+          placeholder="plant name"
+          name="plant"
+          required
+        />
+
+        <button type="submit" class="signupbtn" @click="submitForm">
+          완료
+        </button>
+      </div>
+      <socialSignIn />
+    </form>
   </div>
 </template>
 
 <script>
+import socialSignIn from "../../components/sign/socialSignIn.vue";
+import http from "@/util/http-common";
+import { mapState } from "vuex";
+
 export default {
+  components: {
+    socialSignIn,
+  },
   name: "SignupForm",
   data() {
     return {
@@ -32,11 +66,38 @@ export default {
       password: "",
       passwordConfirm: "",
       plantName: "",
+      introduce: "",
+      allUsers: [],
     };
   },
+  computed: {
+    ...mapState({ allUser: (state) => state.allUser }),
+  },
   methods: {
+    checkcheckemail() {
+      this.allUsers = this.state.allUser;
+      console.log(this.allUsers);
+      // for (const user in this.allUser) {
+      //   if(this.email === user.email){
+      //     alert('중복입니다.')
+      //   }
+      // }
+    },
     submitForm() {
-      console.log("dd");
+      http
+        .post("/auth/signup", {
+          email: this.email,
+          password: this.password,
+          nickName: this.name,
+        })
+        .then((response) => {
+          console.log(response);
+          alert("회원가입 성공");
+        })
+        .catch((error) => {
+          alert("회원가입 실패");
+          console.log(error);
+        });
     },
   },
 };
@@ -44,7 +105,8 @@ export default {
 
 <style scoped>
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -54,22 +116,21 @@ input[type=text], input[type=password] {
 }
 
 /* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   background-color: #ddd;
   outline: none;
 }
 
 /* Set a style for all buttons */
 
-
 button:hover {
-  opacity:1;
+  opacity: 1;
 }
-
 
 /* Float cancel and signup buttons and add an equal width */
 .signupbtn {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -91,7 +152,7 @@ hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
- 
+
 /* Clear floats */
 .clearfix::after {
   content: "";
