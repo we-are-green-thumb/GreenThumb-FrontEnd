@@ -85,7 +85,7 @@ export default {
     },
     submitForm() {
       http
-        .post("/user", {
+        .post("/auth/signup", {
           email: this.email,
           password: this.password,
           nickName: this.name,
@@ -93,7 +93,6 @@ export default {
         .then((response) => {
           console.log(response);
           alert("회원가입 성공");
-          this.router.push({ name: "loginform" }); ///이거 안됨 ㅠ
         })
         .catch((error) => {
           alert("회원가입 실패");

@@ -50,12 +50,13 @@ export default new Vuex.Store({
       //로그인 후 토큰 반환
       console.log('안녕')
       console.log(loginObj)
-      const userName = loginObj.email;
+      const email = loginObj.email;
       const password = loginObj.password;
-      http.post("/user/login", {"userName":userName,"password":password}).then((res) => {
+      http.post("/auth/login", {"email":email,"password":password}).then((res) => {
         console.log('잘가')
         console.log(loginObj)
         let token = res.data.accessToken;
+        console.log(res.data)
         console.log(token)
 
         //토큰 -> 멤버 정보 반환 .. 토큰만 저장해두면 새로고침해도 사용가능 local storage에 저장하자. 밑에 새로 만든다.
