@@ -14,7 +14,7 @@
           <h3>식물을 등록해주세요</h3>
         </div>
       </li>
-      <div v-for="(u, i) in userInfo" :key="i">
+      <div v-for="(u, i) in myplant" :key="i">
         <li class="myplantform">
           <div>
             <img class="imgSize" :src="u.imageUrl" />
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-// import http from "@/util/http-common";
+import http from "@/util/http-common";
 import { mapState } from 'vuex';
 
 
@@ -44,21 +44,24 @@ export default {
     };
   },
   computed : {
-    // ...mapState(["myplant"]),
+    ...mapState(["myplant"]),
     ...mapState(["userInfo"])
+  },
+  created(){
+    let id = localStorage.getItem("getId")
+    let token = localStorage.getItem("getToken")
+    console.log(id)
+     http
+        .get("/plant/user/"+id, { headers: { Authorization: `Bearer ${token}` }})
+        .then((res) => {
+          this.myplant = res.data;
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
   }
-  // created(){
-  //    http
-  //       .get("/user/1/plantslist")
-  //       .then((res) => {
-  //         this.myplant = res.data;
-  //         console.log(res.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       })
-  //       .then(() => {});
-  // }
 };
 </script>
 <style>
