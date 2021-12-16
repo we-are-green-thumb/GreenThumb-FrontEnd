@@ -1,10 +1,9 @@
 <template>
   <div class="place">
-    <!-- <v-btn @click="test1">클릭</v-btn> -->
-
     <ul class="myplantcontainer">
+      <!-- 식물 등록 모달 -->
       <li class="myplantform">
-        <div>
+        <!-- <div>
           <img
             class="imgSize"
             src="https://png.pngtree.com/png-clipart/20210420/ourlarge/pngtree-creative-black-and-white-monochrome-graffiti-potted-plant-png-image_3223287.jpg"
@@ -12,56 +11,81 @@
         </div>
         <div class="plantcontent">
           <h3>식물을 등록해주세요</h3>
-        </div>
-      </li>
+        </div>-->
+      <!-- </li>  -->
+      <div id="modalp">
+        <h1>식물 등록 컴포넌트</h1>
+        <modalPlantRegister
+          v-if="isModalViewed"
+          @close-modal="isModalViewed = false"
+        >
+          <contentPlantRegister msg="Hello Vue in CodeSandbox!" />
+        </modalPlantRegister>
+        <button @click="isModalViewed = true">식물 등록</button>
+      </div>
+</li> 
+      <!-- 내 식물 리스트 --->
       <div v-for="(u, i) in myplant" :key="i">
-        <li class="myplantform">
-          <div>
-            <img class="imgSize" :src="u.imageUrl" />
-          </div>
-          <div class="plantcontent">
-            <h3>{{ u.plantNickname }}</h3>
-            <a> {{ u.water }}일 뒤 물을 주세요! </a><br />
-            <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br />
-            <a> 온도는 {{ u.id }}도가 딱이에요! </a><br />
-            <a> 온도는 {{ i.id }}도가 딱이에요! </a><br />            
-          </div>
-        </li>
+        <router-link
+          :to="{
+            name: 'Detailmyplant',
+            params: { userId: u.userId, plantId: u.plantId },
+          }"
+        >
+          <li class="myplantform">
+            <div>
+              <img class="imgSize" :src="u.imageUrl" />
+            </div>
+            <div class="plantcontent">
+              <h3>{{ u.nickName }}</h3>
+              <a> {{ u.water }}일 뒤 물을 주세요! </a><br />
+              <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br />
+            </div>
+          </li>
+        </router-link>
       </div>
     </ul>
   </div>
 </template>
 
 <script>
+import modalPlantRegister from "../../components/Modal/modalPlantRegister.vue";
+import contentPlantRegister from "../../components/Modal/contentPlantRegister.vue";
 import http from "@/util/http-common";
-import { mapState } from 'vuex';
-
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
       myplant: [],
+      isModalViewed: false,
     };
   },
-  computed : {
-    ...mapState(["myplant"]),
-    ...mapState(["userInfo"])
+  components : {
+    modalPlantRegister,
+    contentPlantRegister,
   },
-  created(){
-    let id = localStorage.getItem("getId")
-    let token = localStorage.getItem("getToken")
-    console.log(id)
-     http
-        .get("/plant/user/"+id, { headers: { Authorization: `Bearer ${token}` }})
-        .then((res) => {
-          this.myplant = res.data;
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .then(() => {});
-  }
+  computed: {
+    ...mapState(["myplant"]),
+    ...mapState(["userInfo"]),
+
+  },
+  created() {
+    let id = localStorage.getItem("getId");
+    let token = localStorage.getItem("getToken");
+    http
+      .get("/plant/user/" + id, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        this.myplant = res.data;
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {});
+  },
 };
 </script>
 <style>
@@ -100,5 +124,13 @@ ul {
 .myplantBtn {
   all: unset;
   cursor: pointer;
+}
+#modalp {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

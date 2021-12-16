@@ -53,7 +53,7 @@ const PostDetail = () => {
 }
 
 const test = () => {
-  return import("../views/test.vue")
+  return import("../components/community/test.vue")
 }
 
 const writepost = () => {
@@ -85,6 +85,14 @@ const routes = [
     path: "/myplant/:userId/:plantId",
     name: "Detailmyplant",
     component: Detailmyplant,
+    props: true,
+    children:[
+      {
+        path: "/myplant",
+        component: IndexMyplant,
+      }
+    ]
+    
   },
   {
     path : '/mypage/editpage',

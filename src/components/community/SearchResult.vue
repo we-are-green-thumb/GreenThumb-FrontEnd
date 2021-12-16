@@ -19,8 +19,9 @@
       </v-card-title>
       <v-data-table
         :headers="headers"
-        :items="tests"
+        :items="posts"
         :search="search"
+        @click:row="clicketest"
       ></v-data-table>
     </v-card>
   </div>
@@ -38,120 +39,78 @@ export default {
     return {
       search: "",
       headers: [
-       
-        // {
-        //   text: "제목",
-        //   align: "start",
-        //   filterable: true,
-        //   value: "title",
-        // },
-        // { text: "내용", value: "content" },
-        // { text: "작성자", value: "writer" },
-        // { text: "조회수", value: "hits" },
-        // { text: "좋아요", value: "likes" },
-        // { text: "댓글수", value: "comment" },
-        
         {
           text: "제목",
           align: "start",
           filterable: true,
-          value: "color",
+          value: "title",
         },
-        { text: "내용", value: "id" },
-        { text: "작성자", value: "name" },
-        { text: "조회수", value: "pantone_value" },
-        { text: "좋아요", value: "year" },
+        { text: "내용", value: "content" },
+        { text: "작성자", value: "content" },
+        { text: "조회수", value: "hits" },
+        { text: "좋아요", value: "hits" },
       ],
       posts:[
-          // {
-          //     title:"튤립에 대한 오해",
-          //     content:"튤립은 번식을 못한다? 이것도 맞는 말임 근데 사람들이 뭐 개량으로 번식능력을 없앴다더라 이런말도 꽤 하던데",
-          //     writer:"해바라기",
-          //     hits:"33",
-          //     likes:"6",
-          //     comment:"5",
-          // },
-          //  {
-          //     title:"장미에 대한 오해",
-          //     content:"장미는 번식을 못한다? 이것도 맞는 말임 근데 사람들이 뭐 개량으로 번식능력을 없앴다더라 이런말도 꽤 하던데",
-          //     writer:"해바라기",
-          //     hits:"33",
-          //     likes:"6",
-          //     comment:"5",
-          // }
-          // , {
-          //     title:"해바라기에 대한 오해",
-          //     content:"해바라기는 번식을 못한다? 이것도 맞는 말임 근데 사람들이 뭐 개량으로 번식능력을 없앴다더라 이런말도 꽤 하던데",
-          //     writer:"해바라기",
-          //     hits:"33",
-          //     likes:"6",
-          //     comment:"5",
-          // }
-          // , {
-          //     title:"흑장미에 대한 오해",
-          //     content:"흑장미는 번식을 못한다? 이것도 맞는 말임 근데 사람들이 뭐 개량으로 번식능력을 없앴다더라 이런말도 꽤 하던데",
-          //     writer:"해바라기",
-          //     hits:"33",
-          //     likes:"6",
-          //     comment:"5",
-          // }
-          // , {
-          //     title:"메가커피에 대한 오해",
-          //     content:"메가커피는 번",
-          //     writer:"해바라기",
-          //     hits:"33",
-          //     likes:"6",
-          //     comment:"5",
-          // }
-          // , {
-          //     title:"스타벅스",
-          //     content:"메가커피",
-          //     writer:"영훈",
-          //     hits:"45",
-          //     likes:"66",
-          //     comment:"77",
-          // }
+          
       ],
-      tests : []
-      // [
-        // {
-        //   "id": "",
-        //     "name": "",
-        //     "year": "",
-        //     "color": "",
-        //     "pantone_value": ""
-        // }
-      // ]
     };
   },
+   created(){
+    let token = localStorage.getItem("getToken")
+     http
+        .get("/post/" , { headers: { Authorization: `Bearer ${token}` }})
+        .then((res) => {
+          this.posts =res.data;
+          console.log(this.posts);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
+  },
   methods: {
+    
+    clicketest(value){
+      alert('click');
+      console.log(value);
+    },
     clickFree() {
-     http.get("https://reqres.in/api/unknown") //자유 API넣으면 될듯
-      .then((res) => {
-        this.tests =res.data.data;
-      })
-      .catch((err) => {
+       let postCategory = 'free';
+        let token = localStorage.getItem("getToken");
+
+    http.get("/post/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
+          this.posts =response.data;
+      }).catch((err)=>{
         console.log(err);
       })
     },
 
     clickQuestion() {
+        let postCategory = 'QnA';
+        let token = localStorage.getItem("getToken");
+
+    http.get("/post/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
+          this.posts =response.data;
+          console.log(this.posts);
+      }).catch((err)=>{
+        console.log(err);
+      })
     },
     clickTrade() {
+        let postCategory = 'share';
+        let token = localStorage.getItem("getToken");
+
+    http.get("/post/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
+          this.posts =response.data;
+      }).catch((err)=>{
+        console.log(err);
+      })
     },
   },
-  // created () {
-  //   http
-  //     .get("/user")
-  //     .then((res) => {
-  //       this.allUsers = res.data;
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  //     .then(() => {});
-  // },
+  showAlert(a){
+      if (event.target.classList.contains('btn__content')) return;
+      alert('Alert! \n' + a.name);
+    },
 };
 </script>
 <style>
