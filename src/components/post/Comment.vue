@@ -22,18 +22,6 @@ export default {
     data() {
         return {
          comments : [],
-          search: "",
-         headers: [  
-              {
-          text: "작성자",
-          align: "start",
-          filterable: true,
-          value: "color",
-        },
-        { text: "내용", value: "id" },
-        { text: "조회수", value: "name" },
-        { text: "좋아요", value: "year" },
-         ]
         }
     },
     created() {
