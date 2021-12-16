@@ -79,12 +79,21 @@ const routes = [
     path: "/myplant",
     name: "IndexMyplant",
     component: IndexMyplant,
+    children:[
+      {
+        path: "/myplant/:userId/:plantId",
+        component: Detailmyplant,
+      },
+     
+    ]
   },
 
   {
     path: "/myplant/:userId/:plantId",
     name: "Detailmyplant",
     component: Detailmyplant,
+    props: true
+    
   },
   {
     path : '/mypage/editpage',
