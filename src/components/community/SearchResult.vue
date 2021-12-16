@@ -71,8 +71,15 @@ export default {
   methods: {
     
     clicketest(value){
-      alert('click');
+      let PostId = value.id;
+      let UserId = localStorage.getItem('getId');
+      // console.log(value.UserId);
       console.log(value);
+
+      this.$router.push({name : 'PostDetail' ,params: { userId:UserId, postId: PostId }})
+      // alert('click');
+      // console.log(value);
+      
     },
     clickFree() {
        let postCategory = 'free';
@@ -107,10 +114,6 @@ export default {
       })
     },
   },
-  showAlert(a){
-      if (event.target.classList.contains('btn__content')) return;
-      alert('Alert! \n' + a.name);
-    },
 };
 </script>
 <style>

@@ -143,9 +143,10 @@ const routes = [
     component: register,
   },
   {
-    path: "/post/postDetail",
+    path: "/post/postDetail/:userId/:postId",
     name: "PostDetail",
     component: PostDetail,
+    props: true,
   },
   {
     path: "/post/editpost",
