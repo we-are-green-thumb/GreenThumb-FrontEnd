@@ -1,7 +1,5 @@
 <template>
   <div class="place">
-    <!-- <v-btn @click="test1">클릭</v-btn> -->
-
     <ul class="myplantcontainer">
       <li class="myplantform">
         <div>
@@ -15,18 +13,18 @@
         </div>
       </li>
       <div v-for="(u, i) in myplant" :key="i">
+        <router-link :to="{ name: 'Detailmyplant', params: { userId: u.userId, plantId: u.plantId }}">
         <li class="myplantform">
           <div>
             <img class="imgSize" :src="u.imageUrl" />
           </div>
-          <div class="plantcontent">
-            <h3>{{ u.plantNickname }}</h3>
+          <div class="plantcontent" >
+            <h3>{{ u.nickName }}</h3>
             <a> {{ u.water }}일 뒤 물을 주세요! </a><br />
-            <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br />
-            <a> 온도는 {{ u.id }}도가 딱이에요! </a><br />
-            <a> 온도는 {{ i.id }}도가 딱이에요! </a><br />            
+            <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br />          
           </div>
         </li>
+        </router-link>
       </div>
     </ul>
   </div>
@@ -50,7 +48,6 @@ export default {
   created(){
     let id = localStorage.getItem("getId")
     let token = localStorage.getItem("getToken")
-    console.log(id)
      http
         .get("/plant/user/"+id, { headers: { Authorization: `Bearer ${token}` }})
         .then((res) => {

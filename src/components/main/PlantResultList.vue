@@ -2,36 +2,14 @@
 <div class="container">
     <section id="blue-box" class="box">
         <ul class="container">
+            <div v-for="(u, i) in allPlant" :key="i">
             <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
+                <a> <img class="box" :src="u.imageUrl"> </a>
+                <a> {{ u.name }} </a><br>
+                <a> {{ u.nickName }} </a>
             </li>
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-             <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>                                                             
+            </div>
+                                                                     
         </ul>
         
         
@@ -40,9 +18,32 @@
 </template>
 
 <script>
+import http from "@/util/http-common";
+
+
 export default {
   name: 'PlantResultList',
+  data(){
+      return {
+          allPlant:[],
 
+      }
+  },
+  created(){
+    let id = localStorage.getItem("getId")
+    let token = localStorage.getItem("getToken")
+    console.log(id)
+     http
+        .get("/plant/all", { headers: { Authorization: `Bearer ${token}` }})
+        .then((res) => {
+          this.allPlant = res.data;
+          console.log(res.data)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
+  }
 }
 </script>
 
