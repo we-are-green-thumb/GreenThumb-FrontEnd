@@ -53,7 +53,7 @@ const PostDetail = () => {
 }
 
 const test = () => {
-  return import("../views/test.vue")
+  return import("../components/community/test.vue")
 }
 
 const writepost = () => {
