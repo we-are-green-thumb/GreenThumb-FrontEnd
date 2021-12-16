@@ -79,13 +79,6 @@ const routes = [
     path: "/myplant",
     name: "IndexMyplant",
     component: IndexMyplant,
-    children:[
-      {
-        path: "/myplant/:userId/:plantId",
-        component: Detailmyplant,
-      },
-     
-    ]
   },
 
   {
@@ -95,10 +88,9 @@ const routes = [
     props: true,
     children:[
       {
-        path: "/myplant/:userId/:plantId",
-        component: Detailmyplant,
-      },
-     
+        path: "/myplant",
+        component: IndexMyplant,
+      }
     ]
     
   },

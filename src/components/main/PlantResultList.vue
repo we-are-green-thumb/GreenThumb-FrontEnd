@@ -1,17 +1,30 @@
 <template>
+
 <div class="container">
+  <!-- <div>
+  <v-card-title>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify" 
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+      </v-card-title>
+  </div>
+       -->
     <section id="blue-box" class="box">
         <ul class="container">
             <div v-for="(u, i) in allPlant" :key="i">
-            <!-- <router-link :to="{ name: 'Detailmyplant', params: { userId: u.userId, plantId: u.plantId }}"> -->
-              <router-view :key="$route.Path">
+            <router-link :to="{ name: 'Detailmyplant', params: { userId: u.userId, plantId: u.plantId }}">
+              <!-- <router-view :key="$route.Path"> -->
             <li>
                 <a> <img class="box" :src="u.imageUrl"></a>
                 <a> {{ u.name }} </a><br>
                 <a> {{ u.nickName }} </a>
             </li>
-            <!-- </router-link> -->
-            </router-view>
+            </router-link>
+            <!-- </router-view> -->
             </div>
                                                                      
         </ul>
@@ -30,9 +43,18 @@ export default {
   data(){
       return {
           allPlant:[],
+          isRouterAlive: true,
 
       }
   },
+  watch: {
+     $route(to, from) { 
+       if (to.path != from.path) {
+         this.$router.go(this.$router.currentRoute)
+       }
+        } 
+      },
+
   created(){
     let id = localStorage.getItem("getId")
     let token = localStorage.getItem("getToken")
@@ -47,12 +69,19 @@ export default {
           console.log(err);
         })
         .then(() => {});
-  }
+  },
+  methods:{
+   reload: function(){
+      this.isRouterAlive = false
+      setTimeout(()=>{
+         this.isRouterAlive = true
+      },0)
+   }
+}
 }
 </script>
 
 <style scoped>
-
 
 .container {
     text-align: center;
