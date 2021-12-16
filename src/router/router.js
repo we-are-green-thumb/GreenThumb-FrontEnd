@@ -92,7 +92,14 @@ const routes = [
     path: "/myplant/:userId/:plantId",
     name: "Detailmyplant",
     component: Detailmyplant,
-    props: true
+    props: true,
+    children:[
+      {
+        path: "/myplant/:userId/:plantId",
+        component: Detailmyplant,
+      },
+     
+    ]
     
   },
   {
