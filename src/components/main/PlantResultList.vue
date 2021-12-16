@@ -3,13 +3,15 @@
     <section id="blue-box" class="box">
         <ul class="container">
             <div v-for="(u, i) in allPlant" :key="i">
-            <router-link :to="{ name: 'Detailmyplant', params: { userId: u.userId, plantId: u.plantId }}">
+            <!-- <router-link :to="{ name: 'Detailmyplant', params: { userId: u.userId, plantId: u.plantId }}"> -->
+              <router-view :key="$route.Path">
             <li>
-                <a> <img class="box" :src="u.imageUrl"> </a>
+                <a> <img class="box" :src="u.imageUrl"></a>
                 <a> {{ u.name }} </a><br>
                 <a> {{ u.nickName }} </a>
             </li>
-            </router-link>
+            <!-- </router-link> -->
+            </router-view>
             </div>
                                                                      
         </ul>

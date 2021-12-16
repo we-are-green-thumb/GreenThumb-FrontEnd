@@ -55,7 +55,21 @@ export default {
       ],
     };
   },
+   created(){
+    let token = localStorage.getItem("getToken")
+     http
+        .get("/post/" , { headers: { Authorization: `Bearer ${token}` }})
+        .then((res) => {
+          this.posts =res.data;
+          console.log(this.posts);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
+  },
   methods: {
+    
     clicketest(value){
       alert('click');
       console.log(value);
