@@ -2,7 +2,7 @@
   <div class="content">
     <h1>🌱식물 등록🌱</h1>
     <h3>식물의 별명을 지어주세요</h3>
-    <input v-model="nickname" placeholder="레몬" />
+    <input v-bind="nickname" placeholder="레몬" />
     <hr size="5px" />
     <h3>식물의 사진을 등록해주세요</h3>
     <input
