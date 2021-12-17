@@ -1,166 +1,74 @@
-<template lang="">
-    <div>
-        <div id="app">
-  <v-app id="inspire">
-    <v-card>
-      <v-card-title>
-        Nutrition
-        <v-spacer></v-spacer>
-        <v-text-field
-          append-icon="search"
-          label="Search"
-          single-line
-          hide-details
-          v-model="search"
-        ></v-text-field>
-      </v-card-title>
-      <v-data-table
-                    v-model="selected"
-        :headers="headers"
-        :items="items"
-        :search="search" 
-                    
-      >
-        <template slot="items" slot-scope="props">
-          <tr @click:row="showAlert(props.item)">
-          <td>{{ props.item.name }}</td>
-          <td class="text-xs-right">{{ props.item.calories }}</td>
-          <td class="text-xs-right">{{ props.item.fat }}</td>
-          <td class="text-xs-right">{{ props.item.carbs }}</td>
-          <td class="text-xs-right">{{ props.item.protein }}</td>
-          <td class="text-xs-right">{{ props.item.iron }}</td>
-            </tr>
-        </template>
-        <v-alert slot="no-results" :value="true" color="error" icon="warning">
-          Your search for "{{ search }}" found no results.
-        </v-alert>
-      </v-data-table>
-    </v-card>
-  </v-app>
-</div>
-    </div>
+<template>
+  <div>
+    <!-- <form action="">
+      <input
+        v-bind="fileList"
+        id="chooseFile"
+        type="file"
+        accept="image/*"
+        multiple
+        @change="filechange"
+      />
+      <button >제출</button>
+    </form>
+     -->
+    <form>
+    <input type="file" name="image" id="upload">
+    <button @click="uploadFile()">제출2</button>
+    </form>
+  </div>
 </template>
 <script>
 export default {
-    methods: {
-        showAlert(a){
-      alert('Alert! \n' + a.name);
-    }
+    data() {
+        return {
+             fileList :[],
+            fileUrl :""
+        }
     },
-            data() {
-                return {
-                     selected:[],
-              search: '',
-              headers: [
-                {
-                  text: 'Dessert (100g serving)',
-                  align: 'left',
-                  sortable: false,
-                  value: 'name'
+ //dart
+  
+    created() {
+//            const imgbbUploader = require("imgbb-uploader");
+//     imgbbUploader("076f41cee131349132a08f6320271a31", "path/to/your/image.png")
+//   .then((response) => console.log(response))
+//   .catch((error) => console.error(error));
+    },
+    methods: {
+        filechange(e){
+            console.log(e.target.files[0]);
+         this.fileUrl = e.target.files[0].name;
+      },
+      uploadFile(){
+    const fileInput = document.getElementById("upload");
+    const upload = (file) => {
+        if (file && file.size < 5000000) {
+            const formData = new FormData();
+
+            formData.append("image", file);
+            fetch("https://api.imgur.com/3/image", {
+                method: "POST",
+                headers: {
+                    Authorization: "7fae8f2c0a383d6",
+                    Accept: "application/json",
                 },
-                { text: 'Calories', value: 'calories' },
-                { text: 'Fat (g)', value: 'fat' },
-                { text: 'Carbs (g)', value: 'carbs' },
-                { text: 'Protein (g)', value: 'protein' },
-                { text: 'Iron (%)', value: 'iron' }
-              ],
-              items: [
-                {
-                  value: false,
-                  name: 'Frozen Yogurt',
-                  calories: 159,
-                  fat: 6.0,
-                  carbs: 24,
-                  protein: 4.0,
-                  iron: '1%'
-                },
-                {
-                  value: false,
-                  name: 'Ice cream sandwich',
-                  calories: 237,
-                  fat: 9.0,
-                  carbs: 37,
-                  protein: 4.3,
-                  iron: '1%'
-                },
-                {
-                  value: false,
-                  name: 'Eclair',
-                  calories: 262,
-                  fat: 16.0,
-                  carbs: 23,
-                  protein: 6.0,
-                  iron: '7%'
-                },
-                {
-                  value: false,
-                  name: 'Cupcake',
-                  calories: 305,
-                  fat: 3.7,
-                  carbs: 67,
-                  protein: 4.3,
-                  iron: '8%'
-                },
-                {
-                  value: false,
-                  name: 'Gingerbread',
-                  calories: 356,
-                  fat: 16.0,
-                  carbs: 49,
-                  protein: 3.9,
-                  iron: '16%'
-                },
-                {
-                  value: false,
-                  name: 'Jelly bean',
-                  calories: 375,
-                  fat: 0.0,
-                  carbs: 94,
-                  protein: 0.0,
-                  iron: '0%'
-                },
-                {
-                  value: false,
-                  name: 'Lollipop',
-                  calories: 392,
-                  fat: 0.2,
-                  carbs: 98,
-                  protein: 0,
-                  iron: '2%'
-                },
-                {
-                  value: false,
-                  name: 'Honeycomb',
-                  calories: 408,
-                  fat: 3.2,
-                  carbs: 87,
-                  protein: 6.5,
-                  iron: '45%'
-                },
-                {
-                  value: false,
-                  name: 'Donut',
-                  calories: 452,
-                  fat: 25.0,
-                  carbs: 51,
-                  protein: 4.9,
-                  iron: '22%'
-                },
-                {
-                  value: false,
-                  name: 'KitKat',
-                  calories: 518,
-                  fat: 26.0,
-                  carbs: 65,
-                  protein: 7,
-                  iron: '6%'
-                }
-              ]
-            
-                }
-            },
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response);
+                    // do Something
+                });
+        } else {
+            console.error("파일 용량 초과");
+        }
+    };
+
+    fileInput &&
+        fileInput.addEventListener("change", () => {
+            upload(fileInput.files[0]);
+        });
+}
+    },
 }
 </script>
-<style lang="">
-    
-</style>
