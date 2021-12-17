@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import router from "./router/router";
 import http from "@/util/http-common";
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -84,17 +85,11 @@ export default new Vuex.Store({
         http
           .get("/user/" + id, { headers: { Authorization: `Bearer ${token}` } })
           .then((response) => {
-            console.log("--------------------------------");
             console.log(response);
-            console.log(response.data);
-            console.log("왜 안나와 도대체");
             let userInfo = {
               // id: this.id
               // email: response.data.data.email,
             };
-            console.log("여기 사람있어요!!!!!!");
-            console.log("2번", userInfo);
-
             commit("loginSuccess", userInfo)
               .catch((error) => {
                 console.log(error);
@@ -128,15 +123,17 @@ export default new Vuex.Store({
     logout({ commit }) {
       alert("로그아웃 되었습니다.");
       let token = localStorage.getItem("getToken");
-      
+      let userId = localStorage.getItem("getId");
       http
-      .delete("/auth/logout",  { headers: { Authorization: `Bearer ${token}` }})
+//       .delete("/auth/logout",  { headers: { Authorization: `Bearer ${token}` }})
+      .post("http://localhost:80/auth/logout/"+userId,{ headers: { Authorization: `Bearer ${token}` }} )
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
+      
       localStorage.removeItem("getToken");
       localStorage.clear();
       commit("logouted");
