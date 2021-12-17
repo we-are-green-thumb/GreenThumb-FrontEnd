@@ -109,6 +109,7 @@ export default {
       })
       .then(() => {});
   },
+   }
 };
 </script>
 
