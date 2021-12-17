@@ -2,32 +2,26 @@
   <div class="postDdetail">
     <v-card flat tile>
       <v-toolbar color="cyan" dark>
-
-        <v-toolbar-title >{{tests.id}} test Title 제목</v-toolbar-title>
+        <v-toolbar-title>{{ post.title }}</v-toolbar-title>
 
         <v-spacer></v-spacer>
-       
       </v-toolbar>
 
-      <v-container
-        class="grey lighten-4"
-        fluid
-      >
+      <v-container class="grey lighten-4" fluid>
         <v-row>
           <v-spacer></v-spacer>
-            <v-card>
-                <v-text>{{tests.id}} </v-text>
-                <div style="float:right">
-                    <v-text >{{tests.year}} </v-text>
-                    <v-text >작성자 </v-text>
-                    <v-btn> 별 </v-btn>
-                </div>
-                <br>
-                <br>
-                <br>
-                <v-text >내용 : 튤립은 번식을 못한다? 이것도 맞는 말임 근데 사람들이 뭐 개량으로 번식능력을 없앴다더라 이런말도 꽤 하던데 </v-text>
-                <!-- 이미지의 경우 몇개를 가지고 있는지 몰라 반복문으로 대체. -->
-                <v-img
+          <v-card>
+            <div style="float: right">
+              <v-text>{{ post.year }} </v-text>
+              <v-text>작성자 {{ post.writer }}</v-text>
+              <v-btn> 별(팔로우하기.) </v-btn>
+            </div>
+            <br />
+            <br />
+            <br />
+            <v-text>{{ post.content }} </v-text>
+            <!-- 이미지의 경우 몇개를 가지고 있는지 몰라 반복문으로 대체. file이 있을 경우 ..  -->
+            <!-- <v-img
                     :src="`https://picsum.photos/200/300?image=${getImage()}`"
                     height="300px"
                 >
@@ -35,22 +29,62 @@
                     class="text-h5 white--text pl-4 pt-4 d-inline-block"
                     v-text="card"
                     ></span>
-                </v-img>
-                <v-text >{{tests.color}} </v-text>
-                <v-text >{{tests.name}} </v-text>
-                <v-text >조회수 {{tests.name}} </v-text>
-                <br>
-                <br>
-                <div style="float:right">
-                    <v-btn  >  <router-link :to="{name: 'EditPost' }" style="text-decoration:none; color: hsl(94, 10%, 46%);">작성자 일치 시 수정하기 버튼 활성화 </router-link></v-btn>
-                    <v-btn> 하트 </v-btn>
-                    <v-text >좋아요 20 </v-text>
-                </div>
+                </v-img> -->
+            <br />
+            <v-text>조회수 {{ post.hits }} </v-text>
+            <br />
+            <br />
+            <div style="float: right">
+              <div>
+                <v-btn>
+                  <router-link
+                    :to="{ name: 'EditPost' }"
+                    style="text-decoration: none; color: hsl(94, 10%, 46%)"
+                    >작성자 일치 시 수정하기 버튼 활성화
+                  </router-link></v-btn>
+              </div>
 
-                <br><br>
-                <hr>
-            <comments></comments>
-            </v-card>
+              <v-btn> 하트(좋아요 추가.) </v-btn>
+              <v-text> {{ post.like }} </v-text>
+            </div>
+
+            <br /><br />
+            <hr />
+
+            
+            <!-- 댓글 영역 -->
+
+            <!-- <comments></comments> -->
+            <div>
+              <h2>댓글 {{ comments.length }}</h2>
+
+              <v-btn style="float: right"
+                ><router-link
+                  :to="{ name: 'WriteComment' }"
+                  style="text-decoration: none; color: hsl(94, 10%, 46%)"
+                  >댓글 등록
+                </router-link></v-btn
+              >
+              <br /><br />
+              <ul>
+                <li v-for="comment,idx in comments" :key="idx">
+                  {{ comment.content }} "Places to Be", "Places to See" mdi-facebook
+                  cyan darken-1<!-- 내용 -->
+                  {{ comment.year}}<!-- 작성일 -->
+                  {{ comment.color}}<!-- 작성자 -->
+                    <v-btn>
+                  <router-link
+                    :to="{ name: 'EditComment' }"
+                    style="text-decoration: none; color: hsl(94, 10%, 46%)"
+                    >작성자 일치 시 수정하기 버튼 활성화
+                  </router-link></v-btn>
+                  <br>
+                  <v-btn>하트</v-btn>
+                  좋아요 {{ comment.like}}<!-- 좋아요 수-->
+                </li>
+              </ul>
+            </div>
+          </v-card>
         </v-row>
       </v-container>
     </v-card>
@@ -58,31 +92,24 @@
 </template>
 <script>
 import http from "@/util/http-common";
-import comments from "../../components/post/Comment.vue"
+// import comments from "../../components/post/Comment.vue"
 export default {
-    components:{
-        comments,
-    }
-    ,
+  components: {
+    // comments,
+  },
   data: () => ({
-    types: ["Places to Be", "Places to See"],
-    cards: ["Good", "Best", "Finest"],
-    socials: [
-      {
-        icon: "mdi-facebook",
-        color: "indigo",
+    post: [],
+    comments: [],
+    props: {
+      postId: {
+        type: String,
+        default: "",
       },
-      {
-        icon: "mdi-linkedin",
-        color: "cyan darken-1",
+      userId: {
+        type: String,
+        default: "",
       },
-      {
-        icon: "mdi-instagram",
-        color: "red lighten-3",
-      },
-    ],
-    tests: [],
-    // comments : [],
+    },
   }),
 
   methods: {
@@ -94,25 +121,34 @@ export default {
     },
   },
   created() {
+    // let userId = localStorage.getItem("getId");
+    let token = localStorage.getItem("getToken");
+
     http
-      .get("https://reqres.in/api/unknown/2") //게시글을 불러옴.
+      .get("http://localhost:80/post/" + this.$route.params.postId, {
+        headers: { Authorization: `Bearer ${token}` },
+      }) //게시글을 불러옴.
       .then((res) => {
-        this.tests = res.data.data;
-        console.log(res);
+        this.post = res.data;
+        console.log(this.post);
       })
       .catch((err) => {
         console.log(err);
       });
-    // //   http
-    // //   .get("https://reqres.in/api/unknown") //댓글을 불러옴.
-    // //   .then((res) => {
-    // //     this.comments = res.data.data;
-    // //     console.log(res);
-
-    // //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    http
+      .get(
+        "http://localhost:80/comment/post/" +
+          this.$route.params.postId +
+          "/comments",
+        { headers: { Authorization: `Bearer ${token}` } }
+      ) //댓글을 불러옴.
+      .then((res) => {
+        this.comments = res.data;
+        console.log(this.comments);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>

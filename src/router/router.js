@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 import IndexMain from "../views/main/IndexMain.vue";
 import findPassword from "../views/account/findpassword.vue";
-import register from "../views/account/registerform.vue";
+import register from "../views/account/newregisterform.vue";
 import loginform from "../views/account/Login.vue";
 import store from "../store"
 
@@ -67,6 +67,9 @@ const writecomment = () => {
 }
 const editcomment = () => {
   return import("../views/comment/EditComment.vue")
+}
+const EditPlant = () => {
+  return import('../components/myPlant/editPlant.vue')
 }
 const routes = [
   {
@@ -140,9 +143,10 @@ const routes = [
     component: register,
   },
   {
-    path: "/post/postDetail",
+    path: "/post/postDetail/:userId/:postId",
     name: "PostDetail",
     component: PostDetail,
+    props: true,
   },
   {
     path: "/post/editpost",
@@ -165,6 +169,12 @@ const routes = [
     component: test,
 
   },
+  {
+    path: '/plant/:plantId',
+    name: 'EditPlant',
+    component: EditPlant,
+    props: true
+  }
 
 ];
 
