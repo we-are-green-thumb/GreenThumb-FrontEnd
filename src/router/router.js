@@ -79,9 +79,10 @@ const routes = [
   },
 
   {
-    path: "/myplant/:userId",
+    path: "/myplant",
     name: "IndexMyplant",
     component: IndexMyplant,
+    props: true,
   },
 
   {

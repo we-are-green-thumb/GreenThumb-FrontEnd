@@ -11,6 +11,9 @@
         <v-tab v-if="isLogin === true">
           <router-link :to="{name: 'IndexMyplant' }" style="text-decoration:none; color: hsl(94, 10%, 46%);">  내 식물 </router-link>
         </v-tab>
+        <!-- <v-tab v-if="isLogin === true">
+          <router-link :to="{name: 'IndexMyplant, params:{userId : this.userId }}' }" style="text-decoration:none; color: hsl(94, 10%, 46%);">  내 식물 </router-link>
+        </v-tab> -->
            <v-tab v-else>
           <router-link :to="{name: 'loginform' }" style="text-decoration:none; color: hsl(94, 10%, 46%);">  내 식물 로그인X </router-link>
         </v-tab>
@@ -63,9 +66,12 @@ export default {
   },
   computed : {
     ...mapState(["isLogin"])
+ 
   },
   data: () => ({
-  }),
+    userId :localStorage.getItem('getId')
+ }),
+ 
 };
 </script>
 
