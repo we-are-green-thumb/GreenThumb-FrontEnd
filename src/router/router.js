@@ -174,6 +174,12 @@ const routes = [
     name: 'EditPlant',
     component: EditPlant,
     props: true
+  },
+  {
+    path: '/*',
+    redirect: '/'
+
+    
   }
 
 ];
