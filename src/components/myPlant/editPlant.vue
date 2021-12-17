@@ -63,9 +63,7 @@ export default {
     },
   },
   created() {
-    let id = localStorage.getItem("getId");
     let token = localStorage.getItem("getToken");
-    console.log(id);
     http
       .get("/plant/" + this.$route.params.plantId, {
         headers: { Authorization: `Bearer ${token}` },
@@ -80,7 +78,7 @@ export default {
       .then(() => {});
   },
   methods: {
-    fileChange() {
+  fileChange() {
    var file = document.getElementById('input_img');
    var form = new FormData();
    form.append("image", file.files[0])
@@ -117,7 +115,7 @@ export default {
         imageUrl: fileUrl,
       };
       http
-        .post("plant/" + this.$route.params.plantId, data, {
+        .put("plant/" + this.$route.params.plantId, data, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

@@ -5,9 +5,11 @@
     </v-system-bar>
     <v-app-bar app color="white" flat>
       <v-tabs centered class="ml-n9" color="grey darken-1">
-        <!-- <v-tab v-for="link in links" :key="link">
-          <router-link :to="{name: '`{{link.path}}`' }" style="text-decoration:none"  >  {{ link.title }} </router-link>
-        </v-tab> -->
+        <v-tab  style="all: none;">
+          <a href="http://localhost:8081/">
+          <v-img src="https://i.ibb.co/Ht8QTjH/image.png" height="64px" width="146px" />
+          </a>
+        </v-tab>
         <v-tab v-if="isLogin === true">
           <router-link :to="{name: 'IndexMyplant' }" style="text-decoration:none; color: hsl(94, 10%, 46%);">  내 식물 </router-link>
         </v-tab>
