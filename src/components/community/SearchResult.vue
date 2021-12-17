@@ -58,7 +58,7 @@ export default {
    created(){
     let token = localStorage.getItem("getToken")
      http
-        .get("/post/" , { headers: { Authorization: `Bearer ${token}` }})
+        .get("/posts/" , { headers: { Authorization: `Bearer ${token}` }})
         .then((res) => {
           this.posts =res.data;
           console.log(this.posts);
@@ -71,10 +71,13 @@ export default {
   methods: {
     
     clicketest(value){
+      // console.log(value);
       let PostId = value.id;
       let UserId = localStorage.getItem('getId');
-      // console.log(value.UserId);
       console.log(value);
+      console.log(UserId);
+      console.log(PostId);
+
 
       this.$router.push({name : 'PostDetail' ,params: { userId:UserId, postId: PostId }})
       // alert('click');
@@ -85,7 +88,7 @@ export default {
        let postCategory = 'free';
         let token = localStorage.getItem("getToken");
 
-    http.get("/post/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
+    http.get("/posts/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
           this.posts =response.data;
       }).catch((err)=>{
         console.log(err);
@@ -96,7 +99,7 @@ export default {
         let postCategory = 'QnA';
         let token = localStorage.getItem("getToken");
 
-    http.get("/post/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
+    http.get("/posts/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
           this.posts =response.data;
           console.log(this.posts);
       }).catch((err)=>{
@@ -107,7 +110,7 @@ export default {
         let postCategory = 'share';
         let token = localStorage.getItem("getToken");
 
-    http.get("/post/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
+    http.get("/posts/category/" + postCategory,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
           this.posts =response.data;
       }).catch((err)=>{
         console.log(err);
