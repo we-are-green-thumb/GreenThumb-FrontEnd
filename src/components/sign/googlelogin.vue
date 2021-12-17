@@ -1,6 +1,7 @@
 <template>
   <div style="text-align: center;">
-        <a href="#" class="kakao btn">
+        <a href="http://localhost:80/oauth2/authorization/kakao?redirect_uri=http://localhost:8081/oauth/redirect
+" class="kakao btn">
           <i class="fas fa-comment"></i> 카카오로 로그인하기
          </a>
         <a href="http://localhost:8081/oauth2/authorization/google" class="google btn"><i class="fab fa-google"></i> 구글로 로그인하기
