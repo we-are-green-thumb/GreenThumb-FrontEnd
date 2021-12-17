@@ -1,43 +1,83 @@
 <template>
-<div>
- 
-<ul class="myplantcontainer" >
-  <li class="myplantform">
-      <div>
-          <img class="imgSize" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2018/08/urbanbrush-20180822082426113204.png" >
-      </div>
-      <div class="plantcontent" >
-            <p> 100일째 자라는 중</p>
-            <p> 3일 뒤 물을 주세요 </p>
-            <p> 온도는 10도 적당합니다. </p>
-      </div>
-    </li>
-</ul>
-</div>
+  <div>
+    <ul class="myplantcontainer">
+      <li class="myplantform">
+        <div>
+          <img class="imgSize" :src="myplant.imageUrl" />
+        </div>
+        <div class="plantcontent">
+          <p>{{ myplant.water }} 일 뒤에 물을 주세요! (수정필요)</p>
+          <p>{{ myplant.temp }} 도 온도!</p>
+        </div>
+        <div v-show="contentOwner">
+        <router-link
+          :to="{ name: 'EditPlant', params: { plantId: myplant.plantId } }"
+          ><a>수정하기</a></router-link
+        >
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
+import http from "@/util/http-common";
+import { mapState } from "vuex";
+
 export default {
-    
-}
+  data() {
+    return {
+      myplant: [],
+      contentOwner : false
+    }
+  },
+  props: {
+    plantId: {
+      type: String,
+      default: "",
+    },
+  },
+  computed: {
+    ...mapState(["userInfo"]),
+  },
+  created() {
+    let id = localStorage.getItem("getId")
+    let token = localStorage.getItem("getToken");
+    http
+      .get("/plant/" + this.$route.params.plantId, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        this.myplant = res.data;
+        console.log(res.data);
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {
+        if(id ==  this.$route.params.userId ){
+          this.contentOwner = true;
+        }
+      });
+  },
+};
 </script>
 <style scoped>
-    .myplantcontainer {
-	display: grid;
-	grid-template-columns: 500px
+.myplantcontainer {
+  display: grid;
+  grid-template-columns: 500px;
 }
 
+ol,
 ul {
-  margin: 0;
-  padding : 0 0 0 10px;
-  
+  list-style: none;
 }
 
 .myplantform {
-
   background-color: lightgrey;
   border-radius: 15px;
-  margin: 0 10px 10px 5px ;
+  margin: 0 10px 10px 5px;
 }
 .imgSize {
   width: 160px;
@@ -53,7 +93,6 @@ ul {
   vertical-align: 70px;
   text-align: left;
   font-size: 15px;
-  padding: 5px 16px 0 10px
+  padding: 5px 16px 0 10px;
 }
-
 </style>
