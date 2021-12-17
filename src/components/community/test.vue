@@ -1,6 +1,7 @@
 <template>
   <div>
     <input type="file" id="input_img" @change="fileChange()" accept="image/*">
+
   </div>
 </template>
 <script>
@@ -8,32 +9,56 @@
 import $ from 'jquery';
 
 export default {
-  methods: {
-    fileChange() {
-   var file = document.getElementById('input_img');
-   var form = new FormData();
-   form.append("image", file.files[0])
 
-   var settings = {
-      "url": "https://api.imgbb.com/1/upload?key=076f41cee131349132a08f6320271a31",
-      "method": "POST",
-      "timeout": 0,
-      "processData": false,
-      "mimeType": "multipart/form-data",
-      "contentType": false,
-      "data": form
-   };
+    data() {
+        return {
+             fileList :[],
+            fileUrl :""
+        }
+    },
+ //dart
+  
+    created() {
+//            const imgbbUploader = require("imgbb-uploader");
+//     imgbbUploader("076f41cee131349132a08f6320271a31", "path/to/your/image.png")
+//   .then((response) => console.log(response))
+//   .catch((error) => console.error(error));
+    },
+    methods: {
+        filechange(e){
+            console.log(e.target.files[0]);
+         this.fileUrl = e.target.files[0].name;
+      },
+      uploadFile(){
+    const fileInput = document.getElementById("upload");
+    const upload = (file) => {
+        if (file && file.size < 5000000) {
+            const formData = new FormData();
 
-   $.ajax(settings).done(function(response) {
-      console.log(response);
-      var jx = JSON.parse(response);
-      console.log(jx.data.url);
+            formData.append("image", file);
+            fetch("https://api.imgur.com/3/image", {
+                method: "POST",
+                headers: {
+                    Authorization: "7fae8f2c0a383d6",
+                    Accept: "application/json",
+                },
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response);
+                    // do Something
+                });
+        } else {
+            console.error("파일 용량 초과");
+        }
+    };
 
-   });
-  },
+    fileInput &&
+        fileInput.addEventListener("change", () => {
+            upload(fileInput.files[0]);
+        });
 }
+    },
 }
 </script>
-<style>
-  
-</style>
