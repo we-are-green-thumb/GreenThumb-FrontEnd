@@ -60,7 +60,6 @@
 
             <!-- 댓글 영역 -->
 
-            <!-- <comments></comments> -->
             <div>
               <h2>댓글 {{ comments.length }}</h2>
 
@@ -148,12 +147,6 @@ export default {
           console.log(err);
         });
     },
-    getImage() {
-      const min = 550;
-      const max = 560;
-
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    },
   },
   created() {
     // let userId = localStorage.getItem("getId");
@@ -166,7 +159,6 @@ export default {
       }) //게시글을 불러옴.
       .then((res) => {
         this.post = res.data;
-        console.log(this.post);
       })
       .catch((err) => {
         console.log(err);
