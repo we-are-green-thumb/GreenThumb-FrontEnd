@@ -20,15 +20,16 @@
             <br />
             <v-text>{{ post.content }} </v-text>
             <!-- 이미지의 경우 몇개를 가지고 있는지 몰라 반복문으로 대체. file이 있을 경우 ..  -->
-            <!-- <v-img
-                    :src="`https://picsum.photos/200/300?image=${getImage()}`"
+            <v-img
+                    :src="`${post.fileList[0].fileUrl}`"
                     height="300px"
+                    width="700px"
                 >
                     <span
                     class="text-h5 white--text pl-4 pt-4 d-inline-block"
                     v-text="card"
                     ></span>
-                </v-img> -->
+                </v-img>
             <br />
             <v-text>조회수 {{ post.hits }} </v-text>
             <br />
