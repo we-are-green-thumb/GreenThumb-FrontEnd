@@ -1,25 +1,15 @@
 <template>
   <div>
-    <!-- <form action="">
-      <input
-        v-bind="fileList"
-        id="chooseFile"
-        type="file"
-        accept="image/*"
-        multiple
-        @change="filechange"
-      />
-      <button >제출</button>
-    </form>
-     -->
-    <form>
-    <input type="file" name="image" id="upload">
-    <button @click="uploadFile()">제출2</button>
-    </form>
+    <input type="file" id="input_img" @change="fileChange()" accept="image/*">
+
   </div>
 </template>
 <script>
+
+import $ from 'jquery';
+
 export default {
+
     data() {
         return {
              fileList :[],
