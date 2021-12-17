@@ -130,7 +130,7 @@ export default new Vuex.Store({
       let token = localStorage.getItem("getToken");
       
       http
-      .post("/auth/logout",  { headers: { Authorization: `Bearer ${token}` }})
+      .delete("/auth/logout",  { headers: { Authorization: `Bearer ${token}` }})
       .then((res) => {
         console.log(res);
       })
