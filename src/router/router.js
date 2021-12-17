@@ -79,7 +79,7 @@ const routes = [
   },
 
   {
-    path: "/myplant",
+    path: "/myplant/:userId",
     name: "IndexMyplant",
     component: IndexMyplant,
   },

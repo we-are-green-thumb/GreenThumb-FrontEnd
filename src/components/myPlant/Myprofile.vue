@@ -2,9 +2,10 @@
   <div class="profileform">
     <ul>
       <li>
-        <span
-          ><p>{{ userNickname }}의 식물들!</p></span
-        >
+        <span>
+          <router-link ></router-link>
+          <p>{{ userNickname }}의 식물들!</p></span>
+
         <a class="followercheck" href="#">팔로우 추가</a>
       </li>
       <li>
@@ -40,7 +41,13 @@ export default {
       followers: [],
       followees: [],
     };
+    
   },
+   props: {
+        userId : {
+            type: String,
+            default:''
+      },
   computed: {
     ...mapState(["userInfo"]),
   },
