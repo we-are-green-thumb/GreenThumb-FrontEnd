@@ -81,9 +81,6 @@ export default {
 
         this.fileUrl = localStorage.getItem('fileUrl');
         localStorage.removeItem('fileUrl');
-        // console.log(this.fileUrl);
-        console.log(this.cate.value);
-        alert(this.cate.value);
         let data = {
           userId : this.userId ,
           title : this.title,
