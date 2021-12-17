@@ -5,6 +5,7 @@
       <li class="myplantform">
         <div>
           <img class="imgSize" :src="myplant.imageUrl" />
+         
         </div>
         <div class="plantcontent">
           <input
@@ -15,7 +16,7 @@
           <input
             type="text"
             placeholder="닉네임"
-            v-model.trim="myplant.nickname"
+            v-model.trim="myplant.nickName"
           />
           <input type="text" placeholder="온도" v-model.trim="myplant.temp" />
           <input
@@ -24,15 +25,14 @@
             v-model.trim="myplant.water"
           />
           <input
-            ref="image"
-            id="input"
+            v-bind="fileList"
+            id="input_img"
             type="file"
-            name="image"
             accept="image/*"
-            multiple="multiple"
-            class="hidden"
-            v-bind="myplant.imageUrl"
+            multiple
+            @change="fileChange"
           />
+         
         </div>
       </li>
     </ul>
@@ -45,12 +45,15 @@
 
 <script>
 import http from "@/util/http-common";
+import $ from 'jquery';
+
 
 export default {
   name: "EditPlant",
   data() {
     return {
       myplant: [],
+      fileList:[]
     };
   },
   props: {
@@ -77,16 +80,41 @@ export default {
       .then(() => {});
   },
   methods: {
+    fileChange() {
+   var file = document.getElementById('input_img');
+   var form = new FormData();
+   form.append("image", file.files[0])
+
+   var settings = {
+      "url": "https://api.imgbb.com/1/upload?key=076f41cee131349132a08f6320271a31",
+      "method": "POST",
+      "timeout": 0,
+      "processData": false,
+      "mimeType": "multipart/form-data",
+      "contentType": false,
+      "data": form
+   };
+   $.ajax(settings).done(function(response) {
+      console.log(response);
+      var jx = JSON.parse(response);
+         this.fileUrl = jx.data.url+"";
+      localStorage.setItem('fileUrl',this.fileUrl);
+       
+
+   })
+    },
     postUpdate() {
+      let fileUrl = localStorage.getItem("fileUrl");
       let userId = localStorage.getItem("getId");
       let token = localStorage.getItem("getToken");
+
       var data = {
         userId: userId,
         name: this.myplant.name,
         nickName: this.myplant.nickName,
         water: this.myplant.water,
         temp: this.myplant.temp,
-        imageUrl: this.myplant.imageUrl,
+        imageUrl: fileUrl,
       };
       http
         .post("plant/" + this.$route.params.plantId, data, {
@@ -100,6 +128,7 @@ export default {
         })
         .then(() => {
           this.$router.go(-1, alert("수정완료"));
+          localStorage.removeItem('fileUrl');
         });
     },
     boardCancelClick() {
