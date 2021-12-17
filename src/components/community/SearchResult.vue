@@ -46,9 +46,9 @@ export default {
           value: "title",
         },
         { text: "내용", value: "content" },
-        { text: "작성자", value: "content" },
+        { text: "작성자", value: "writer" },
         { text: "조회수", value: "hits" },
-        { text: "좋아요", value: "hits" },
+        { text: "좋아요", value: "like" },
       ],
       posts:[
           

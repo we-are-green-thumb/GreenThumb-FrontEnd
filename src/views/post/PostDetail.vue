@@ -14,7 +14,6 @@
             <div style="float: right">
               <v-text>{{ post.year }} </v-text>
               <v-text>작성자 {{ post.writer }}</v-text>
-              <v-btn> 별(팔로우하기.) </v-btn>
             </div>
             <br />
             <br />
@@ -41,21 +40,23 @@
                     :to="{ name: 'EditPost' }"
                     style="text-decoration: none; color: hsl(94, 10%, 46%)"
                     >작성자 일치 시 수정하기 버튼 활성화
-                  </router-link></v-btn>
+                  </router-link></v-btn
+                >
               </div>
-                  <div v-if="like">
-                    <v-btn >하트(좋아요 추가)</v-btn>
-                  </div>
-                  <div v-else>
-                  <v-btn>하트 취소</v-btn>
-                  </div>
-              <v-text> {{ post.like }} </v-text>
+              <v-btn @click="clickLike">하트(좋아요 추가)</v-btn>
+
+              <!-- 좋아요 -->
+              <div v-if="like === '좋아요 완료'">
+                <v-text> {{ post.like + 1 }} </v-text>
+              </div>
+              <div v-else>
+                <v-text> {{ post.like }} </v-text>
+              </div>
             </div>
 
             <br /><br />
             <hr />
 
-            
             <!-- 댓글 영역 -->
 
             <!-- <comments></comments> -->
@@ -71,21 +72,25 @@
               >
               <br /><br />
               <ul>
-                <li v-for="comment,idx in comments" :key="idx">
-                  {{ comment.content }} "Places to Be", "Places to See" mdi-facebook
-                  cyan darken-1<!-- 내용 -->
-                  {{ comment.year}}<!-- 작성일 -->
-                  {{ comment.color}}<!-- 작성자 -->
-                    <v-btn>
-                  <router-link
-                    :to="{ name: 'EditComment' }"
-                    style="text-decoration: none; color: hsl(94, 10%, 46%)"
-                    >작성자 일치 시 수정하기 버튼 활성화
-                  </router-link></v-btn>
-                  <br>
-                  <v-btn >하트</v-btn>
+                <li v-for="(comment, idx) in comments" :key="idx">
+                  {{ comment.content }} "Places to Be", "Places to See"
+                  mdi-facebook cyan darken-1<!-- 내용 -->
+                  {{ comment.year
+                  }}<!-- 작성일 -->
+                  {{ comment.color
+                  }}<!-- 작성자 -->
+                  <v-btn>
+                    <router-link
+                      :to="{ name: 'EditComment' }"
+                      style="text-decoration: none; color: hsl(94, 10%, 46%)"
+                      >작성자 일치 시 수정하기 버튼 활성화
+                    </router-link></v-btn
+                  >
+                  <br />
+                  <v-btn>하트</v-btn>
 
-                  좋아요 {{ comment.like}}<!-- 좋아요 수-->
+                  좋아요 {{ comment.like
+                  }}<!-- 좋아요 수-->
                 </li>
               </ul>
             </div>
@@ -115,13 +120,32 @@ export default {
         default: "",
       },
     },
-    postLike:[],
-    like :true,
+    resultPost: [],
+    like: "",
   }),
 
   methods: {
-    clickLike(){
-      
+    clickLike() {
+      let token = localStorage.getItem("getToken");
+      let userId = localStorage.getItem("getId");
+      let postId = this.$route.params.postId;
+      console.log(postId);
+      //좋아요 추가 메소드
+      http
+        .post(
+          "http://localhost:80/post/" + postId + "/user/" + userId + "/like",
+          null,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          this.like = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     getImage() {
       const min = 550;
@@ -133,20 +157,8 @@ export default {
   created() {
     // let userId = localStorage.getItem("getId");
     let token = localStorage.getItem("getToken");
-// 좋아요했는지?
-    let userId = localStorage.getItem("getId");
-    http
-      .get("http://localhost:80/post/"+this.$route.params.postId+"/user/"+userId+"/like" , {
-        headers: { Authorization: `Bearer ${token}` },
-      }) //게시글을 불러옴.
-      .then((res) => {
-        this.postLike = res.data;
-        console.log(this.postLike);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-// 게시글
+
+    // 게시글
     http
       .get("http://localhost:80/post/" + this.$route.params.postId, {
         headers: { Authorization: `Bearer ${token}` },
