@@ -43,8 +43,12 @@
                     >작성자 일치 시 수정하기 버튼 활성화
                   </router-link></v-btn>
               </div>
-
-              <v-btn> 하트(좋아요 추가.) </v-btn>
+                  <div v-if="like">
+                    <v-btn >하트(좋아요 추가)</v-btn>
+                  </div>
+                  <div v-else>
+                  <v-btn>하트 취소</v-btn>
+                  </div>
               <v-text> {{ post.like }} </v-text>
             </div>
 
@@ -79,7 +83,8 @@
                     >작성자 일치 시 수정하기 버튼 활성화
                   </router-link></v-btn>
                   <br>
-                  <v-btn>하트</v-btn>
+                  <v-btn >하트</v-btn>
+
                   좋아요 {{ comment.like}}<!-- 좋아요 수-->
                 </li>
               </ul>
@@ -110,9 +115,14 @@ export default {
         default: "",
       },
     },
+    postLike:[],
+    like :true,
   }),
 
   methods: {
+    clickLike(){
+      
+    },
     getImage() {
       const min = 550;
       const max = 560;
@@ -123,7 +133,20 @@ export default {
   created() {
     // let userId = localStorage.getItem("getId");
     let token = localStorage.getItem("getToken");
-
+// 좋아요했는지?
+    let userId = localStorage.getItem("getId");
+    http
+      .get("http://localhost:80/post/"+this.$route.params.postId+"/user/"+userId+"/like" , {
+        headers: { Authorization: `Bearer ${token}` },
+      }) //게시글을 불러옴.
+      .then((res) => {
+        this.postLike = res.data;
+        console.log(this.postLike);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+// 게시글
     http
       .get("http://localhost:80/post/" + this.$route.params.postId, {
         headers: { Authorization: `Bearer ${token}` },
