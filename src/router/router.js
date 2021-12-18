@@ -82,6 +82,7 @@ const routes = [
     path: "/myplant",
     name: "IndexMyplant",
     component: IndexMyplant,
+    props: true,
   },
 
   {
@@ -102,6 +103,7 @@ const routes = [
     name : 'editpage',
     beforeEnter : checkInUser,
     component : editpage,
+    props: true
   }, 
   {
     path : '/community',
@@ -175,12 +177,13 @@ const routes = [
     component: EditPlant,
     props: true
   },
-  {
-    path: '/*',
-    redirect: '/'
+  
+  // {
+  //   path: '/*',
+  //   redirect: '/'
 
     
-  }
+  // }
 
 ];
 

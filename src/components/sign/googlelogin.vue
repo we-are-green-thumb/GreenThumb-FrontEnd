@@ -1,22 +1,56 @@
 <template>
-  <div style="text-align: center;">
-        <a href="#" class="kakao btn">
-          <i class="fas fa-comment"></i> 카카오로 로그인하기
-         </a>
-        <a href="http://localhost:8081/oauth2/authorization/google" class="google btn"><i class="fab fa-google"></i> 구글로 로그인하기
-        </a>
+  <div style="text-align: center">
+    <a
+      href="http://localhost:80/oauth2/authorization/kakao?redirect_uri=http://localhost:8081/login/oauth2/code/kakao"
+      class="kakao btn"
+    >
+      <i class="fas fa-comment"></i> 카카오로 회원가입 하기
+    </a>
+    <a
+      href="http://localhost:80/oauth2/authorization/google?redirect_uri=http://localhost:8081/login/oauth2/code/google"
+      class="google btn"
+      ><i class="fab fa-google"></i> 구글로 회원가입 하기
+    </a>
+    <a
+      href="http://localhost:80/oauth2/authorization/naver?redirect_uri=http://localhost:8081/login/oauth2/code/naver"
+      class="naver btn"
+      ><i class="fab fa-google"></i> 네이버로 회원가입 하기
+    </a>
   </div>
 </template>
 
 <script>
-export default {
+import http from "@/util/http-common";
 
+window.onload = function () {
+  var getToken = document.location.href.split("/?token=");
+  if (getToken[0] == "http://localhost:8081") {
+    console.log(getToken);
+    localStorage.setItem("getTk", getToken[1]);
+    let gt = localStorage.getItem("getTk");
+    http
+      .post("/auth/login", { headers: { Authorization: `Bearer ${gt}` } })
+      .then((res) => {
+        let token = res.data.accessToken;
+        let id = res.data.id;
+        let Bearer = res.data.tokenType;
+
+        //일단 토큰 저장함
+        localStorage.setItem("getToken", token);
+        localStorage.setItem("getId", id);
+        localStorage.setItem("getB", Bearer);
+
+        this.router.push({ name: "IndexMain" });
+        localStorage.removeItem("getTk");
+      });
+  }
 };
+
+export default {};
 </script>
 
 
 <style scoped>
-
 .col {
   float: left;
   width: 50%;
@@ -47,6 +81,10 @@ input,
   color: rgb(68, 58, 0);
 }
 
+.naver {
+  background-color: #02ff24;
+  color: rgb(255, 255, 255);
+}
 input:hover,
 .btn:hover {
   opacity: 1;

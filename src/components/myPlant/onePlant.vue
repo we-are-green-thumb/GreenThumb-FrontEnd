@@ -43,14 +43,14 @@ export default {
   created() {
     let id = localStorage.getItem("getId")
     let token = localStorage.getItem("getToken");
+console.log(this.$route.params.plantId);
     http
       .get("/plant/" + this.$route.params.plantId, {
+      // .get( this.$route.params.plantId, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         this.myplant = res.data;
-        console.log(res.data);
-        
       })
       .catch((err) => {
         console.log(err);

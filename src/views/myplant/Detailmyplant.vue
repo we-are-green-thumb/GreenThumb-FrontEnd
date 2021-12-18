@@ -26,8 +26,8 @@ export default {
     },
     props: {
         plantId : {
-            type: String,
-            default:''
+            type: Number,
+            default:0
       } 
   },
     components : {

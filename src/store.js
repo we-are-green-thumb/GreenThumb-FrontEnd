@@ -56,7 +56,7 @@ export default new Vuex.Store({
         .post("/auth/login", { email: email, password: password })
         .then((res) => {
           let token = res.data.accessToken;
-          let id = res.data.id;
+          let id = res.data.userId;
           let Bearer = res.data.tokenType;
 
           //일단 토큰 저장함
