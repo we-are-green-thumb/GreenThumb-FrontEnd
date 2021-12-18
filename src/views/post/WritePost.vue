@@ -71,25 +71,21 @@ export default {
       var jx = JSON.parse(response);
          this.fileUrl = jx.data.url+"";
       localStorage.setItem('fileUrl',this.fileUrl);
-       
-
    });
   },
 
       addPost(){
         let token = localStorage.getItem("getToken");
-
-        this.fileUrl = localStorage.getItem('fileUrl');
-        localStorage.removeItem('fileUrl');
+        let userId = localStorage.getItem('getId');
+        let fileUrl = localStorage.getItem('fileUrl');
         let data = {
-          userId : this.userId ,
           title : this.title,
           category : this.cate.value,
           content : this.content,
-          fileUrl : this.fileUrl
+          fileUrl : fileUrl+""
         }
         http
-      .post("http://localhost:80/post", data,
+      .post("user/"+userId+"/post", data,
         // {headers: { Authorization: `Bearer ${token}`,'Content-Type': 'multipart/form-data'}
         {headers: { Authorization: `Bearer ${token}`}
          }
@@ -98,6 +94,8 @@ export default {
           console.log(response);
 
             alert("저장 성공");
+            // alert(localStorage.getItem('fileUrl'))
+          localStorage.removeItem('fileUrl');
             this.$router.go(-1);
             // this.$router.go(this.$router.go(-1), alert('저장완료'))
         })

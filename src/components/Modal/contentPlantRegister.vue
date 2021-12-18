@@ -75,7 +75,6 @@ export default {
       let userId = localStorage.getItem("getId");
       let token = localStorage.getItem("getToken");
       var data = {
-        userId: userId,
         name: this.name,
         nickName: this.nickName,
         water: this.water,
@@ -83,7 +82,7 @@ export default {
         imageUrl: fileUrl,
       };
       http
-        .post("plant/", data, {
+        .post("/user/"+userId+"/plant", data, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

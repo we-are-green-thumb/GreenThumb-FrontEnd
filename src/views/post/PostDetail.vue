@@ -12,7 +12,6 @@
           <v-spacer></v-spacer>
           <v-card>
             <div style="float: right">
-              <v-text>{{ post.year }} </v-text>
               <v-text>작성자 {{ post.writer }}</v-text>
             </div>
             <br />
@@ -21,7 +20,7 @@
             <v-text>{{ post.content }} </v-text>
             <!-- 이미지의 경우 몇개를 가지고 있는지 몰라 반복문으로 대체. file이 있을 경우 ..  -->
             <v-img
-                    :src="`${post.fileList[0].fileUrl}`"
+                    :src="`${post.fileUrl}`"
                     height="300px"
                     width="700px"
                 >
@@ -159,6 +158,12 @@ export default {
       }) //게시글을 불러옴.
       .then((res) => {
         this.post = res.data;
+    console.log('---------------------------')
+    console.log('---------------------------')
+console.log(this.post)
+    console.log('---------------------------')
+    console.log('---------------------------')
+
       })
       .catch((err) => {
         console.log(err);
