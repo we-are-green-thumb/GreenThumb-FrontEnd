@@ -75,7 +75,8 @@ export default {
       .get("/plants", { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         this.allPlant = res.data;
-        console.log(res.data);
+        console.log('----------------')
+        console.log(this.allPlant);
       })
       .catch((err) => {
         console.log(err);
