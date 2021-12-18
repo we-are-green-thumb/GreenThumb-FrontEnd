@@ -1,11 +1,11 @@
 <template>
   <div style="text-align: center;">
-        <a href="http://localhost:80/oauth2/authorization/kakao" class="kakao btn">
+        <a href="http://localhost:80/oauth2/authorization/kakao?redirect_uri=http://localhost:8081/login/oauth2/code/kakao" class="kakao btn">
           <i class="fas fa-comment"></i> 카카오로 회원가입 하기
          </a>
-        <a href="http://localhost:80/oauth2/authorization/google" class="google btn"><i class="fab fa-google"></i> 구글로 회원가입 하기
+        <a href="http://localhost:80/oauth2/authorization/google?redirect_uri=http://localhost:8081/login/oauth2/code/google" class="google btn"><i class="fab fa-google"></i> 구글로 회원가입 하기
         </a>
-        <a href="http://localhost:80/oauth2/authorization/naver" class="naver btn"><i class="fab fa-google"></i> 네이버로 회원가입 하기
+        <a href="http://localhost:80/oauth2/authorization/naver?redirect_uri=http://localhost:8081/login/oauth2/code/naver" class="naver btn"><i class="fab fa-google"></i> 네이버로 회원가입 하기
         </a>
   </div>
 </template>
