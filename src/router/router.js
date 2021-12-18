@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 import IndexMain from "../views/main/IndexMain.vue";
 import findPassword from "../views/account/findpassword.vue";
-import register from "../views/account/registerform.vue";
+import register from "../views/account/newregisterform.vue";
 import loginform from "../views/account/Login.vue";
 import store from "../store"
 
@@ -32,9 +32,9 @@ const checkInUser = (to, from, next) => {
 const IndexMyplant = () => {
   return import("../views/myplant/Indexmyplant.vue");
 };
-const modal = () => {
-  return import("../components/myPlant/Modal.vue")
-}
+// const modal = () => {
+//   return import("../components/myPlant/Modal.vue")
+// }
 const Detailmyplant = () => {
   return import("../views/myplant/Detailmyplant.vue");
 };
@@ -53,9 +53,24 @@ const PostDetail = () => {
 }
 
 const test = () => {
-  return import("../views/test.vue")
+  return import("../components/community/test.vue")
 }
 
+const writepost = () => {
+  return import("../views/post/WritePost.vue")
+}
+const editpost = () => {
+  return import("../views/post/EditPost.vue")
+}
+const writecomment = () => {
+  return import("../views/comment/WriteComment.vue")
+}
+const editcomment = () => {
+  return import("../views/comment/EditComment.vue")
+}
+const EditPlant = () => {
+  return import('../components/myPlant/editPlant.vue')
+}
 const routes = [
   {
     path: "/",
@@ -67,35 +82,49 @@ const routes = [
     path: "/myplant",
     name: "IndexMyplant",
     component: IndexMyplant,
+    props: true,
   },
 
   {
     path: "/myplant/:userId/:plantId",
     name: "Detailmyplant",
     component: Detailmyplant,
+    props: true,
+    children:[
+      {
+        path: "/myplant",
+        component: IndexMyplant,
+      }
+    ]
+
   },
   {
     path : '/mypage/editpage',
     name : 'editpage',
     beforeEnter : checkInUser,
     component : editpage,
-  }, 
+    props: true
+  },
   {
     path : '/community',
     name : 'community',
     component : community
-  }, 
+  },
   {
     path: "/hospital",
     name: "Hospital",
     component: Hospital,
   },
-
   {
-    path: "/modal",
-    name: "modal",
-    component: modal,
+    path: "/post/writepost",
+    name: "WritePost",
+    component: writepost,
   },
+  // {
+  //   path: "/modal",
+  //   name: "modal",
+  //   component: modal,
+  // },
   {
     path: "/login",
     name: "loginform",
@@ -116,17 +145,45 @@ const routes = [
     component: register,
   },
   {
-    path: "/post/postDetail",
+    path: "/post/postDetail/:userId/:postId",
     name: "PostDetail",
     component: PostDetail,
+    props: true,
   },
-
+  {
+    path: "/post/editpost",
+    name: "EditPost",
+    component: editpost,
+  },
+  {
+    path: "/comment/editcomment",
+    name: "EditComment",
+    component: editcomment,
+  },
+  {
+    path: "/comment/writecomment",
+    name: "WriteComment",
+    component: writecomment,
+  },
   {
     path: "/test",
     name: "test",
     component: test,
 
   },
+  {
+    path: '/plant/:plantId',
+    name: 'EditPlant',
+    component: EditPlant,
+    props: true
+  },
+
+  // {
+  //   path: '/*',
+  //   redirect: '/'
+
+
+  // }
 
 ];
 
