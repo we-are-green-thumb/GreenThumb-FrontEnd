@@ -1,16 +1,16 @@
 <template>
-    <div class="aaa">
-        <!-- <Header/>
-        <NavigationBar/>  -->
-        <plant-register></plant-register>
-        <plant-mylist></plant-mylist>
-        <plant-followrlist></plant-followrlist>
-        <hr size="5px" />
-        <plant-search></plant-search>
-        <plant-resultlist></plant-resultlist>
-        <Footer/>
+  <div class="aaa">
+    <!-- <Header/>
+    <NavigationBar/>  -->
+    <plant-register></plant-register>
+    <plant-mylist></plant-mylist>
+    <plant-followrlist></plant-followrlist>
+    <hr size="5px" />
+    <plant-search></plant-search>
+    <plant-resultlist></plant-resultlist>
+    <Footer/>
 
-    </div>
+  </div>
 </template>
 
 <script>
@@ -22,10 +22,9 @@ import PlantResultList from "../../components/main/PlantResultList.vue";
 import Footer from "../../components/Footer.vue";
 // import NavigationBar from "../../components/NavigationBar.vue"
 // import Header from "../../components/Header.vue";
-
 export default {
-    name: "IndexMain",
-    components:{
+  name: "IndexMain",
+  components:{
     "plant-register": PlantRegister,
     "plant-mylist": MyplantList,
     "plant-followrlist": FollowerPlantList,
@@ -34,14 +33,11 @@ export default {
     Footer,
     // Header,
     // NavigationBar
-    }
+  }
 }
-
-
-
 </script>
 <style>
-    .aaa{
-        width: 100%;
-    }
+.aaa{
+  width: 100%;
+}
 </style>

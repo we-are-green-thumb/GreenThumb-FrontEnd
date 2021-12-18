@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import router from "./router/router";
 import http from "@/util/http-common";
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -33,40 +34,40 @@ export default new Vuex.Store({
   getters: {
     loginCheck: function (state) {
       http
-        .get("/user")
-        .then((res) => {
-          // console.log(res.data);
-          return (state.allUsers = res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .then(() => {});
+          .get("/user")
+          .then((res) => {
+            // console.log(res.data);
+            return (state.allUsers = res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .then(() => {});
     },
   },
   // 행위 시도
   actions: {
     login({ dispatch }, loginObj) {
-      
-        let email = loginObj.email;
-        let password = loginObj.password;
-        
+      let email = loginObj.email;
+      let password = loginObj.password;
+
       //로그인 후 토큰 반환
-      http.post("/auth/login", {"email":email,"password":password}).then((res) => {
-        
-        let token = res.data.accessToken;
-        let id = res.data.id;
-        let Bearer = res.data.tokenType;
+      http
+          .post("/auth/login", { email: email, password: password })
+          .then((res) => {
+            let token = res.data.accessToken;
+            let id = res.data.userId;
+            let Bearer = res.data.tokenType;
 
-        //일단 토큰 저장함
-        localStorage.setItem("getToken", token);
-        localStorage.setItem("getId", id);
-        localStorage.setItem("getB", Bearer);
+            //일단 토큰 저장함
+            localStorage.setItem("getToken", token);
+            localStorage.setItem("getId", id);
+            localStorage.setItem("getB", Bearer);
 
-        // sessionStorage.setItem("getToken",token)
-        dispatch("getUserInfo");
-        router.push({ name: "IndexMain" });
-      });
+            // sessionStorage.setItem("getToken",token)
+            dispatch("getUserInfo");
+            router.push({ name: "IndexMain" });
+          });
     },
     getUserInfo({ commit }) {
       if (localStorage.getItem("getToken") !== null) {
@@ -76,32 +77,28 @@ export default new Vuex.Store({
         // let Bearer = localStorage.getItem("getB")
         let config = {
           headers: {
-            "Authorization": token,
+            Authorization: token,
           },
         };
-        console.log(id)
-        console.log(config)
-        http.get("/user/" + id ,{ headers: { Authorization: `Bearer ${token}` }}).then((response) => {
-          console.log('--------------------------------')
-          console.log(response)
-          console.log(response.data)
-          console.log('왜 안나와 도대체')
-          let userInfo = {
-            // id: this.id
-            // email: response.data.data.email,
-          };
-          console.log('여기 사람있어요!!!!!!')
-          console.log("2번", userInfo)
-
-          commit("loginSuccess", userInfo)
-            .catch((error) => {
-              console.log(error);
-              alert("로그인을 실패했어요.");
-            })
-            .then(() => {});
-        });
+        console.log(id);
+        console.log(config);
+        http
+            .get("/user/" + id, { headers: { Authorization: `Bearer ${token}` } })
+            .then((response) => {
+              console.log(response);
+              let userInfo = {
+                // id: this.id
+                // email: response.data.data.email,
+              };
+              commit("loginSuccess", userInfo)
+                  .catch((error) => {
+                    console.log(error);
+                    alert("로그인을 실패했어요.");
+                  })
+                  .then(() => {});
+            });
       } else {
-        commit("logouted")
+        commit("logouted");
         // console.log("로그아웃 성공")
       }
     },
@@ -125,10 +122,21 @@ export default new Vuex.Store({
     // },
     logout({ commit }) {
       alert("로그아웃 되었습니다.");
+      let token = localStorage.getItem("getToken");
+      let userId = localStorage.getItem("getId");
+      http
+          //       .delete("/auth/logout",  { headers: { Authorization: `Bearer ${token}` }})
+          .post("http://localhost:80/auth/logout/"+userId,{ headers: { Authorization: `Bearer ${token}` }} )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
       localStorage.removeItem("getToken");
       localStorage.clear();
       commit("logouted");
-
       router.push({ name: "IndexMain" });
     },
   },

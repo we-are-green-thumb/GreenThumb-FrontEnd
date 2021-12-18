@@ -9,23 +9,25 @@ import store from "../store"
 
 Vue.use(VueRouter);
 
+
 const rejectAuthuser = (to, from, next) => {
-    if (store.state.isLogin === true) {
+    if(store.state.isLogin === true){
         alert("이미 로그인했어요!")
         next("/")
-    } else {
+    }else {
         next()
     }
 }
 
 const checkInUser = (to, from, next) => {
-    if (store.state.isLogin === true) {
+    if(store.state.isLogin === true){
         next()
-    } else {
+    }else {
         next("/login")
         alert("로그인을 부탁드려요!")
     }
 }
+
 
 const IndexMyplant = () => {
     return import("../views/myplant/Indexmyplant.vue");
@@ -71,49 +73,51 @@ const EditPlant = () => {
 }
 const routes = [
     {
-        path     : "/",
-        name     : "IndexMain",
+        path: "/",
+        name: "IndexMain",
         component: IndexMain,
     },
 
     {
-        path     : "/myplant",
-        name     : "IndexMyplant",
+        path: "/myplant",
+        name: "IndexMyplant",
         component: IndexMyplant,
+        props: true,
     },
 
     {
-        path     : "/myplant/:userId/:plantId",
-        name     : "Detailmyplant",
+        path: "/myplant/:userId/:plantId",
+        name: "Detailmyplant",
         component: Detailmyplant,
-        props    : true,
-        children : [
+        props: true,
+        children:[
             {
-                path     : "/myplant",
+                path: "/myplant",
                 component: IndexMyplant,
             }
         ]
 
     },
     {
-        path       : '/mypage/editpage',
-        name       : 'editpage',
-        beforeEnter: checkInUser,
-        component  : editpage,
+        path : '/mypage/editpage',
+        name : 'editpage',
+        beforeEnter : checkInUser,
+        component : editpage,
+        props: true
     },
     {
-        path     : '/community',
-        name     : 'community',
-        component: community
+        path : '/community',
+        name : 'community',
+        component : community
     },
     {
-        path     : "/hospital",
-        name     : "Hospital",
+        path: "/hospital",
+        name: "Hospital",
         component: Hospital,
     },
     {
-        path     : "/post/writepost",
-        name     : "WritePost",
+        path: "/post/writepost",
+        name: "WritePost",
         component: writepost,
     },
     // {
@@ -122,57 +126,64 @@ const routes = [
     //   component: modal,
     // },
     {
-        path       : "/login",
-        name       : "loginform",
+        path: "/login",
+        name: "loginform",
         beforeEnter: rejectAuthuser,
-        component  : loginform,
+        component: loginform,
     },
 
     {
-        path     : "/user2/findpassword",
-        name     : "findPassword",
+        path: "/user2/findpassword",
+        name: "findPassword",
         component: findPassword,
     },
 
     {
-        path       : "/user2/register",
-        name       : "register",
-        beforeEnter: rejectAuthuser,
-        component  : register,
+        path: "/user2/register",
+        name: "register",
+        beforeEnter : rejectAuthuser,
+        component: register,
     },
     {
-        path     : "/post/postDetail/:userId/:postId",
-        name     : "PostDetail",
+        path: "/post/postDetail/:userId/:postId",
+        name: "PostDetail",
         component: PostDetail,
-        props    : true,
+        props: true,
     },
     {
-        path     : "/post/editpost",
-        name     : "EditPost",
+        path: "/post/editpost",
+        name: "EditPost",
         component: editpost,
     },
     {
-        path     : "/comment/editcomment",
-        name     : "EditComment",
+        path: "/comment/editcomment",
+        name: "EditComment",
         component: editcomment,
     },
     {
-        path     : "/comment/writecomment",
-        name     : "WriteComment",
+        path: "/comment/writecomment",
+        name: "WriteComment",
         component: writecomment,
     },
     {
-        path     : "/test",
-        name     : "test",
+        path: "/test",
+        name: "test",
         component: test,
 
     },
     {
-        path     : '/plant/:plantId',
-        name     : 'EditPlant',
+        path: '/plant/:plantId',
+        name: 'EditPlant',
         component: EditPlant,
-        props    : true
-    }
+        props: true
+    },
+
+    // {
+    //   path: '/*',
+    //   redirect: '/'
+
+
+    // }
 
 ];
 

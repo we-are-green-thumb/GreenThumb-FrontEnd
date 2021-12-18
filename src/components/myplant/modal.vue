@@ -2,7 +2,7 @@
     <div>
         <h1>별명을 지어주세요</h1>
         <h3>식물의 별명을 지어주세요</h3>
-        <input v-model="nickname" placeholder="레몬">
+        <input v-model="nickName" placeholder="레몬">
         <hr size="5px">
         <h1>사진을 등록해주세요.</h1>
         <h3>식물의 사진을 등록해주세요</h3>
@@ -35,7 +35,7 @@ export default {
     name: 'modal',
     data() {
         return {
-            nickname :"",
+            nickName :"",
             plant :"",
             days :"",
 

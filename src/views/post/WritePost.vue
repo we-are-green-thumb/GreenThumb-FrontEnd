@@ -22,13 +22,15 @@
 
       <v-text-field v-model="content" label="내용" required></v-text-field>
 
-    <input v-bind="fileList" id="chooseFile" type="file" accept="image/*" multiple @change="filechange"/>
+    <input v-bind="fileList" id="input_img" type="file" accept="image/*" multiple @change="fileChange"/>
     <v-btn @click="addPost">완료 </v-btn>
     </v-form>
   </div>
 </template>
 <script>
 import http from "@/util/http-common";
+import $ from 'jquery';
+
 export default {
 
   data: () => ({
@@ -48,22 +50,40 @@ export default {
     created() {
       this.userId = localStorage.getItem('getId');
 
-      // console.log(this.userId);
     },
     methods: {
-      filechange(e){
-         this.fileUrl = e.target.files[0].name;
-      },
+        fileChange() {
+   var file = document.getElementById('input_img');
+   var form = new FormData();
+   form.append("image", file.files[0])
+
+   var settings = {
+      "url": "https://api.imgbb.com/1/upload?key=076f41cee131349132a08f6320271a31",
+      "method": "POST",
+      "timeout": 0,
+      "processData": false,
+      "mimeType": "multipart/form-data",
+      "contentType": false,
+      "data": form
+   };
+   $.ajax(settings).done(function(response) {
+      console.log(response);
+      var jx = JSON.parse(response);
+         this.fileUrl = jx.data.url+"";
+      localStorage.setItem('fileUrl',this.fileUrl);
+       
+
+   });
+  },
+
       addPost(){
         let token = localStorage.getItem("getToken");
 
-        // console.log(this.userId);
-        // console.log(this.title);
-        // console.log(this.cate.value);
-        // console.log(this.content);
+        this.fileUrl = localStorage.getItem('fileUrl');
+        localStorage.removeItem('fileUrl');
         // console.log(this.fileUrl);
-        // console.log(this.fileList);
-
+        console.log(this.cate.value);
+        alert(this.cate.value);
         let data = {
           userId : this.userId ,
           title : this.title,
@@ -76,17 +96,13 @@ export default {
         // {headers: { Authorization: `Bearer ${token}`,'Content-Type': 'multipart/form-data'}
         {headers: { Authorization: `Bearer ${token}`}
          }
-      ) //게시글을 불러옴.
+      ) //게시글을 추가
       .then((response) => {
           console.log(response);
-            alert("===========================")
 
-          // if(response.data.success == true){
-          //   alert("글작성 성공")
-          //   this.$router.push(-1)
-          // }else{
-          //   alert("글작성 실패")
-          // }
+            alert("저장 성공");
+            this.$router.go(-1);
+            // this.$router.go(this.$router.go(-1), alert('저장완료'))
         })
         .catch((error) => {
           console.log(error);
