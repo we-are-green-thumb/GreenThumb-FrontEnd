@@ -57,12 +57,10 @@ export default new Vuex.Store({
         .then((res) => {
           let token = res.data.accessToken;
           let id = res.data.userId;
-          let Bearer = res.data.tokenType;
 
           //일단 토큰 저장함
           localStorage.setItem("getToken", token);
           localStorage.setItem("getId", id);
-          localStorage.setItem("getB", Bearer);
 
           // sessionStorage.setItem("getToken",token)
           dispatch("getUserInfo");
@@ -75,19 +73,18 @@ export default new Vuex.Store({
         let token = localStorage.getItem("getToken");
         let id = localStorage.getItem("getId");
         // let Bearer = localStorage.getItem("getB")
-        let config = {
-          headers: {
-            Authorization: token,
-          },
-        };
-        console.log(id);
-        console.log(config);
+        // let config = {
+        //   headers: {
+        //     Authorization: token,
+        //   },
+        // };
+
         http
           .get("/user/" + id, { headers: { Authorization: `Bearer ${token}` } })
           .then((response) => {
             console.log(response);
             let userInfo = {
-              userId: this.id,
+              userId: id,
               email: response.data.email,
             };
             commit("loginSuccess", userInfo)
