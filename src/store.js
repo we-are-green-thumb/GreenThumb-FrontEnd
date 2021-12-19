@@ -87,8 +87,8 @@ export default new Vuex.Store({
           .then((response) => {
             console.log(response);
             let userInfo = {
-              // id: this.id
-              // email: response.data.data.email,
+              userId: this.id,
+              email: response.data.email,
             };
             commit("loginSuccess", userInfo)
               .catch((error) => {
