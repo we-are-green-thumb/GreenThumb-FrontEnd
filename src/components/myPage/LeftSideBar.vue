@@ -17,7 +17,7 @@
 </template>
 <script>
 export default {
-  name: "left",
+  name: "right",
 };
 </script>
 <style>
