@@ -77,7 +77,7 @@ export default {
     uploadFile() {
       let file = localStorage.getItem("fileUrl")
       http
-        .post("http://localhost:80/plant-hospital", {plantFile: file})
+        .post("http://localhost:80/plant-hospital", {imageUrl: file})
         .then((res) => {
           console.log(res);
         })
