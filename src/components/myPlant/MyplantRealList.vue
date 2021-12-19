@@ -14,7 +14,7 @@
         </div>-->
       <!-- </li>  -->
       <div id="modalp">
-        <h1>식물 등록 컴포넌트</h1>
+        <h1>식물을 등록해주세요</h1>
         <modalPlantRegister
           v-if="isModalViewed"
           @close-modal="isModalViewed = false"
@@ -101,6 +101,7 @@ ul {
 
 .myplantform {
   background-color: lightgrey;
+  text-align: center;
   border-radius: 15px;
   margin: 0 10px 10px 5px;
 }

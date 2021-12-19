@@ -4,7 +4,8 @@
 
     <div class="background">
       <v-form ref="form" v-model="valid" lazy-validation>
-        <v-text-field v-model="email" label="아이디" :value="email" readonly></v-text-field>
+        <v-text-field v-model="email" label="아이디" :value="email" readonly>
+        </v-text-field>
         <v-text-field v-model="nickName" label="별명" :value="nickName" required></v-text-field>
         <v-text-field v-model="signUpDate" label="가입일자" :value="signUpDate" readonly></v-text-field>
         <v-text-field
@@ -22,10 +23,10 @@
         >
           수정하기
         </v-btn> -->
-        <v-btn class="button blue" @click="validate">완료</v-btn>
+        <v-btn class="button white" @click="validate">완료</v-btn>
 
-        <v-btn color="#55555c" class="mr-4" @click="reset"> Reset Form </v-btn>
-        <v-btn color="#55555c" @click="resetValidation">
+        <v-btn color="grey" class="mr-4" @click="reset"> Reset Form </v-btn>
+        <v-btn color="grey" @click="resetValidation">
           Reset Validation
         </v-btn>
       </v-form>
@@ -111,7 +112,7 @@ export default {
 .background {
   /* color: bisque; */
   float: center;
-  background-color: rgb(172, 172, 180);
+  background-color: lightgray;
 }
 .background form {
   float: right;
