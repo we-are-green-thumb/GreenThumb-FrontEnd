@@ -1,6 +1,5 @@
 <template>
     <div>
-       <!--11 글상세  -->
     </div>
 </template>
 <script>

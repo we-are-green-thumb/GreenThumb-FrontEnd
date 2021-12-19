@@ -1,27 +1,19 @@
 <template lang="">
-       <!-- <div class="nav"> -->
-          <section>
-              <router-link :to="{name:'loginform'}" style="text-decoration:none" >내 식물</router-link> 
-            <router-link :to="{name:'community'}" style="text-decoration:none" >커뮤니티</router-link>
-            <v-btn color="red" >  <router-link :to="{name:'Hospital'}" style="text-decoration:none" >식물병원</router-link> </v-btn>
-          </section>
-        <!-- <hr size="50px" /> -->
-          <!-- </div> -->
+
 </template>
 
 <script>
-export default {
-    
-}
+export default {}
 </script>
 
 <style>
-    .nav {
+.nav {
   float: right;
   text-align: right;
   width: 100%;
 }
- hr {
+
+hr {
   background-color: #009900;
 }
 </style>
