@@ -2,6 +2,11 @@
   <ul class="myplantcontainer">
     <!-- 내 식물 -->
           <div v-for="(u, i) in myplant.slice(0,2)" :key="i">
+            <router-link
+              :to="{
+                name: 'Detailmyplant',
+                params: { userId: u.userId, plantId: u.plantId },
+              }">
       <li class="myplantform">
         <div>
             <img class="imgSize" :src="u.imageUrl" />
@@ -12,6 +17,7 @@
                 <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br>
         </div>
       </li>
+            </router-link>
           </div>
   </ul>
 </template>
