@@ -23,10 +23,13 @@ export default {
     };
   },
    created() {
+     let userId = localStorage.getItem('getId');
+     console.log(userId)
         http
-      .get("https://reqres.in/api/unknown") //댓글을 불러옴.
+      .get("/user/"+userId+"/comments") //댓글을 불러옴.
       .then((res) => {
         this.comments = res.data.data;
+        console.log(this.comments);
       })
       .catch((err) => {
         console.log(err);

@@ -3,7 +3,9 @@
         <!-- <Header/>
         <NavigationBar/>  -->
         <plant-register ></plant-register>
+        <div v-if="isLogin">
         <plant-mylist></plant-mylist>
+        </div>
         <plant-followrlist></plant-followrlist>
         <hr size="5px" />
         <plant-search></plant-search>
@@ -22,6 +24,7 @@ import PlantResultList from "../../components/main/PlantResultList.vue";
 import Footer from "../../components/Footer.vue";
 // import NavigationBar from "../../components/NavigationBar.vue"
 // import Header from "../../components/Header.vue";
+import { mapState } from 'vuex';
 
 export default {
     name: "IndexMain",
@@ -34,7 +37,11 @@ export default {
     Footer,
     // Header,
     // NavigationBar
-    }
+    },
+     computed : {
+    ...mapState(["isLogin"])
+ 
+  },
 }
 
 
