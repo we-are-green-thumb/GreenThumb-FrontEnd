@@ -3,11 +3,10 @@
       <section id="blue-box" class="box">
         <ul class="container">
           <div v-for="(u, i) in allPlant.slice(0, 15)" :key="i">
-            <router-link
+            <router-link 
               :to="{
                 name: 'Detailmyplant',
-                params: { userId: u.userId, plantId: u.plantId }}"
-            >
+                params: { userId: u.userId, plantId: u.plantId }}" >
               <li>
                 <a> <img class="box" :src="u.imageUrl" /></a>
                 <a> {{ u.name }} </a><br />
@@ -15,7 +14,6 @@
               </li>
             </router-link>
           </div>
-       
         </ul>
       </section>
     </div>
@@ -34,11 +32,7 @@ export default {
       allPlant: [],
     };
   },
-  props : {
-    plantName: {
-      default: "",
-    }
-  },
+
   watch: {
     $route(to, from) {
       if (to.path != from.path) {
@@ -51,7 +45,7 @@ export default {
     let token = localStorage.getItem("getToken");
     console.log(this.$emit.plantName)
     http
-      .get("/plant-name/" + this.$emit.plantName, { headers: { Authorization: `Bearer ${token}` } })
+      .get("/plant-name/" + "식물명", { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         this.allPlant = res.data;
       })
