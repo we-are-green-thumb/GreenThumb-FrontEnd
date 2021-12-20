@@ -1,7 +1,5 @@
 <template>
-  <v-container absolute>
-  <div id="header-wrap">
-    <div class="header-container">
+  <v-container absolute class="yellow">
       <div class="headerBtn">
         <section v-if="isLogin === true">
           <div @click="logout">
@@ -17,10 +15,8 @@
           <router-link :to="{name:'register'}" style="text-decoration:none; color: white; font-weight: bold">회원가입
           </router-link>
         </section>
-      </div
+      </div>
   </v-container>
-    </div>
-  </div>
 
   <!--  </div>-->
 </template>
@@ -46,7 +42,6 @@ export default {
 
 
 #header-container {
-
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -60,8 +55,9 @@ export default {
 .headerBtn {
   float: right;
   text-align: center;
+  margin: 0 auto;
   font-size: 100%;
-  color: white;
+  background-color: red;
   text-decoration: none;
 }
 
