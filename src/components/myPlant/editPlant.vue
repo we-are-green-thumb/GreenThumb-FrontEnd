@@ -8,17 +8,22 @@
          
         </div>
         <div class="plantcontent">
+          <h4> 식물의 종은 : </h4>
           <input
             type="text"
             placeholder="식물 학명"
             v-model.trim="myplant.name"
           />
+          <h4> 식물의 별명은 : </h4>
           <input
             type="text"
             placeholder="닉네임"
             v-model.trim="myplant.nickName"
           />
+          <h4> 식물에게 적절한 온도는 : </h4>
           <input type="text" placeholder="온도" v-model.trim="myplant.temp" />
+
+          <h4> 식물에게 물 주는 주기는 : </h4>
           <input
             type="text"
             placeholder="물 주기"
@@ -37,7 +42,8 @@
       </li>
     </ul>
     <div>
-      <v-btn class="button blue" @click="postUpdate">완료</v-btn>
+      <v-btn class="button lightgray" @click="postUpdate">완료</v-btn>
+      &nbsp;
       <v-btn class="button" @click="boardCancelClick">취소</v-btn>
     </div>
   </div>
