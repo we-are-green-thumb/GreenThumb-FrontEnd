@@ -2,7 +2,7 @@
     <div class="aaa">
         <!-- <Header/>
         <NavigationBar/>  -->
-        <plant-register></plant-register>
+        <plant-register ></plant-register>
         <plant-mylist></plant-mylist>
         <plant-followrlist></plant-followrlist>
         <hr size="5px" />

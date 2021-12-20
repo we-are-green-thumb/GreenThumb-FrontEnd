@@ -156,9 +156,10 @@ const routes = [
     component: editcomment,
   },
   {
-    path: "/comment/writecomment",
+    path: "/comment/writecomment/:postId",
     name: "WriteComment",
     component: writecomment,
+    props: true,
   },
   {
     path: "/test",

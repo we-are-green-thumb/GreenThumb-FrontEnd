@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import http from "@/util/http-common";
 import $ from 'jquery';
 
@@ -62,6 +63,9 @@ export default {
     userId:{
       
     }
+  },
+    computed: {
+    ...mapState(["userInfo"]),
   },
   created() {
     let token = localStorage.getItem("getToken");
@@ -115,9 +119,6 @@ export default {
         temp: this.myplant.temp,
         imageUrl: fileUrl,
       };
-       console.log(this.$route.params.userId)
-      console.log(this.$route.params.plantId)
-      console.log('8888888888888888888888888')
       http
         .put("user/" +this.$route.params.userId +"/plant/"+this.$route.params.plantId, data, {
           headers: { Authorization: `Bearer ${token}` },

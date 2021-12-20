@@ -4,24 +4,37 @@
     <div class="profileform">
       <ul>
         <li>
-          <span><p>{{ User.nickName }}의 식물들!</p></span>
-          <a class="followercheck" href="#" v-if="canFollow">팔로우 추가</a>
+          <span
+            ><p>{{ User.nickName }}의 식물들!</p></span
+          >
+          <a class="followercheck" @click="followerupdate" v-if="canFollow"
+            >팔로우 추가</a
+          > 
+          <a class="followercheck" @click="followerdelete" v-if="canFollow"
+            >팔로우 취소</a
+          >
         </li>
         <li>
-          <span><p>{{ User.profile }}</p></span>
+          <span
+            ><p>{{ User.profile }}</p></span
+          >
         </li>
         <li>
-          <span><a href="#">팔로우: {{ User.followeeCount }}</a></span>
+          <span
+            ><a href="#">팔로우: {{ User.followeeCount }}</a></span
+          >
         </li>
         <li>
-          <span><a href="#">팔로워: {{ User.followerCount }}</a></span>
+          <span
+            ><a href="#">팔로워: {{ User.followerCount }}</a></span
+          >
         </li>
       </ul>
     </div>
-          <!-- 식물 등록 모달 -->
-    <ul class="myplantcontainer" >
+    <!-- 식물 등록 모달 -->
+    <ul class="myplantcontainer">
       <li class="myplantform" v-if="canRegister">
-        <div id="modalp" >
+        <div id="modalp">
           <h1>식물 등록 컴포넌트</h1>
           <modalPlantRegister
             v-if="isModalViewed"
@@ -33,7 +46,7 @@
         </div>
       </li>
       <!-- 내 식물 리스트 --->
-      
+
       <div v-for="(u, i) in myplant" :key="i">
         <router-link
           :to="{
@@ -67,7 +80,7 @@ import { mapState } from "vuex";
 
 export default {
   name: "IndexMyplant",
-  
+
   data() {
     return {
       myplant: [],
@@ -87,15 +100,21 @@ export default {
       default: 0,
     },
   },
-  computed : {
+  computed: {
     ...mapState(["myplant"]),
     ...mapState(["userInfo"]),
-    
   },
   components: {
     modalPlantRegister,
     contentPlantRegister,
   },
+  watch: {
+    $route(to, from) { 
+      if (to.path != from.path) {
+        this.$router.go(this.$router.currentRoute)
+      }
+       } 
+     },
   created() {
     let id = localStorage.getItem("getId");
     let token = localStorage.getItem("getToken");
@@ -124,14 +143,42 @@ export default {
       })
       .then(() => {});
 
-      if(id===this.$route.params.userId){
-      this.canRegister=true,
-      this.canFollow=false
-      }else{
-      this.canRegister=false,
-      this.canFollow=true
-      }
+    if (id === this.$route.params.userId) {
+      (this.canRegister = true), (this.canFollow = false);
+    } else {
+      (this.canRegister = false), (this.canFollow = true);
+    }
   },
+  methods: {
+    followerupdate() {
+      let token = localStorage.getItem("getToken");
+      http
+        .post("user/" + this.$store.state.userInfo.userId + "/followee/" + this.$route.params.userId + "/follow" , {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
+    },
+    followerdelete() {
+      let token = localStorage.getItem("getToken");
+      http
+        .delete("user/" + this.$store.state.userInfo.userId + "/followee/" + this.$route.params.userId + "/follow" , {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
+  },
+  }
 };
 </script>
 <style scoped>

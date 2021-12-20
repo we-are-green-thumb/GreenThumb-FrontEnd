@@ -19,77 +19,90 @@
             <br />
             <v-text>{{ post.content }} </v-text>
             <!-- 이미지의 경우 몇개를 가지고 있는지 몰라 반복문으로 대체. file이 있을 경우 ..  -->
-            <v-img
-                    :src="`${post.fileUrl}`"
-                    height="300px"
-                    width="700px"
-                >
-                    <span
-                    class="text-h5 white--text pl-4 pt-4 d-inline-block"
-                    v-text="card"
-                    ></span>
-                </v-img>
+            <v-img :src="`${post.fileUrl}`" height="300px" width="700px">
+              <span
+                class="text-h5 white--text pl-4 pt-4 d-inline-block"
+                v-text="card"
+              ></span>
+            </v-img>
             <br />
             <v-text>조회수 {{ post.hits }} </v-text>
             <br />
             <br />
             <div style="float: right">
-              <div>
+              <div v-if="chekcWrite">
                 <v-btn>
                   <router-link
                     :to="{ name: 'EditPost' }"
                     style="text-decoration: none; color: hsl(94, 10%, 46%)"
-                    >작성자 일치 시 수정하기 버튼 활성화
+                    >수정하기
                   </router-link></v-btn
                 >
               </div>
-              <v-btn @click="clickLike">하트(좋아요 추가)</v-btn>
+              <!-- <v-btn @click="clickLike">하트(좋아요 추가)</v-btn> -->
+              <v-img
+                max-height="30px"
+                max-width="30px"
+                src="https://i.ibb.co/9tYsbv4/like.png"
+                @click="clickLike"
+              ></v-img>
 
               <!-- 좋아요 -->
               <div v-if="like === '좋아요 완료'">
-                <v-text> {{ post.like + 1 }} </v-text>
+                <v-text>좋아요 {{ post.like + 1 }} </v-text>
               </div>
               <div v-else>
-                <v-text> {{ post.like }} </v-text>
+                <v-text>좋아요 {{ post.like }} </v-text>
               </div>
             </div>
 
-            <br /><br />
+            <br /><br /><br /><br />
             <hr />
 
             <!-- 댓글 영역 -->
 
             <div>
               <h2>댓글 {{ comments.length }}</h2>
-
-              <v-btn style="float: right"
-                ><router-link
-                  :to="{ name: 'WriteComment' }"
-                  style="text-decoration: none; color: hsl(94, 10%, 46%)"
-                  >댓글 등록
-                </router-link></v-btn
-              >
+              <div v-if="isLogin">
+                <v-btn style="float: right"
+                  ><router-link
+                    :to="{ name: 'WriteComment' }"
+                    parameter
+                    style="text-decoration: none; color: hsl(94, 10%, 46%)"
+                    >댓글 등록
+                  </router-link></v-btn
+                >
+                <!-- <v-btn style="float: right" @click="clickComment">
+                    댓글 등록
+                  </v-btn> -->
+              </div>
               <br /><br />
               <ul>
                 <li v-for="(comment, idx) in comments" :key="idx">
-                  {{ comment.content }} "Places to Be", "Places to See"
-                  mdi-facebook cyan darken-1<!-- 내용 -->
+                  {{ comment.content }} <!-- 내용 -->
                   {{ comment.year
                   }}<!-- 작성일 -->
                   {{ comment.color
                   }}<!-- 작성자 -->
-                  <v-btn>
+                  <!-- <v-btn>
                     <router-link
                       :to="{ name: 'EditComment' }"
                       style="text-decoration: none; color: hsl(94, 10%, 46%)"
                       >작성자 일치 시 수정하기 버튼 활성화
-                    </router-link></v-btn
-                  >
-                  <br />
-                  <v-btn>하트</v-btn>
+                    </router-link></v-btn> -->
+                  <!-- <br /> -->
+                  <!-- <v-btn>하트</v-btn> -->
+                  <div>
+                  <v-img
+                max-height="30px"
+                max-width="30px"
+                src="https://i.ibb.co/9tYsbv4/like.png"
+                @click="clickLike"
+              ></v-img>
 
                   좋아요 {{ comment.like
                   }}<!-- 좋아요 수-->
+                  </div>
                 </li>
               </ul>
             </div>
@@ -101,10 +114,15 @@
 </template>
 <script>
 import http from "@/util/http-common";
+import { mapState } from "vuex";
+
 // import comments from "../../components/post/Comment.vue"
 export default {
   components: {
     // comments,
+  },
+  computed: {
+    ...mapState(["isLogin"]),
   },
   data: () => ({
     post: [],
@@ -121,9 +139,16 @@ export default {
     },
     resultPost: [],
     like: "",
+    writerId: "",
+    logId: "",
+    chekcWrite : false,
   }),
 
   methods: {
+    // clickComment(){
+    //   let postid = this.$route.params.postId;
+    //   this.$router.push({name : 'WriteComment' ,params: { postid: postid }})
+    // },
     clickLike() {
       let token = localStorage.getItem("getToken");
       let userId = localStorage.getItem("getId");
@@ -139,7 +164,7 @@ export default {
           }
         )
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.like = res.data;
         })
         .catch((err) => {
@@ -150,7 +175,9 @@ export default {
   created() {
     // let userId = localStorage.getItem("getId");
     let token = localStorage.getItem("getToken");
-
+    // let postId = this.$route.params.postIdthis.$route.params.postId;
+    // console.log("=================");
+    // console.log(postId);
     // 게시글
     http
       .get("http://localhost:80/post/" + this.$route.params.postId, {
@@ -158,19 +185,20 @@ export default {
       }) //게시글을 불러옴.
       .then((res) => {
         this.post = res.data;
-    console.log('---------------------------')
-    console.log('---------------------------')
-console.log(this.post)
-    console.log('---------------------------')
-    console.log('---------------------------')
+  
+        this.writerId = res.data.writerId;
+        this.logId = localStorage.getItem("getId");
 
+        if(this.writerId==this.logId){
+          this.chekcWrite =true;
+        }
       })
       .catch((err) => {
         console.log(err);
       });
     http
       .get(
-        "http://localhost:80/comment/post/" +
+        "http://localhost:80/post/" +
           this.$route.params.postId +
           "/comments",
         { headers: { Authorization: `Bearer ${token}` } }
@@ -183,6 +211,7 @@ console.log(this.post)
         console.log(err);
       });
   },
+  
 };
 </script>
 <style>
