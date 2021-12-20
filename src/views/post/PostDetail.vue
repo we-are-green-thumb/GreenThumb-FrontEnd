@@ -34,6 +34,7 @@
                 <v-btn>
                   <router-link
                     :to="{ name: 'EditPost' }"
+                    para
                     style="text-decoration: none; color: hsl(94, 10%, 46%)"
                     >수정하기
                   </router-link></v-btn
