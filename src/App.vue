@@ -37,7 +37,7 @@
     </v-app-bar>
 
     <v-main class="grey lighten-3">
-      <v-container>
+      <v-container fluid style="margin: 0px; padding: 0px; width: 100%">
         <v-row>
           <v-col cols="12" sm="2">
             <v-sheet rounded="lg" min-height="268"> </v-sheet>
@@ -86,4 +86,8 @@ export default {
 ol, ul {
     list-style: none;
 }
+
+
+
+
 </style>

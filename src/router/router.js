@@ -52,10 +52,6 @@ const PostDetail = () => {
   return import("../views/post/PostDetail.vue")
 }
 
-const test = () => {
-  return import("../components/community/test.vue")
-}
-
 const writepost = () => {
   return import("../views/post/WritePost.vue")
 }
@@ -161,12 +157,7 @@ const routes = [
     component: writecomment,
     props: true,
   },
-  {
-    path: "/test",
-    name: "test",
-    component: test,
-
-  },
+ 
   {
     path: '/plant/:plantId',
     name: 'EditPlant',
