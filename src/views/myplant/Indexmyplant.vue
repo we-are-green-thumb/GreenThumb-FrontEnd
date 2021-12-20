@@ -21,12 +21,12 @@
         </li>
         <li>
           <span
-            ><a href="#">팔로우: {{ User.followeeCount }}</a></span
+            ><a href="#">팔로워: {{ User.followeeCount }}</a></span
           >
         </li>
         <li>
           <span
-            ><a href="#">팔로워: {{ User.followerCount }}</a></span
+            ><a href="#">팔로우: {{ User.followerCount }}</a></span
           >
         </li>
       </ul>
