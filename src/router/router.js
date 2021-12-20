@@ -91,6 +91,14 @@ const routes = [
     component: Detailmyplant,
     props: true,
 
+    /*children:[
+      {
+        path: "/myplant",
+        component: IndexMyplant,
+      }
+    ]
+  */
+
   },
   {
     path : '/mypage/editpage',

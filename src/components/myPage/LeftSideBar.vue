@@ -17,12 +17,12 @@
 </template>
 <script>
 export default {
-  name: "left",
+  name: "right",
 };
 </script>
 <style>
 
- a{color:black}
+ a{color:rgb(255, 6, 6)}
   /* a:hover{color:rgb(255,98,124);} */
   a:hover{color:white;}
 
