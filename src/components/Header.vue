@@ -1,6 +1,5 @@
 <template>
-  <v-container class="yellow">
-  <div id="header-wrap">
+  <v-container absolute class="yellow">
       <div class="headerBtn">
         <section v-if="isLogin === true">
           <div @click="logout">
@@ -17,7 +16,6 @@
           </router-link>
         </section>
       </div>
-    </div>
   </v-container>
 
   <!--  </div>-->
@@ -44,7 +42,6 @@ export default {
 
 
 #header-container {
-
   display: flex;
   justify-content: flex-end;
   align-items: center;
