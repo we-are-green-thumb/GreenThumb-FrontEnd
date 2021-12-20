@@ -4,9 +4,12 @@
     <!-- <MyPageNav></MyPageNav>
      -->
                <nav>
+      <h6><h2>&nbsp;</h2></h6>
 
       <v-btn  color: black @click="editClick">회원정보 수정</v-btn>
+      &nbsp;
       <v-btn  color: black @click="postClick">내가 쓴 글</v-btn>
+      &nbsp;
       <v-btn  color: black @click="commentClick">내가 쓴 댓글</v-btn>
 
           </nav>

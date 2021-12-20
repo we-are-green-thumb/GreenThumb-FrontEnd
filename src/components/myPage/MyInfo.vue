@@ -1,15 +1,18 @@
 <template>
   <div>
+    <h6>&nbsp;</h6>
     <h2>내 정보</h2>
+    <h6>&nbsp;</h6>
 
     <div class="background">
       <v-form ref="form" v-model="valid" lazy-validation>
-        <v-text-field v-model="email" label="아이디" :value="email" readonly></v-text-field>
+        <v-text-field v-model="email" label="아이디" :value="email" readonly>
+        </v-text-field>
         <v-text-field v-model="nickName" label="별명" :value="nickName" required></v-text-field>
         <v-text-field v-model="signUpDate" label="가입일자" :value="signUpDate" readonly></v-text-field>
         <v-text-field
           v-model="profile" :value="profile"
-          label="자기어필"
+          label="자기소개"
           required
         ></v-text-field>
         <v-text-field v-model="providerId" label="가입경로" :value="providerId" readonly></v-text-field>
@@ -22,19 +25,18 @@
         >
           수정하기
         </v-btn> -->
-        <v-btn class="button blue" @click="validate">완료</v-btn>
+        <v-btn class="button white" @click="validate">완료</v-btn>
 
-        <v-btn color="#55555c" class="mr-4" @click="reset"> Reset Form </v-btn>
-        <v-btn color="#55555c" @click="resetValidation">
+        <!-- <v-btn color="grey" class="mr-4" @click="reset"> 내 정보  </v-btn>
+        <v-btn color="grey" @click="resetValidation">
           Reset Validation
-        </v-btn>
+        </v-btn> -->
       </v-form>
     </div>
   </div>
 </template>
 <script>
 import http from "@/util/http-common";
-
 export default {
   data: () => ({
     valid: true,
@@ -101,17 +103,27 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    resetValidation() {
-      this.$refs.form.resetValidation();
-    },
+    // resetValidation() {
+    //   this.$refs.form.resetValidation();
+    // },
   },
 };
 </script>
 <style>
 .background {
-  /* color: bisque; */
-  float: center;
-  background-color: rgb(172, 172, 180);
+  /* background-color: lightgray;
+  width: 180%;
+  text-align: center;
+  border-radius: 3%; */
+  
+    top:100px; 
+    left:100px; 
+    width:400px; 
+    height:500px; 
+    border-radius: 3%;
+    background:lightgray; 
+    padding:40px; 
+    display: flex;
 }
 .background form {
   float: right;

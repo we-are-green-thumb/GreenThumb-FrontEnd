@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <!-- <Header/>
     <NavigationBar/>  -->
@@ -10,10 +11,12 @@
     <br>
     <hr class="hr">
     <br>
+
     <plant-search></plant-search>
     <plant-resultlist></plant-resultlist>
     <Footer/>
   </div>
+
 </template>
 
 <script>
