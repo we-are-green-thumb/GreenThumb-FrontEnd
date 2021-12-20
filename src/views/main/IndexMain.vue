@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <!-- <Header/>
     <NavigationBar/>  -->
@@ -28,6 +27,7 @@ import PlantResultList from "../../components/main/PlantResultList.vue";
 import Footer from "../../components/Footer.vue";
 // import NavigationBar from "../../components/NavigationBar.vue"
 // import Header from "../../components/Header.vue";
+import {mapState} from 'vuex';
 
 export default {
   name      : "IndexMain",
@@ -41,16 +41,18 @@ export default {
     Footer,
     // Header,
     // NavigationBar
-  }
+  },
+  computed  : {
+    ...mapState(["isLogin"])
+
+  },
 }
 </script>
 
 <style>
-
 .hr {
   border: 0;
   height: 5px;
   background-color: #81C784;
 }
-
 </style>

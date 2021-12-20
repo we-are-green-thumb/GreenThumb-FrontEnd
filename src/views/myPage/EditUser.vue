@@ -36,7 +36,7 @@ import MyInfo from "../../components/myPage/MyInfo.vue";
 import MyPageComment from "../../components/myPage/MyPageComment.vue";
 import MyPagePost from "../../components/myPage/MyPagePost.vue";
 import WithdrawUser from "../../components/myPage/WithdrawUser.vue";
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "EditUser",
@@ -79,21 +79,21 @@ data() {
       this.postFlag =false,
     this.commentFlag =true
     },
-    test() {
-      axios
-        .get("https://reqres.in/api/users?page=2")
-        .then(function (response) {
-          // handle success
-          console.log(response);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        })
-        .then(function () {
-          // always executed
-        });
-    },
+    // test() {
+    //   axios
+    //     .get("https://reqres.in/api/users?page=2")
+    //     .then(function (response) {
+    //       // handle success
+    //       console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     })
+    //     .then(function () {
+    //       // always executed
+    //     });
+    // },
   },
 };
 </script>

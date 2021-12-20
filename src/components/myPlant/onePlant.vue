@@ -13,7 +13,7 @@
         </div>
         <div v-show="contentOwner">
         <router-link
-          :to="{ name: 'EditPlant', params: { plantId: myplant.plantId } }"
+          :to="{ name: 'EditPlant', params: { plantId: this.myplant.plantId,  userId: this.myplant.userId } }"
           ><a>수정하기</a></router-link
         >
         </div>
@@ -35,8 +35,7 @@ export default {
   },
   props: {
     plantId: {
-      type: String,
-      default: "",
+
     },
   },
   computed: {

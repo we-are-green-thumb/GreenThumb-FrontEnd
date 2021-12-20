@@ -1,34 +1,26 @@
 <template>
   <div>
-    <form>    <h3>식물의 사진을 등록해주세요</h3>
+    <form>    
+      <h3>식물의 사진을 등록해주세요</h3>
     <input
       v-bind="fileList"
       id="input_img"
       type="file"
       accept="image/*"
       multiple
-      @change="fileChange"
-    />
-
-  
+      @change="fileChange" />
     </form>
 <v-btn @click="uploadFile">테스트하기</v-btn>
+<hr>
     <div class="resultform">
       <ul>
         <li style="text-align: center">
           <div>
-            <img
-              class="imgSizeA"
-              src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2018/08/urbanbrush-20180822082426113204.png"
-            />
-          </div>
+            <img class="imgSizeA" :src="this.file"/>
+            </div>
           <div>
-            <p>종류 : 레몬~..트리~..</p>
-            <p>병명 : 물부족..병</p>
-            <p>
-              물부족 병은 블라블라 물을 주면 낫습니다 하지만 너무 오래 됐으면
-              포기하는 게 좋아요 이 아이를 그만 보내주세요~
-            </p>
+            <h3>당신의 식물은 {{Hospital.disease}}</h3>을 앓고 있습니다.
+             <p> {{Hospital.content}}</p>
           </div>
         </li>
       </ul>
@@ -47,6 +39,8 @@ export default {
   data() {
     return {
       fileList: [],
+      Hospital: [],
+      file: ""
     };
   },
 
@@ -75,11 +69,11 @@ export default {
     },
     //식물 이미지 보내는 rest api
     uploadFile() {
-      let file = localStorage.getItem("fileUrl")
+      this.file = localStorage.getItem("fileUrl")
       http
-        .post("http://localhost:80/plant-hospital", {imageUrl: file})
+        .post("http://localhost:80/plant-hospital", {imageUrl: this.file})
         .then((res) => {
-          console.log(res);
+          this.Hospital = res.data
         })
         .catch((err) => {
           console.log(err);

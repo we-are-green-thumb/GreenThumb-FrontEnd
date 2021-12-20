@@ -50,9 +50,7 @@ export default {
   }),
   props: {
     userId: {
-      type: String,
-      default: "",
-    },
+    }
   },
 
   created() {
@@ -80,13 +78,13 @@ export default {
     validate() {
       // this.$refs.form.validate();
       let token = localStorage.getItem("getToken");
-
+      let userId = localStorage.getItem("getId");
       var data = {
         nickName: this.nickName,
         profile: this.profile,
       };
         http
-        .put("user/" + this.$route.params.userId, data, {
+        .put("user/" +userId, data, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

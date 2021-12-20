@@ -1,7 +1,6 @@
 <template>
   <v-container fluid class="green">
     <v-app id="greenthumb">
-
       <v-system-bar app absolute hide-on-scroll color="#C8E6C9">
         <Header/>
       </v-system-bar>
@@ -75,20 +74,24 @@ import Header from "./components/Header";
 export default {
   name      : "app",
   components: {
-    Header
+    Header,
   },
-
   computed  : {
+    ...mapState(["userInfo"]),
     ...mapState(["isLogin"])
 
   },
   data      : () => ({
     userId: localStorage.getItem('getId')
   }),
+
 };
 </script>
 
 <style>
+.v-tab {
+  font-size: 18px;
+}
 
 ol, ul {
   list-style: none;
