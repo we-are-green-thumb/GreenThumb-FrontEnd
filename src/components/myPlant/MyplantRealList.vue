@@ -122,6 +122,7 @@ ul {
 
 .myplantform {
   background-color: lightgrey;
+  text-align: center;
   border-radius: 15px;
   margin: 0 10px 10px 5px;
 }
