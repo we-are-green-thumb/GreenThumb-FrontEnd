@@ -2,17 +2,17 @@
   <v-container class="green" fluid>
     <v-app id="greenthumb">
 
-      <v-system-bar app absolute color="#C8E6C9">
+      <v-system-bar app fluid color="#C8E6C9">
         <Header/>
       </v-system-bar>
 
       <v-app-bar app absolute dense hide-on-scroll flat color="white">
-        <v-tabs absolute centered>
-          <v-tab>
+          <v-tab class="logo">
             <a href="http://localhost:8081/">
               <v-img src="https://i.ibb.co/6yxTkKg/Green-Thumb.png" height="64px" width="146px"/>
             </a>
           </v-tab>
+          <v-tabs absolute centered class="v-tabs">
           <v-tab v-if="isLogin === true">
             <router-link :to="{name: 'IndexMyplant' }" style="text-decoration:none; color: #388E3C; font-weight: bold;">
               내 식물
@@ -87,6 +87,16 @@ export default {
 </script>
 
 <style>
+.logo {
+  margin: 0 0 0 270px;
+  background-color: orange;
+}
+
+.v-tabs {
+  margin: 0 0 0 300px;
+  background-color: purple;
+}
+
 ol, ul {
   list-style: none;
 }
