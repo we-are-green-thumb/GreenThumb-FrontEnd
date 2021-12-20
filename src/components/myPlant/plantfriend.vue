@@ -32,7 +32,11 @@ export default {
       allPlant: [],
     };
   },
-
+  props:{
+    myplantname: {
+      type: String
+    }
+  },
   watch: {
     $route(to, from) {
       if (to.path != from.path) {
@@ -43,9 +47,9 @@ export default {
 
   created() {
     let token = localStorage.getItem("getToken");
-    console.log(this.$emit.plantName)
+    let name = this.myplantname
     http
-      .get("/plant-name/" + "식물명", { headers: { Authorization: `Bearer ${token}` } })
+      .get("/plant-name/" + name, { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         this.allPlant = res.data;
       })

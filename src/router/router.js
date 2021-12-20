@@ -71,6 +71,7 @@ const editcomment = () => {
 const EditPlant = () => {
   return import('../components/myPlant/editPlant.vue')
 }
+
 const routes = [
   {
     path: "/",
@@ -89,7 +90,7 @@ const routes = [
     path: "/myplant/:userId/:plantId",
     name: "Detailmyplant",
     component: Detailmyplant,
-    props: true,
+    props: true
     
   },
   {
