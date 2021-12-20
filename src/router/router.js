@@ -96,7 +96,7 @@ const routes = [
         component: IndexMyplant,
       }
     ]
-    
+
   },
   {
     path : '/mypage/editpage',
@@ -104,12 +104,12 @@ const routes = [
     beforeEnter : checkInUser,
     component : editpage,
     props: true
-  }, 
+  },
   {
     path : '/community',
     name : 'community',
     component : community
-  }, 
+  },
   {
     path: "/hospital",
     name: "Hospital",
@@ -177,12 +177,12 @@ const routes = [
     component: EditPlant,
     props: true
   },
-  
+
   // {
   //   path: '/*',
   //   redirect: '/'
 
-    
+
   // }
 
 ];
