@@ -79,7 +79,7 @@ const routes = [
   },
 
   {
-    path: "/myplant",
+    path: "/myplant/:userId",
     name: "IndexMyplant",
     component: IndexMyplant,
     props: true,
@@ -90,13 +90,15 @@ const routes = [
     name: "Detailmyplant",
     component: Detailmyplant,
     props: true,
-    children:[
+
+    /*children:[
       {
         path: "/myplant",
         component: IndexMyplant,
       }
     ]
-    
+  */
+
   },
   {
     path : '/mypage/editpage',
@@ -104,12 +106,12 @@ const routes = [
     beforeEnter : checkInUser,
     component : editpage,
     props: true
-  }, 
+  },
   {
     path : '/community',
     name : 'community',
     component : community
-  }, 
+  },
   {
     path: "/hospital",
     name: "Hospital",
@@ -177,12 +179,12 @@ const routes = [
     component: EditPlant,
     props: true
   },
-  
+
   // {
   //   path: '/*',
   //   redirect: '/'
 
-    
+
   // }
 
 ];

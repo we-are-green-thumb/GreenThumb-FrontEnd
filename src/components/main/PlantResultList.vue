@@ -49,6 +49,8 @@
 
 <script>
 import http from "@/util/http-common";
+import { mapState } from 'vuex';
+
 
 export default {
   name: "PlantResultList",
@@ -76,7 +78,8 @@ export default {
       .then((res) => {
         this.allPlant = res.data;
         console.log('----------------')
-        console.log(this.allPlant);
+        console.log(res.data);
+        console.log('----------------')
       })
       .catch((err) => {
         console.log(err);
@@ -92,8 +95,12 @@ export default {
     },
   },
   computed: {
+    ...mapState(["myplant"]),
+    ...mapState(["userInfo"]),
+
     filterData() {
       return this.allPlant.filter((e) => e.name.indexOf(this.search) >= 0);
+
     },
   },
 };

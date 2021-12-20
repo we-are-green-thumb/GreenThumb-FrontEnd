@@ -5,9 +5,11 @@
         <div>
           <img class="imgSize" :src="myplant.imageUrl" />
         </div>
+
         <div class="plantcontent"> 
           <p>{{ myplant.water }}일 뒤에 물이 필요해요!</p>
           <p>{{ myplant.temp }}도에서 제일 잘 자랄 수 있어요!</p>
+
         </div>
         <div v-show="contentOwner">
         <router-link
@@ -43,10 +45,8 @@ export default {
   created() {
     let id = localStorage.getItem("getId")
     let token = localStorage.getItem("getToken");
-console.log(this.$route.params.plantId);
     http
       .get("/plant/" + this.$route.params.plantId, {
-      // .get( this.$route.params.plantId, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
