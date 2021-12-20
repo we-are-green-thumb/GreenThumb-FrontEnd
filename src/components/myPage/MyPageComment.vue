@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="myComment">
     댓글 수 {{comments.length}}
     <ul>
       <li v-for="comment,idx in comments" :key="idx">
@@ -17,6 +17,7 @@
 import http from "@/util/http-common";
 
 export default {
+  components : {},
   data() {
     return {
       comments: [],
@@ -38,4 +39,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+  .myComment {
+    width: 100%
+  }
+</style>
