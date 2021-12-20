@@ -1,24 +1,22 @@
 <template>
-  <!--  <div id="wrap">-->
-  <!--  <div id="header-wrap">-->
-  <!--    <div class="header">-->
-  <!--      <Header></Header>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <div id="wrap">
-  <div class="container-wrap">
+
+  <div>
     <!-- <Header/>
     <NavigationBar/>  -->
+    <hr class="hr">
+    <br>
     <plant-register></plant-register>
     <plant-mylist></plant-mylist>
     <plant-followrlist></plant-followrlist>
-    <hr size="5px"/>
+    <br>
+    <hr class="hr">
+    <br>
+
     <plant-search></plant-search>
     <plant-resultlist></plant-resultlist>
     <Footer/>
   </div>
-  </div>
-  <!--  </div>-->
+
 </template>
 
 <script>
@@ -45,36 +43,14 @@ export default {
     // NavigationBar
   }
 }
-
 </script>
+
 <style>
 
-#wrap {
-  overflow: hidden;
-  min-width: 1130px;
-  background-color: red;
+.hr {
+  border: 0;
+  height: 5px;
+  background-color: #81C784;
 }
 
-.header-wrap {
-  position: relative;
-  width: 1130px;
-  height: 50px;
-  margin: 0 auto;
-  background-color: orange;
-}
-
-.header {
-  position: relative;
-  width: 1130px;
-  height: 100%;
-  margin: 0 auto;
-  background-color: yellow;
-}
-
-.container-wrap {
-  position: relative;
-  width: 1130px;
-  margin: 0 auto;
-  background-color: green;
-}
 </style>

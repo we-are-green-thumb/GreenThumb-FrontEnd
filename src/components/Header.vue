@@ -1,4 +1,5 @@
 <template>
+  <v-container absolute>
   <div id="header-wrap">
     <div class="header-container">
       <div class="headerBtn">
@@ -16,7 +17,8 @@
           <router-link :to="{name:'register'}" style="text-decoration:none; color: white; font-weight: bold">회원가입
           </router-link>
         </section>
-      </div>
+      </div
+  </v-container>
     </div>
   </div>
 
@@ -42,13 +44,9 @@ export default {
 
 <style scoped>
 
-#header-wrap {
-  overflow: hidden;
-  min-width: 1130px;
-  background-color: white;
-}
 
-.header-container {
+#header-container {
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -61,10 +59,9 @@ export default {
 
 .headerBtn {
   float: right;
-  text-align: right;
+  text-align: center;
   font-size: 100%;
   color: white;
-  background-color: red;
   text-decoration: none;
 }
 

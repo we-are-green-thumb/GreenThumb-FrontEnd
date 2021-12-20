@@ -1,12 +1,12 @@
 <template>
   <div>
-    <span
-      ><p class="fontclass">안녕 나는 {{ myplant.nickName }} !</p></span
-    >
+    <router-link :to="{ name: 'IndexMyplant', params: { userId: this.$route.params.userId } }">
+    <span><p class="fontclass">안녕 나는 {{ User.nickName }} !</p></span>
+    </router-link>
     <OnePlant />
-    <span
-      ><p class="fontclass">{{ myplant.name }}의 공통정보</p></span
-    >
+    
+  
+    <span><p class="fontclass">{{ myplant.name }}의 공통정보</p></span>
     <plantProfile />
     <span
       ><p class="fontclass">{{ myplant.name }}의 친구들을 알려줄게!</p></span
@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       myplant: [],
+      User:[]
     };
   },
   props: {
@@ -49,6 +50,9 @@ export default {
     ...mapState(["userInfo"]),
   },
   created() {
+    console.log(this.$route.params.userId);
+    console.log(this.$route.params.plantId);
+    console.log('ㅂ별별별볇려')
     // let id = localStorage.getItem("getId")
     let token = localStorage.getItem("getToken");
     http
@@ -58,6 +62,20 @@ export default {
       .then((res) => {
         this.myplant = res.data;
         console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {});
+
+      http
+      .get("user/" + this.$route.params.userId+"/feed", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        this.User = response.data;
+        console.log('사사사사사삿사')
+        console.log(response.data)
       })
       .catch((err) => {
         console.log(err);

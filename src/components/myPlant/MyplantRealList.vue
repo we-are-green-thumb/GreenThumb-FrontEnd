@@ -1,19 +1,38 @@
+<!-- 삭제 예정 !!!!!!!!!!!!!!!!!!!!!!!!!21년 12월 19일-->
+
 <template>
   <div class="place">
+    <div class="profileform">
+      <ul>
+        <li>
+          <span><p>{{ User.nickName }}의 식물들!</p></span>
+          <a class="followercheck" href="#">팔로우 추가</a>
+        </li>
+        <li>
+          <span><p>{{ User.profile }}</p></span>
+        </li>
+        <li>
+          <span><a href="#">팔로우: {{ User.followeeCount }}</a></span>
+        </li>
+        <li>
+          <span><a href="#">팔로워: {{ User.followerCount }}</a></span>
+        </li>
+      </ul>
+    </div>
+          <!-- 식물 등록 모달 -->
     <ul class="myplantcontainer">
-      <!-- 식물 등록 모달 -->
       <li class="myplantform">
-      <div id="modalp">
-        <h1>식물을 등록해주세요</h1>
-        <modalPlantRegister
-          v-if="isModalViewed"
-          @close-modal="isModalViewed = false"
-        >
-          <contentPlantRegister msg="Hello Vue in CodeSandbox!" />
-        </modalPlantRegister>
-        <button @click="isModalViewed = true">식물 등록</button>
-      </div>
-</li> 
+        <div id="modalp">
+          <h1>식물 등록 컴포넌트</h1>
+          <modalPlantRegister
+            v-if="isModalViewed"
+            @close-modal="isModalViewed = false"
+          >
+            <contentPlantRegister msg="Hello Vue in CodeSandbox!" />
+          </modalPlantRegister>
+          <button @click="isModalViewed = true">식물 등록</button>
+        </div>
+      </li>
       <!-- 내 식물 리스트 --->
       <div v-for="(u, i) in myplant" :key="i">
         <router-link
@@ -48,23 +67,23 @@ export default {
   data() {
     return {
       myplant: [],
+      User: [],
       isModalViewed: false,
     };
   },
-  components : {
+  components: {
     modalPlantRegister,
     contentPlantRegister,
   },
   computed: {
     ...mapState(["myplant"]),
     ...mapState(["userInfo"]),
-
   },
   created() {
     let id = localStorage.getItem("getId");
     let token = localStorage.getItem("getToken");
     http
-      .get("user/" + id+ "/plants", {
+      .get("user/" + id + "/plants", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -75,10 +94,22 @@ export default {
         console.log(err);
       })
       .then(() => {});
+
+    http
+      .get("user/" + id, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        this.User = response.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {});
   },
 };
 </script>
-<style>
+<style scoped>
 .myplantcontainer {
   display: grid;
   grid-template-columns: 450px 450px;
@@ -123,5 +154,19 @@ ul {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.profileform {
+  display: grid;
+  margin: 0 10px 10px 5px;
+}
+
+.followercheck {
+  float: right;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>

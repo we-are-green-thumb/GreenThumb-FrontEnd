@@ -35,7 +35,7 @@ export default {
   created(){
     let token = localStorage.getItem("getToken")
      http
-        .get("/plant/all", { headers: { Authorization: `Bearer ${token}` }})
+        .get("/plants", { headers: { Authorization: `Bearer ${token}` }})
         .then((res) => {
           this.myplant = res.data;
           console.log(res.data);
