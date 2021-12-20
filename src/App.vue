@@ -44,7 +44,7 @@
 
       <v-main class="blue">
         <v-row>
-          <!--      rounded="lg" min-height="268"-->
+          <!--      rounded="lg" min-height="268" 두 옵션 없애도 되나?-->
           <v-col cols="12" lg="2">
             <v-sheet color="white"></v-sheet>
           </v-col>
