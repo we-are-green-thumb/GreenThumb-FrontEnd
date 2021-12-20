@@ -40,8 +40,8 @@
             v-if="isModalViewed1"
             @close-modal="isModalViewed1 = false"
           >
-            <contenetfollower />
-            <!-- <contenetfollower :feedowner="User.userId" /> -->
+            <!-- <contenetfollower /> -->
+            <contenetfollower :feedowner="User.userId" />
           </modalPlantRegister>
 
     <!-- 식물 등록 모달 -->

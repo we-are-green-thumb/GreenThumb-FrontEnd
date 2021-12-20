@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class = contain>
     <a>팔로워</a>
     <hr />
     <ul>
-      <li>
+      <li  v-for="(u, i) in followers" :key="i">
         <span>
-          <a>{{ followers.followerNickName }}</a>
-          <button>팔로우 하기</button>
+          <a>{{ u.followerNickName }}</a>
+          <div style="float:right">
+          <button>팔로우 하기&nbsp;&nbsp;</button>
           <button>팔로우 취소</button>
+          </div>
         </span>
       </li>
     </ul>
@@ -23,60 +25,40 @@ export default {
     return {
       followers: [],
       followees: [],
-      tuserId:"",
+      tuserId: "",
     };
   },
   computed: {
     ...mapState(["userInfo"]),
   },
   props: {
-    usefeedowner: {
-    }
-    },
-    // mounted: {
-    //   getFollowee() {
-    //     let token = localStorage.getItem("getToken");
-
-    //     http
-    //       .get("/follow-user/" + this.$route.params.feedowner + "/followees", {
-    //         headers: { Authorization: `Bearer ${token}` },
-    //       })
-    //       .then((res) => {
-    //         this.followees = res.data;
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       })
-    //       .then(() => {
-    //         this.$router.go(this.$router.currentRoute);
-    //       });
-    //   },
-    // },
-    created() {
-      let token = localStorage.getItem("getToken");
-      let id = localStorage.getItem("getId")
-      this.tuserId =this.$router.params.userId
-      console.log('tuser',this.tuserId)
-      console.log('id',id)
-      console.log('usefeedowner',this.usefeedowner)
-      http
-        .get("/follow-user/" + id + "/followers", {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          this.followers = res.data;
-          console.log(this.followers)
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .then(() => {
-          // this.$router.go(this.$router.currentRoute);
-        });
-    },
-  
+    feedowner: {},
+  },
+  created() {
+    let token = localStorage.getItem("getToken");
+    let feedownerId = this.feedowner
+    http
+      .get("/follow-user/" + feedownerId + "/followers", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        this.followers = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {
+      });
+  },
 };
 </script>
 
-<style>
+<style scoped>
+
+.contain {
+  min-width: 400px;
+  min-height: 700px;
+  align-content: center;
+  border-radius: 30px;
+}
 </style>
