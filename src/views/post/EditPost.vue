@@ -1,34 +1,129 @@
 <template>
   <div>
     <v-form ref="form">
-      <v-row align="center">
-          <v-col
-        class="d-flex"
-        cols="12"
-        sm="6"
-      >
-        <v-select
-          :items="cate"
+       <v-select
+        v-model="cate"
           label="카테고리"
+          :items="cateList"
+          item-text="name"
+          item-value="value"
+          return-object
         ></v-select>
-      </v-col>
-      </v-row>
 
-      <v-text-field v-model="title" label="제목" required></v-text-field>
-      <v-text-field v-model="content" label="내용" required></v-text-field>
-
-    <input id="chooseFile" type="file" accept="image/*" />
-    <v-btn>수정 완료 </v-btn>
+      <div class="postcontent">
+        <input type="text" placeholder="제목" v-model.trim="post.title" />
+        <br />
+        <br />
+        <input type="text" placeholder="내용" v-model.trim="post.content" />
+        <br />
+        <br />
+        <input
+          v-bind="fileList"
+          id="input_img"
+          type="file"
+          accept="image/*"
+          multiple
+          @change="fileChange"
+        />
+      </div>
+      <br />
+      <br />
+      <div>
+        <v-btn class="button blue" @click="postDone">완료</v-btn>
+        <v-btn class="button" @click="boardCancelClick">취소</v-btn>
+      </div>
     </v-form>
   </div>
 </template>
+
 <script>
+import http from "@/util/http-common";
+import $ from "jquery";
+
 export default {
   data: () => ({
-      cate: ['자유', '질문', '나눔거래'],
-      title : "",
-      content : ""
-    }),
+    cateList: [
+        {name : '자유' ,value: 'free'},
+        {  name:'질문', value: 'QnA'}, 
+         { name:'나눔거래',value: 'share' } 
+        ],
+        cate :"",
+    title: "",
+    content: "",
+    post: [],
+  }),
+  props: {
+    postId: String,
+  },
+
+  created() {
+    let token = localStorage.getItem("getToken");
+    http
+      .get("post/" + this.$route.params.postId, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        this.post = res.data;
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  methods: {
+    fileChange() {
+      var file = document.getElementById("input_img");
+      var form = new FormData();
+      form.append("image", file.files[0]);
+
+      var settings = {
+        url: "https://api.imgbb.com/1/upload?key=076f41cee131349132a08f6320271a31",
+        method: "POST",
+        timeout: 0,
+        processData: false,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        data: form,
+      };
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        var jx = JSON.parse(response);
+        this.fileUrl = jx.data.url + "";
+        localStorage.setItem("fileUrl", this.fileUrl);
+      });
+    },
+    boardCancelClick() {
+      this.$router.go(-1);
+    },
+    postDone() {
+      let PostId = this.$route.params.postId;
+      let token = localStorage.getItem("getToken");
+      console.log(this.cate);
+      console.log(this.cate.value);
+      let file = localStorage.getItem("fileUrl");
+      console.log(this.post);
+      http
+        .put(
+          "/post/" + PostId,
+          {
+            "title": this.post.title,
+            "category": this.cate.value,
+            "content": this.post.content,
+            "fileUrl": file,
+            "hits": this.post.hits
+          },
+          { headers: { Authorization: `Bearer ${token}` } }
+        )
+        .then((response) => {
+          this.posts = response.data;
+          alert("수정 완료");
+          this.$router.go(-1);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 <style></style>

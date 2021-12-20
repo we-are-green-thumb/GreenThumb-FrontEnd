@@ -146,9 +146,10 @@ const routes = [
     props: true,
   },
   {
-    path: "/post/editpost",
+    path: "/post/editpost/:postId",
     name: "EditPost",
     component: editpost,
+    props: true,
   },
   {
     path: "/comment/editcomment",
