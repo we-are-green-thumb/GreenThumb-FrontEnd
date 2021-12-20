@@ -6,6 +6,7 @@
           <img class="imgSize" :src="myplant.imageUrl" />
         </div>
         <div class="plantcontent">
+          <h3>{{myplant.nickName}}</h3>
           <p>{{ myplant.water }} 일 뒤에 물을 주세요! (수정필요)</p>
           <p>{{ myplant.temp }} 도 온도!</p>
         </div>
@@ -43,10 +44,8 @@ export default {
   created() {
     let id = localStorage.getItem("getId")
     let token = localStorage.getItem("getToken");
-console.log(this.$route.params.plantId);
     http
       .get("/plant/" + this.$route.params.plantId, {
-      // .get( this.$route.params.plantId, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
