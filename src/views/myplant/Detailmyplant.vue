@@ -7,7 +7,7 @@
     <span><p class="fontclass">{{ myplant.name }}의 공통정보</p></span>
     <plantProfile />
     <span><p class="fontclass">{{ myplant.name }}의 친구들을 알려줄게!</p></span>
-    <plantfriend :v-bind="plantName" /> 
+    <plantfriend :myplantname="this.myplant.name" /> 
   </div>
 </template>
 
@@ -28,17 +28,11 @@ export default {
   },
   props: {
     plantId: {
-      type: Number,
-      default: 0,
+
     },
     userId: {
-      type: Number,
-      default: 0,
+
     },
-    plantName: {
-      type: String,
-      default: "",
-    }
   },
   components: {
     plantfriend,
@@ -71,8 +65,6 @@ export default {
       })
       .then((response) => {
         this.User = response.data;
-        console.log('사사사사사삿사')
-        console.log(response.data)
       })
       .catch((err) => {
         console.log(err);

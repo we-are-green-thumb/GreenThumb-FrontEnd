@@ -58,14 +58,15 @@ export default {
   },
   props: {
     plantId: {
-      type: String,
-      default: "",
     },
+    userId:{
+      
+    }
   },
   created() {
     let token = localStorage.getItem("getToken");
     http
-      .get("/plant/" + this.$route.params.plantId, {
+      .get("plant/" + this.$route.params.plantId, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -114,8 +115,11 @@ export default {
         temp: this.myplant.temp,
         imageUrl: fileUrl,
       };
+       console.log(this.$route.params.userId)
+      console.log(this.$route.params.plantId)
+      console.log('8888888888888888888888888')
       http
-        .put("plant/" + this.$route.params.plantId, data, {
+        .put("user/" +this.$route.params.userId +"/plant/"+this.$route.params.plantId, data, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
