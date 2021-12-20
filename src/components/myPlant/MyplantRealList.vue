@@ -22,17 +22,18 @@
           <!-- 식물 등록 모달 -->
     <ul class="myplantcontainer">
       <li class="myplantform">
-        <div id="modalp">
-          <h1>식물 등록 컴포넌트</h1>
-          <modalPlantRegister
-            v-if="isModalViewed"
-            @close-modal="isModalViewed = false"
-          >
-            <contentPlantRegister msg="Hello Vue in CodeSandbox!" />
-          </modalPlantRegister>
-          <button @click="isModalViewed = true">식물 등록</button>
-        </div>
-      </li>
+
+      <div id="modalp">
+        <h1>식물을 등록해주세요</h1>
+        <modalPlantRegister
+          v-if="isModalViewed"
+          @close-modal="isModalViewed = false"
+        >
+          <contentPlantRegister msg="Hello Vue in CodeSandbox!" />
+        </modalPlantRegister>
+        <button @click="isModalViewed = true">식물 등록</button>
+      </div>
+</li> 
       <!-- 내 식물 리스트 --->
       <div v-for="(u, i) in myplant" :key="i">
         <router-link
@@ -122,6 +123,7 @@ ul {
 
 .myplantform {
   background-color: lightgrey;
+  text-align: center;
   border-radius: 15px;
   margin: 0 10px 10px 5px;
 }

@@ -7,7 +7,7 @@
       <v-tabs centered class="ml-n9" color="grey darken-1">
         <v-tab  style="all: none;">
           <a href="http://localhost:8081/">
-          <v-img src="https://i.ibb.co/Ht8QTjH/image.png" height="64px" width="146px" />
+          <v-img src="https://i.ibb.co/SBGT606/2021-12-20-040110.png" height="64px" width="250px" />
           </a>
         </v-tab>
         <v-tab v-if="isLogin === true">
