@@ -45,9 +45,6 @@ export default {
       fileList: [],
     };
   },
-  props: {
-    msg: String,
-  },
   methods: {
     fileChange() {
       var file = document.getElementById("input_img");

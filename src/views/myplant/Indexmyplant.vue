@@ -4,37 +4,63 @@
     <div class="profileform">
       <ul>
         <li>
-          <span><p>{{ User.nickName }}의 식물들!</p></span>
-          <a class="followercheck" href="#" v-if="canFollow">팔로우 추가</a>
+          <span
+            ><p>{{ User.nickName }}의 식물들!</p></span
+          >
+          <a class="followercheck" @click="followerupdate" v-if="canFollow"
+            >팔로우 추가</a
+          >
+          <a class="followercheck" @click="followerdelete" v-if="canFollow"
+            >팔로우 취소</a
+          >
         </li>
         <li>
-          <span><p>{{ User.profile }}</p></span>
+          <span
+            ><p>{{ User.profile }}</p></span
+          >
         </li>
         <li>
-          <span><a href="#">팔로우: {{ User.followeeCount }}</a></span>
+          <span
+            ><button @click="isModalViewed1=true"
+              >팔로워: {{ User.followeeCount }}</button
+            ></span
+          >
+
         </li>
         <li>
-          <span><a href="#">팔로워: {{ User.followerCount }}</a></span>
+          <span
+            ><a href="#">팔로우: {{ User.followerCount }}</a></span
+          >
         </li>
       </ul>
     </div>
-          <!-- 식물 등록 모달 -->
-    <ul class="myplantcontainer" >
+              <!--팔로우 모달-->
+          
+          <modalPlantRegister
+            v-if="isModalViewed1"
+            @close-modal="isModalViewed1 = false"
+          >
+            <contenetfollower />
+            <!-- <contenetfollower :feedowner="User.userId" /> -->
+          </modalPlantRegister>
+
+    <!-- 식물 등록 모달 -->
+    <ul class="myplantcontainer">
       <li class="myplantform" v-if="canRegister">
-        <div id="modalp" >
+        <div id="modalp">
           <h1>식물 등록 컴포넌트</h1>
           <modalPlantRegister
             v-if="isModalViewed"
             @close-modal="isModalViewed = false"
           >
-            <contentPlantRegister msg="Hello Vue in CodeSandbox!" />
+            <contentPlantRegister />
           </modalPlantRegister>
           <button @click="isModalViewed = true">식물 등록</button>
         </div>
       </li>
       <!-- 내 식물 리스트 --->
-      
-      <div v-for="(u, i) in myplant" :key="i">
+
+      <div v-for="(u, i) in myplants" :key="i">
         <router-link
           :to="{
             name: 'Detailmyplant',
@@ -64,37 +90,44 @@ import modalPlantRegister from "../../components/Modal/modalPlantRegister.vue";
 import contentPlantRegister from "../../components/Modal/contentPlantRegister.vue";
 import http from "@/util/http-common";
 import { mapState } from "vuex";
+import contenetfollower from "../../components/Modal/contenetFollower.vue";
 
 export default {
   name: "IndexMyplant",
-  
+
   data() {
     return {
-      myplant: [],
+      myplants: [],
       User: [],
       isModalViewed: false,
+      isModalViewed1: false,
       canRegister: true,
       canFollow: true,
     };
   },
   props: {
     userId: {
-      type: Number,
-      default: 0,
+  
     },
     plantId: {
-      type: Number,
-      default: 0,
+    
     },
   },
-  computed : {
+  computed: {
     ...mapState(["myplant"]),
     ...mapState(["userInfo"]),
-    
   },
   components: {
     modalPlantRegister,
     contentPlantRegister,
+    contenetfollower,
+  },
+  watch: {
+    $route(to, from) {
+      if (to.path != from.path) {
+        this.$router.go(this.$router.currentRoute);
+      }
+    },
   },
   created() {
     let id = localStorage.getItem("getId");
@@ -104,8 +137,8 @@ export default {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        this.myplant = res.data;
-        console.log(res.data);
+        this.myplants = res.data;
+
       })
       .catch((err) => {
         console.log(err);
@@ -124,16 +157,60 @@ export default {
       })
       .then(() => {});
 
-      if(id===this.$route.params.userId){
-      this.canRegister=true,
-      this.canFollow=false
-      }else{
-      this.canRegister=false,
-      this.canFollow=true
-      }
+    if (id === this.$route.params.userId) {
+      (this.canRegister = true), (this.canFollow = false);
+    } else {
+      (this.canRegister = false), (this.canFollow = true);
+    }
+  },
+  methods: {
+    followerupdate() {
+      let token = localStorage.getItem("getToken");
+      http
+        .post(
+          "user/" +
+            this.$store.state.userInfo.userId +
+            "/followee/" +
+            this.$route.params.userId +
+            "/follow",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
+    },
+    followerdelete() {
+      let token = localStorage.getItem("getToken");
+      http
+        .delete(
+          "user/" +
+            this.$store.state.userInfo.userId +
+            "/followee/" +
+            this.$route.params.userId +
+            "/follow",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
+    },
   },
 };
 </script>
+
+
 <style scoped>
 .myplantcontainer {
   display: grid;

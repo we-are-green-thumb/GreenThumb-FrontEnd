@@ -51,9 +51,7 @@ export default {
   }),
   props: {
     userId: {
-      type: String,
-      default: "",
-    },
+    }
   },
 
   created() {

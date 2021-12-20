@@ -71,6 +71,7 @@ const editcomment = () => {
 const EditPlant = () => {
   return import('../components/myPlant/editPlant.vue')
 }
+
 const routes = [
   {
     path: "/",
@@ -88,13 +89,7 @@ const routes = [
     path: "/user/:userId/:plantId",
     name: "Detailmyplant",
     component: Detailmyplant,
-    props: true,
-    children:[
-      {
-        path: "/myplant",
-        component: IndexMyplant,
-      }
-    ]
+    props: true
     
   },
   {
@@ -159,9 +154,10 @@ const routes = [
     component: editcomment,
   },
   {
-    path: "/comment/writecomment",
+    path: "/comment/writecomment/:postId",
     name: "WriteComment",
     component: writecomment,
+    props: true,
   },
   {
     path: "/test",

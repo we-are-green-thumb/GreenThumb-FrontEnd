@@ -74,12 +74,28 @@ export default {
       // console.log(value);
       let PostId = value.id;
       let UserId = localStorage.getItem('getId');
-      console.log(value);
-      console.log(UserId);
-      console.log(PostId);
+      // console.log(value);
+      let token = localStorage.getItem("getToken");
+      let hits = value.hits+1;
+      // console.log(UserId);
+   
+      http.put("/post/"+PostId ,{
+        "title" : value.title,
+      "category" : value.category,
+      "content": value.content,
+      "fileUrl" : value.fileUrl,
+      "hits" : hits
+    },
+      { headers: { Authorization: `Bearer ${token}` }}).then((response) => {
+                this.posts =response.data;
+            }).catch((err)=>{
+              console.log(err);
+            })
 
 
       this.$router.push({name : 'PostDetail' ,params: { userId:UserId, postId: PostId }})
+
+
       // alert('click');
       // console.log(value);
       

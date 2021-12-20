@@ -2,6 +2,11 @@
   <ul class="myplantcontainer">
     <!-- 내 식물 -->
           <div v-for="(u, i) in myplant.slice(0,2)" :key="i">
+            <router-link
+              :to="{
+                name: 'Detailmyplant',
+                params: { userId: u.userId, plantId: u.plantId },
+              }">
       <li class="myplantform">
         <div>
             <img class="imgSize" :src="u.imageUrl" />
@@ -12,6 +17,7 @@
                 <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br>
         </div>
       </li>
+            </router-link>
           </div>
   </ul>
 </template>
@@ -56,17 +62,17 @@ export default {
 	grid-template-rows: 210px;
 }
 
-ul {
+/* ul {
   margin: 0;
-  padding : 0 0 0 10px;
+  padding : 0 0 0 0px;
   
-}
+} */
 
 .myplantform {
 
   background-color: lightgrey;
   border-radius: 15px;
-  margin: 0 10px 10px 5px ;
+  /* margin: 0 10px 10px 5px ; */
 }
 .imgSize {
   width: 160px;
