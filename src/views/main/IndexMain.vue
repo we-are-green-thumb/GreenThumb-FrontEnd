@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="midmar">
     <!-- <Header/>
     <NavigationBar/>  -->
     <hr class="hr">
@@ -54,5 +54,11 @@ export default {
   border: 0;
   height: 5px;
   background-color: #81C784;
+}
+
+.midmar{
+  align-content: center;
+  margin-top: 10px;
+  padding : 10px;
 }
 </style>

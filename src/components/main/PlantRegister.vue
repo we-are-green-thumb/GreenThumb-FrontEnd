@@ -41,20 +41,24 @@ export default {
 	display: grid;
 	grid-template-columns: 450px 450px;
 	grid-template-rows: 210px;
+  padding: 0%;
 }
 
-ul {
-  margin: 0;
-  padding : 0 0 0 10px;
-  
+.v-application ol, .v-application ul {
+    padding-left: 0px;
 }
+
+/* .ul {
+  margin: 0;
+  padding : 0px 0px 0px 0px;
+  
+} */
 
 .myplantform {
-
   background-color: lightgrey;
   border-radius: 15px;
-  margin: 0 10px 10px 5px ;
-  
+  margin: 10px 10px 10px 10px;
+  padding: 0px;
 }
 .imgSize {
   width: 160px;

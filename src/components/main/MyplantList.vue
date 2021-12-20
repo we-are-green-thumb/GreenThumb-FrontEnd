@@ -60,11 +60,12 @@ export default {
 	display: grid;
 	grid-template-columns: 450px 450px;
 	grid-template-rows: 210px;
+  padding: 0%;
 }
 
 ul {
   margin: 0;
-  padding : 0 0 0 10px;
+  padding : 0 0 0 0px;
   
 }
 
