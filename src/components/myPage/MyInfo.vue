@@ -37,7 +37,6 @@
 </template>
 <script>
 import http from "@/util/http-common";
-
 export default {
   data: () => ({
     valid: true,
