@@ -16,24 +16,21 @@ export default {
     };
   },
   props: {
-    userId: {
-      type: String,
-      default: "",
+    postId :String
     },
-    postId: {
-      type: String,
-      default: "",
-    },
+  created(){
+    // console.log(postId);
+    console.log(this.postId);
+  },
     methods: {
       createComment() {
         let token = localStorage.getItem("getToken");
         var data = {
-          postId: this.$route.params.postId,
-          userId: this.$route.params.userId,
+          userId: localStorage.getItem('getId'),
           content: this.content
         };
         http
-          .put("comment/", data, {
+          .post("post/"+this.postId+"/comment", data, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then((res) => {
@@ -47,7 +44,6 @@ export default {
           });
       },
     },
-  },
 };
 </script>
 <style></style>
