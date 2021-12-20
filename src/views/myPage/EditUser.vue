@@ -1,42 +1,59 @@
 <template>
   <div>
     <!-- 9 회원수정  -->
-    <plantHeader></plantHeader>
-    <br /><br />
-    <plantNav></plantNav>
-    <br /><br />
-    <hr size="5px" />
-    <MyPageNav></MyPageNav>
-    <br /><br />
+    <!-- <MyPageNav></MyPageNav>
+     -->
+               <nav>
+      <h6><h2>&nbsp;</h2></h6>
+
+      <v-btn  color: black @click="editClick">회원정보 수정</v-btn>
+      &nbsp;
+      <v-btn  color: black @click="postClick">내가 쓴 글</v-btn>
+      &nbsp;
+      <v-btn  color: black @click="commentClick">내가 쓴 댓글</v-btn>
+
+          </nav>
+    <div v-if="editFlag">
     <MyInfo></MyInfo>
     <br /><br />
-
     <WithdrawUser></WithdrawUser>
-    <!-- <LeftSideBar></LeftSideBar> -->
+    </div>
+
+    <div v-if="postFlag">
+      <MyPagePost></MyPagePost>
+    </div>
+
+    <div v-if="commentFlag">
+      <MyPageComment></MyPageComment>
+    </div>
     <plantFooter></plantFooter>
   </div>
 </template>
 <script>
 import Footer from "../../components/Footer.vue";
-import Header from "../../components/Header.vue";
-import NavigationBar from "../../components/NavigationBar.vue";
-// import LeftSideBar from '../../components/myPage/LeftSideBar.vue';
-import MyPageNav from "../../components/myPage/MyPageNav.vue";
+// import MyPageNav from "../../components/myPage/MyPageNav.vue";
 import MyInfo from "../../components/myPage/MyInfo.vue";
+import MyPageComment from "../../components/myPage/MyPageComment.vue";
+import MyPagePost from "../../components/myPage/MyPagePost.vue";
 import WithdrawUser from "../../components/myPage/WithdrawUser.vue";
 import axios from "axios";
 
 export default {
   name: "EditUser",
-
+data() {
+  return {
+    editFlag :"false",
+    postFlag :"false",
+    commentFlag :"false",
+  }
+},
   components: {
-    plantHeader: Header,
-    plantNav: NavigationBar,
     plantFooter: Footer,
-    // "LeftSideBar":LeftSideBar,
-    MyPageNav: MyPageNav,
+    // MyPageNav: MyPageNav,
     MyInfo: MyInfo,
     WithdrawUser: WithdrawUser,
+    MyPageComment,
+    MyPagePost,
   },
 // 해당 코드 router에서 처리함
   // beforeRouteEnter(to, from, next) {
@@ -47,6 +64,21 @@ export default {
   //   }
   // },
   methods: {
+    editClick(){
+      this.editFlag=true;
+      this.postFlag =false,
+    this.commentFlag =false
+    },
+    postClick(){
+      this.editFlag=false;
+      this.postFlag =true,
+    this.commentFlag =false
+    },
+    commentClick(){
+ this.editFlag=false;
+      this.postFlag =false,
+    this.commentFlag =true
+    },
     test() {
       axios
         .get("https://reqres.in/api/users?page=2")

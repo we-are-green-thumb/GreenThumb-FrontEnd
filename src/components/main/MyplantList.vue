@@ -1,43 +1,54 @@
 <template>
   <ul class="myplantcontainer">
     <!-- 내 식물 -->
+          <div v-for="(u, i) in myplant.slice(0,2)" :key="i">
       <li class="myplantform">
         <div>
-            <img class="imgSize" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2018/08/urbanbrush-20180822082426113204.png" >
+            <img class="imgSize" :src="u.imageUrl" />
         </div>
         <div class="plantcontent" >
-                <h3> 해딩이 </h3><br>
-                <a> 3일 뒤 물을 주세요 </a><br>
-                <a> 온도는 10도 적당합니다. </a><br>
+                <h3> {{ u.nickName }} </h3><br>
+                <a> {{ u.water }}일 뒤 물을 주세요!</a><br>
+                <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br>
         </div>
       </li>
-
-      <li class="myplantform">
-        <div>
-            <img class="imgSize" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2018/08/urbanbrush-20180822082426113204.png" >
-        </div>
-        <div class="plantcontent" >
-                <h3> 해딩이 </h3><br>
-                <a> 3일 뒤 물을 주세요 </a><br>
-                <a> 온도는 10도 적당합니다. </a><br>
-        </div>
-      </li>
+          </div>
   </ul>
 </template>
 
 
 <script>
+import http from "@/util/http-common";
+import { mapState } from 'vuex';
+
 export default {
   // name: "MyplantList",
   data() {
     return {
       logincheck: "false",
+      myplant:[],
     };
+  },computed : {
+    ...mapState(["myplant"]),
+    ...mapState(["userInfo"])
   },
+  created(){
+    let token = localStorage.getItem("getToken")
+     http
+        .get("/plants", { headers: { Authorization: `Bearer ${token}` }})
+        .then((res) => {
+          this.myplant = res.data;
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {});
+  }
 };
 </script>
 
-<style>
+<style scoped>
 
 .myplantcontainer {
 	display: grid;

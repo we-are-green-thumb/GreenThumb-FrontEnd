@@ -1,59 +1,117 @@
 <template>
-<div class="container">
-    <section id="blue-box" class="box">
+  <div>
+    <div>
+      <input
+        type="text"
+        v-model="search"
+        placeholder="검색어를 입력해주세요."
+      />
+      <div>
+        <button>검색</button>
+      </div>
+    </div>
+    <div class="container">
+      <section id="blue-box" class="box">
         <ul class="container">
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-            <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>
-             <li>
-                <a> <img class="box" src = "https://ww.namu.la/s/c710549b0790b4725e1844791da8aa51be9ea2df64e968574557577f248f3ddbc7a1979c5b934f30c6f88f1b690527e0980ee3ef651152e180d1b73fa380f1e0fc3d3a75d243003339058e8167a3e359"> </a>
-                <a> 식물명(해바라기) </a><br>
-                <a> 식물별명(해딩) </a>
-            </li>                                                             
+          <div v-for="(u, i) in filterData.slice(0, 15)" :key="i">
+            <router-link
+              :to="{
+                name: 'Detailmyplant',
+                params: { userId: u.userId, plantId: u.plantId },
+              }"
+            >
+              <li>
+                <a> <img class="box" :src="u.imageUrl" /></a>
+                <a> {{ u.name }} </a><br />
+                <a> {{ u.nickName }} </a>
+              </li>
+            </router-link>
+          </div>
+          <!-- <div v-for="(u, i) in allPlant.slice(0, 15)" :key="i">
+            <router-link
+              :to="{
+                name: 'Detailmyplant',
+                params: { userId: u.userId, plantId: u.plantId },
+              }"
+            >
+              <li>
+                <a> <img class="box" :src="u.imageUrl" /></a>
+                <a> {{ u.name }} </a><br />
+                <a> {{ u.nickName }} </a>
+              </li>
+            </router-link>
+          </div> -->
         </ul>
-        
-        
-    </section>
-     </div>
+      </section>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'PlantResultList',
+import http from "@/util/http-common";
+import { mapState } from 'vuex';
 
-}
+
+export default {
+  name: "PlantResultList",
+  data() {
+    return {
+      search: "",
+      allPlant: [],
+      isRouterAlive: true,
+    };
+  },
+  watch: {
+    $route(to, from) {
+      if (to.path != from.path) {
+        this.$router.go(this.$router.currentRoute);
+      }
+    },
+  },
+
+  created() {
+    let id = localStorage.getItem("getId");
+    let token = localStorage.getItem("getToken");
+    console.log(id);
+    http
+      .get("/plants", { headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => {
+        this.allPlant = res.data;
+        console.log('----------------')
+        console.log(res.data);
+        console.log('----------------')
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {});
+  },
+  methods: {
+    reload: function () {
+      this.isRouterAlive = false;
+      setTimeout(() => {
+        this.isRouterAlive = true;
+      }, 0);
+    },
+  },
+  computed: {
+    ...mapState(["myplant"]),
+    ...mapState(["userInfo"]),
+
+    filterData() {
+      return this.allPlant.filter((e) => e.name.indexOf(this.search) >= 0);
+
+    },
+  },
+};
 </script>
 
 <style scoped>
-
-
 .container {
-    text-align: center;
-	display: grid;
-	grid-template-columns: 180px 180px 180px 180px 180px;
-	grid-template-rows: 250px 250px 250px ;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 180px 180px 180px 180px 180px;
+  grid-template-rows: 250px 250px 250px;
 }
 
 .box {
@@ -63,10 +121,23 @@ export default {
   border-radius: 15px;
 }
 
-li{
-   list-style:none;
-   padding-left:0px;
-   }
+li {
+  list-style: none;
+  padding-left: 0px;
+}
+.inputBox {
+  background: white;
+  height: 50px;
+  width: 200px;
+  line-height: 50px;
+  border-radius: 5px;
+}
 
-
+.inputBox input {
+  border-style: none;
+  font-size: 0.9rem;
+}
+div {
+  display: inline-block;
+}
 </style>

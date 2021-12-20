@@ -24,6 +24,7 @@
         </div>
       </v-flex>
     </v-layout>
+    <googlelogin/>
     
   </v-container>
 </template>
@@ -32,8 +33,12 @@
 <script>
 // import http from "@/util/http-common"
 import {mapState, mapActions} from "vuex"
+import Googlelogin from '../../components/sign/googlelogin.vue';
 
 export default {
+  components : {
+     Googlelogin,
+  },
   data: () => ({
     valid: true,
     // allUser: [],
