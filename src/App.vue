@@ -46,13 +46,13 @@
       <v-main class="blue">
         <v-row>
           <!--      rounded="lg" min-height="268"-->
-          <v-col cols="12" sm="2">
-            <v-sheet rounded="lg" min-height="268" color="red"></v-sheet>
+          <v-col cols="12" lg="2">
+            <v-sheet color="white"></v-sheet>
           </v-col>
 
           <!--      min-height="70vh" rounded="lg" 두 옵션 없애도 되나?-->
-          <v-col cols="12" sm="8">
-            <v-sheet min-height="70vh" rounded="lg" color="red">
+          <v-col cols="12" lg="8">
+            <v-sheet color="red">
               <router-view/>
             </v-sheet>
           </v-col>
