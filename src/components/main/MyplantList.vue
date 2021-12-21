@@ -1,5 +1,5 @@
 <template>
-  <ul class="myplantcontainer">
+  <v-ul class="myplantcontainer">
     <!-- 내 식물 -->
           <div v-for="(u, i) in myplant.slice(0,2)" :key="i">
             <router-link
@@ -19,7 +19,7 @@
       </li>
             </router-link>
           </div>
-  </ul>
+  </v-ul>
 </template>
 
 
@@ -60,20 +60,22 @@ export default {
 	display: grid;
 	grid-template-columns: 450px 450px;
 	grid-template-rows: 210px;
+  padding: 0%;
 }
 
 ul {
   margin: 0;
-  padding : 0 0 0 10px;
+  padding : 0 0 0 0px;
   
 }
 
 .myplantform {
-
   background-color: lightgrey;
   border-radius: 15px;
   margin: 0 10px 10px 5px ;
+  padding: 0%;
 }
+
 .imgSize {
   width: 160px;
   height: 180px;

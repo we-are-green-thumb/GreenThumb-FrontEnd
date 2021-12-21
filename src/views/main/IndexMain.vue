@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="midmar">
     <!-- <Header/>
     <NavigationBar/>  -->
     <hr class="hr">
+    <div class="plantlist">
     <br>
     <plant-register></plant-register>
     <plant-mylist></plant-mylist>
     <plant-followrlist></plant-followrlist>
     <br>
+    </div>
     <hr class="hr">
     <br>
 
@@ -54,5 +56,11 @@ export default {
   border: 0;
   height: 5px;
   background-color: #81C784;
+}
+
+.midmar{
+  align-content: center;
+  margin-top: 10px;
+  padding : 30px 90px 90px 90px;
 }
 </style>

@@ -21,28 +21,34 @@
         </li>
         <li>
           <span
-            ><button @click="isModalViewed1=true"
-              >팔로워: {{ User.followeeCount }}</button
-            ></span
+            ><button @click="isModalViewed1 = true">
+              팔로워: {{ User.followeeCount }}
+            </button></span
           >
-
         </li>
         <li>
           <span
-            ><a href="#">팔로우: {{ User.followerCount }}</a></span
+            ><button @click="isModalViewed2 = true">
+              팔로우: {{ User.followerCount }}
+            </button></span
           >
         </li>
       </ul>
     </div>
-              <!--팔로우 모달-->
-          
-          <modalPlantRegister
-            v-if="isModalViewed1"
-            @close-modal="isModalViewed1 = false"
-          >
-            <!-- <contenetfollower /> -->
-            <contenetfollower :feedowner="User.userId" />
-          </modalPlantRegister>
+    <!--팔로우 모달-->
+    <modalPlantRegister
+      v-if="isModalViewed1"
+      @close-modal="isModalViewed1 = false"
+    >
+      <contenetfollower :feedowner="User.userId" />
+    </modalPlantRegister>
+    <!--팔로잉 모달-->
+    <modalPlantRegister
+      v-if="isModalViewed2"
+      @close-modal="isModalViewed2 = false"
+    >
+      <contenetfollowee :feedowner="User.userId" />
+    </modalPlantRegister>
 
     <!-- 식물 등록 모달 -->
     <ul class="myplantcontainer">
@@ -91,6 +97,7 @@ import contentPlantRegister from "../../components/Modal/contentPlantRegister.vu
 import http from "@/util/http-common";
 import { mapState } from "vuex";
 import contenetfollower from "../../components/Modal/contenetFollower.vue";
+import contenetfollowee from "../../components/Modal/contentFollowee.vue";
 
 export default {
   name: "IndexMyplant",
@@ -101,17 +108,14 @@ export default {
       User: [],
       isModalViewed: false,
       isModalViewed1: false,
+      isModalViewed2: false,
       canRegister: true,
       canFollow: true,
     };
   },
   props: {
-    userId: {
-  
-    },
-    plantId: {
-    
-    },
+    userId: {},
+    plantId: {},
   },
   computed: {
     ...mapState(["myplant"]),
@@ -121,6 +125,7 @@ export default {
     modalPlantRegister,
     contentPlantRegister,
     contenetfollower,
+    contenetfollowee,
   },
   watch: {
     $route(to, from) {
@@ -138,7 +143,6 @@ export default {
       })
       .then((res) => {
         this.myplants = res.data;
-
       })
       .catch((err) => {
         console.log(err);

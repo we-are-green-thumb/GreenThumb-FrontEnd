@@ -1,14 +1,14 @@
 <template>
   <div class = contain>
-    <a>팔로워</a>
+    <a>팔로잉</a>
     <hr />
     <ul>
-      <li  v-for="(u, i) in followers" :key="i">
+      <li  v-for="(u, i) in followees" :key="i">
         <span>
-          <a>{{ u.followerNickName }}&nbsp;&nbsp;</a>
+          <a>{{ u.followeeNickName }}&nbsp;&nbsp;</a>
           <div id="checkFollower">
           <button>팔로우 하기&nbsp;&nbsp;</button>
-          <button>팔로우 취소</button>
+          <button>팔로잉 취소</button>
           </div>
         </span>
       </li>
@@ -23,7 +23,7 @@ import http from "@/util/http-common";
 export default {
   data() {
     return {
-      followers: [],
+      followees: [],
     };
   },
   computed: {
@@ -36,11 +36,11 @@ export default {
     let token = localStorage.getItem("getToken");
     let feedownerId = this.feedowner
     http
-      .get("/follow-user/" + feedownerId + "/followers", {
+      .get("/follow-user/" + feedownerId + "/followees", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        this.followers = res.data;
+        this.followees = res.data;
       })
       .catch((err) => {
         console.log(err);
