@@ -1,15 +1,24 @@
 <template>
-    <div class="aaa">
-        <!-- <Header/>
-        <NavigationBar/>  -->
-        <plant-register ></plant-register>
-        <plant-mylist></plant-mylist>
-        <plant-followrlist></plant-followrlist>
-        <hr size="5px" />
-        <plant-search></plant-search>
-        <plant-resultlist></plant-resultlist>
-        <Footer/>
+  <div class="midmar">
+    <!-- <Header/>
+    <NavigationBar/>  -->
+    <hr class="hr">
+    <!-- <div class="plantlist">
+       -->
+    <!-- <div style="align-content: center;"> -->
+    <br>
+    <plant-register style="padding-left:4.3%"></plant-register>
+    <plant-mylist style="padding-left:7.8%"></plant-mylist>
+    <plant-followrlist></plant-followrlist>
+    <br>
+    <!-- </div> -->
+    <hr class="hr">
+    <br>
 
+    <plant-search></plant-search>
+    <plant-resultlist></plant-resultlist>
+    <Footer/>
+  </div>
     </div>
 </template>
 
@@ -38,10 +47,9 @@ export default {
 }
 
 
-
-</script>
-<style>
-    .aaa{
-        width: 100%;
-    }
+.midmar{
+  align-content: center;
+  margin-top: 10px;
+  padding : 30px 90px 90px 90px;
+}
 </style>

@@ -52,10 +52,6 @@ const PostDetail = () => {
   return import("../views/post/PostDetail.vue")
 }
 
-const test = () => {
-  return import("../components/community/test.vue")
-}
-
 const writepost = () => {
   return import("../views/post/WritePost.vue")
 }
@@ -80,13 +76,14 @@ const routes = [
   },
 
   {
-    path: "/myplant",
+    path: "/myplant/:userId",
     name: "IndexMyplant",
     component: IndexMyplant,
+    props: true,
   },
 
   {
-    path: "/user/:userId/:plantId",
+    path: "/myplant/:userId/:plantId",
     name: "Detailmyplant",
     component: Detailmyplant,
     props: true
@@ -97,6 +94,7 @@ const routes = [
     name : 'editpage',
     beforeEnter : checkInUser,
     component : editpage,
+    props: true
   }, 
   {
     path : '/community',
@@ -153,17 +151,10 @@ const routes = [
     name: "EditComment",
     component: editcomment,
   },
-  {
-
     path: "/comment/writecomment/:postId",
     name: "WriteComment",
     component: writecomment,
     props: true,
-  },
-  {
-    path: "/test",
-    name: "test",
-    component: test,
   },
   {
     path: '/plant/:plantId',
@@ -171,11 +162,6 @@ const routes = [
     component: EditPlant,
     props: true
   },
-  // {
-  //   path: '/*',
-  //   redirect: '/'
-  // }
-
 ];
 
 const router = new VueRouter({

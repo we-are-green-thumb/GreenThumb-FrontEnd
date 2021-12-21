@@ -1,76 +1,79 @@
 <template>
-  <ul class="myplantcontainer">
-    <!-- 내 식물 -->
-      <div v-for="(u, i) in myplant.slice(0,2)" :key="i">
+    <ul class="myplantcontainer">
+      <li v-for="(u, i) in myplants.slice(0, 2)" :key="i" class="myplantform">
         <router-link
           :to="{
             name: 'Detailmyplant',
             params: { userId: u.userId, plantId: u.plantId },
-          }">
-  <li class="myplantform">
-    <div>
-        <img class="imgSize" :src="u.imageUrl" />
-    </div>
-    <div class="plantcontent" >
-            <h3> {{ u.nickName }} </h3><br>
-            <a> {{ u.water }}일 뒤 물을 주세요!</a><br>
-            <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br>
-    </div>
-  </li>
+          }"
+        >
+          <div class="image">
+            <img class="imgSize" :src="u.imageUrl" />
+          </div>
+          <div class="plantcontent">
+            <h3>{{ u.nickName }}</h3>
+            <br />
+            <a> {{ u.water }}일 뒤 물을 주세요!</a><br />
+            <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br />
+          </div>
         </router-link>
-      </div>
-  </ul>
+      </li>
+    </ul>
 </template>
+
 <script>
 import http from "@/util/http-common";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   // name: "MyplantList",
   data() {
     return {
       logincheck: "false",
-      myplant:[],
+      myplants: [],
     };
-  },computed : {
-    ...mapState(["myplant"]),
-    ...mapState(["userInfo"])
   },
-  created(){
-    let token = localStorage.getItem("getToken")
-     http
-        .get("/plants", { headers: { Authorization: `Bearer ${token}` }})
-        .then((res) => {
-          this.myplant = res.data;
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .then(() => {});
-  }
+  computed: {
+    ...mapState(["myplant"]),
+    ...mapState(["userInfo"]),
+  },
+  created() {
+    let token = localStorage.getItem("getToken");
+    http
+      .get("/plants", { headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => {
+        this.myplants = res.data;
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {});
+  },
 };
 </script>
 
 <style scoped>
-
 .myplantcontainer {
-	display: grid;
-	grid-template-columns: 450px 450px;
-	grid-template-rows: 210px;
-}
-
-/* ul {
-  margin: 0;
-  padding : 0 0 0 0px;
+  display: grid;
+  grid-template-columns: 450px 450px;
+  grid-template-rows: 210px;
+  width: 100%;
   
 } */
 
 .myplantform {
-  background-color: lightgrey;
+  background-color: #f5f5f5;
   border-radius: 15px;
-  /* margin: 0 10px 10px 5px ; */
+  margin: 5px;
 }
+
+.image {
+  padding-left: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
 .imgSize {
   width: 160px;
   height: 180px;
@@ -80,12 +83,11 @@ export default {
 
 .plantcontent {
   float: center;
-  width: 180px;
+  width: 50%;
   height: 120px;
   vertical-align: 70px;
   text-align: left;
   font-size: 15px;
-  padding: 5px 16px 0 10px
+  padding: 5px 15px 0px 10px;
 }
-
 </style>
