@@ -3,13 +3,15 @@
     <!-- <Header/>
     <NavigationBar/>  -->
     <hr class="hr">
-    <div class="plantlist">
+    <!-- <div class="plantlist">
+       -->
+    <!-- <div style="align-content: center;"> -->
     <br>
-    <plant-register></plant-register>
-    <plant-mylist></plant-mylist>
+    <plant-register style="padding-left:4.3%"></plant-register>
+    <plant-mylist style="padding-left:7.8%"></plant-mylist>
     <plant-followrlist></plant-followrlist>
     <br>
-    </div>
+    <!-- </div> -->
     <hr class="hr">
     <br>
 
@@ -17,7 +19,6 @@
     <plant-resultlist></plant-resultlist>
     <Footer/>
   </div>
-
 </template>
 
 <script>
@@ -29,36 +30,24 @@ import PlantResultList from "../../components/main/PlantResultList.vue";
 import Footer from "../../components/Footer.vue";
 // import NavigationBar from "../../components/NavigationBar.vue"
 // import Header from "../../components/Header.vue";
-import {mapState} from 'vuex';
 
 export default {
-  name      : "IndexMain",
-  components: {
-    // "NavigationBar"    : NavigationBar,
-    "plant-register"   : PlantRegister,
-    "plant-mylist"     : MyplantList,
+    name: "IndexMain",
+    components:{
+    "plant-register": PlantRegister,
+    "plant-mylist": MyplantList,
     "plant-followrlist": FollowerPlantList,
-    "plant-search"     : PlantSearchBar,
-    "plant-resultlist" : PlantResultList,
+    "plant-search": PlantSearchBar,
+    "plant-resultlist": PlantResultList,
     Footer,
     // Header,
     // NavigationBar
-  },
-  computed  : {
-    ...mapState(["isLogin"])
-
-  },
+    }
 }
 </script>
 
 <style>
-.hr {
-  border: 0;
-  height: 5px;
-  background-color: #81C784;
-}
-
-.midmar{
+.midmar {
   align-content: center;
   margin-top: 10px;
   padding : 30px 90px 90px 90px;

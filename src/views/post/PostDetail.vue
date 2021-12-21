@@ -50,6 +50,7 @@
                 <v-btn class="btn" @click="clickEdit">수정</v-btn>
                   <!-- <router-link
                     :to="{ name: 'EditPost', params: { postId: postId } }"
+
                     style="text-decoration: none; color: hsl(94, 10%, 46%)"
                     >수정하기
                   </router-link> -->
@@ -57,8 +58,8 @@
                 <!-- </v-btn> -->
                 <v-btn class="btn">
                   <router-link
-                    :to="{ name: 'WriteComment' }"
-                    parameter
+                    :to="{ name: 'WriteComment' ,
+                    params: { postId : this.postId}}"
                     style="text-decoration: none; color: hsl(94, 10%, 46%)"
                     >댓글 등록
                   </router-link>
@@ -134,7 +135,7 @@ export default {
       let token = localStorage.getItem("getToken");
       let userId = localStorage.getItem("getId");
       let postId = this.$route.params.postId;
-      console.log(postId);
+      console.log('포스트flike',postId);
       //좋아요 추가 메소드
       http
         .post(

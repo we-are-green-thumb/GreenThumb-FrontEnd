@@ -1,7 +1,7 @@
 <!-- 삭제 예정 !!!!!!!!!!!!!!!!!!!!!!!!!21년 12월 19일-->
 
 <template>
-  <div class="place">
+  <!-- <div class="place">
     <div class="profileform">
       <ul>
         <li>
@@ -18,9 +18,9 @@
           <span><a href="#">팔로워: {{ User.followerCount }}</a></span>
         </li>
       </ul>
-    </div>
+    </div> -->
           <!-- 식물 등록 모달 -->
-    <ul class="myplantcontainer">
+    <!-- <ul class="myplantcontainer">
       <li class="myplantform">
         <div id="modalp">
           <h1>식물 등록 컴포넌트</h1>
@@ -32,9 +32,9 @@
           </modalPlantRegister>
           <button @click="isModalViewed = true">식물 등록</button>
         </div>
-      </li>
+      </li> -->
       <!-- 내 식물 리스트 --->
-      <div v-for="(u, i) in myplant" :key="i">
+      <!-- <div v-for="(u, i) in myplant" :key="i">
         <router-link
           :to="{
             name: 'Detailmyplant',
@@ -55,7 +55,7 @@
       </div>
     </ul>
   </div>
-</template>
+</template> -->
 
 <script>
 import modalPlantRegister from "../../components/Modal/modalPlantRegister.vue";
@@ -79,7 +79,7 @@ export default {
     ...mapState(["myplant"]),
     ...mapState(["userInfo"]),
   },
-  created() {
+  created() {  
     let id = localStorage.getItem("getId");
     let token = localStorage.getItem("getToken");
     http
@@ -109,7 +109,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<!-- <style scoped>
 .myplantcontainer {
   display: grid;
   grid-template-columns: 450px 450px;
@@ -169,4 +169,4 @@ a {
   text-decoration: none;
   color: black;
 }
-</style>
+</style> -->
