@@ -5,10 +5,11 @@
         <div>
           <img class="imgSize" :src="myplant.imageUrl" />
         </div>
-        <div class="plantcontent">
-          <h3>{{myplant.nickName}}</h3>
-          <p>{{ myplant.water }} 일 뒤에 물을 주세요! (수정필요)</p>
-          <p>{{ myplant.temp }} 도 온도!</p>
+
+        <div class="plantcontent"> 
+          <p>{{ myplant.water }}일 뒤에 물이 필요해요!</p>
+          <p>{{ myplant.temp }}도에서 제일 잘 자랄 수 있어요!</p>
+
         </div>
         <div v-show="contentOwner">
         <router-link
@@ -86,8 +87,8 @@ ul {
 
 .plantcontent {
   float: center;
-  width: 180px;
-  height: 120px;
+  width: 270px;
+  height: 150px;
   vertical-align: 70px;
   text-align: left;
   font-size: 15px;
