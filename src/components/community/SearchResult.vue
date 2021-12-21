@@ -81,12 +81,24 @@ export default {
     clicketest(value) {
       console.log('밸류',value);
       let PostId = value.id;
-      console.log('포스트',PostId);
-      let UserId = localStorage.getItem("getId");
-      // console.log(value);
+      let UserId = localStorage.getItem('getId');
+      console.log(value);
       let token = localStorage.getItem("getToken");
-      let hits = value.hits + 1;
-      // console.log(UserId);
+      let hits = value.hits+1;
+
+      http.put("/post/"+PostId ,{
+        "title" : value.title,
+      "category" : value.category,
+      "content": value.content,
+      "hits" : hits,
+      "fileUrl" : value.fileUrl
+    },
+      { headers: { Authorization: `Bearer ${token}` }}).then((response) => {
+                this.posts =response.data;
+            }).catch((err)=>{
+              console.log(err);
+            })
+
 
       http
         .put(

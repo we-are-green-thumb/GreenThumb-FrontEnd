@@ -78,6 +78,8 @@
           </v-row>
         </v-main>
       </v-main>
+    </v-main>
+
     </v-app>
   </v-container>
 </template>

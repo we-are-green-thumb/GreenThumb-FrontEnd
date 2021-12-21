@@ -18,7 +18,6 @@
         <br />
         <br />
         <input
-          v-bind="fileList"
           id="input_img"
           type="file"
           accept="image/*"
@@ -52,14 +51,19 @@ export default {
     post: [],
   }),
   props: {
-    postId: {
+    postId :{}
+  },
+
 
     }
   },
   created() {
+    let postId= localStorage.getItem('tpostid'); 
     let token = localStorage.getItem("getToken");
     http
-      .get("post/" + this.postId, {
+      // .get("post/" + this.$route.postId, {
+      .get("post/" + postId, {
+
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -108,8 +112,8 @@ export default {
             "title": this.post.title,
             "category": this.cate.value,
             "content": this.post.content,
-            "fileUrl": file,
-            "hits": this.post.hits
+            "hits": this.post.hits,
+            "fileUrl": file
           },
           { headers: { Authorization: `Bearer ${token}` } }
         )
