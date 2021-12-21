@@ -187,7 +187,9 @@ export default {
         .catch((err) => {
           console.log(err);
         })
-        .then(() => {});
+        .then(() => {
+          this.$router.go(this.$router.currentRoute);
+        });
     },
     followerdelete() {
       let token = localStorage.getItem("getToken");
@@ -208,7 +210,9 @@ export default {
         .catch((err) => {
           console.log(err);
         })
-        .then(() => {});
+        .then(() => {
+          this.$router.go(this.$router.currentRoute);
+        });
     },
   },
 };

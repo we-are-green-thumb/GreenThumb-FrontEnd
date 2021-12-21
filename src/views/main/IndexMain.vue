@@ -3,13 +3,15 @@
     <!-- <Header/>
     <NavigationBar/>  -->
     <hr class="hr">
-    <div class="plantlist">
+    <!-- <div class="plantlist">
+       -->
+    <!-- <div style="align-content: center;"> -->
     <br>
-    <plant-register></plant-register>
-    <plant-mylist></plant-mylist>
+    <plant-register style="padding-left:4.3%"></plant-register>
+    <plant-mylist style="padding-left:7.8%"></plant-mylist>
     <plant-followrlist></plant-followrlist>
     <br>
-    </div>
+    <!-- </div> -->
     <hr class="hr">
     <br>
 
