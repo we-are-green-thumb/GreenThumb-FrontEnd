@@ -28,6 +28,7 @@
       </v-container>
     </v-card>
   </div>
+</v-container>
 </template>
 <script>
 import http from "@/util/http-common"

@@ -5,6 +5,7 @@
         <Header/>
       </v-system-bar>
 
+    <v-main class="grey lighten-3">
       <v-app-bar app absolute dense hide-on-scroll flat color="white">
         <v-tabs absolute centered class="white">
           <v-tab class="mainicon">
@@ -140,6 +141,5 @@ ol, ul {
     h1::before {content: '6. '}
     h1::after {content: ' - 0px ~ 576px'}
 }
-
 
 </style>
