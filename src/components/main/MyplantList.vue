@@ -1,28 +1,26 @@
 <template>
   <ul class="myplantcontainer">
     <!-- 내 식물 -->
-          <div v-for="(u, i) in myplant.slice(0,2)" :key="i">
-            <router-link
-              :to="{
-                name: 'Detailmyplant',
-                params: { userId: u.userId, plantId: u.plantId },
-              }">
-      <li class="myplantform">
-        <div>
-            <img class="imgSize" :src="u.imageUrl" />
-        </div>
-        <div class="plantcontent" >
-                <h3> {{ u.nickName }} </h3><br>
-                <a> {{ u.water }}일 뒤 물을 주세요!</a><br>
-                <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br>
-        </div>
-      </li>
-            </router-link>
-          </div>
+      <div v-for="(u, i) in myplant.slice(0,2)" :key="i">
+        <router-link
+          :to="{
+            name: 'Detailmyplant',
+            params: { userId: u.userId, plantId: u.plantId },
+          }">
+  <li class="myplantform">
+    <div>
+        <img class="imgSize" :src="u.imageUrl" />
+    </div>
+    <div class="plantcontent" >
+            <h3> {{ u.nickName }} </h3><br>
+            <a> {{ u.water }}일 뒤 물을 주세요!</a><br>
+            <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br>
+    </div>
+  </li>
+        </router-link>
+      </div>
   </ul>
 </template>
-
-
 <script>
 import http from "@/util/http-common";
 import { mapState } from 'vuex';
@@ -69,7 +67,6 @@ export default {
 } */
 
 .myplantform {
-
   background-color: lightgrey;
   border-radius: 15px;
   /* margin: 0 10px 10px 5px ; */

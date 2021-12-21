@@ -34,14 +34,14 @@
         </li>
       </ul>
     </div>
-              <!--팔로우 모달-->
-          
+    
+          <!--팔로우 모달-->
           <modalPlantRegister
             v-if="isModalViewed1"
             @close-modal="isModalViewed1 = false"
           >
-            <contenetfollower />
-            <!-- <contenetfollower :feedowner="User.userId" /> -->
+            <!-- <contenetfollower /> -->
+            <contenetfollower :feedowner="User.userId" />
           </modalPlantRegister>
 
     <!-- 식물 등록 모달 -->
@@ -58,8 +58,8 @@
           <button @click="isModalViewed = true">식물 등록</button>
         </div>
       </li>
-      <!-- 내 식물 리스트 --->
 
+      <!-- 내 식물 리스트 --->
       <div v-for="(u, i) in myplants" :key="i">
         <router-link
           :to="{
@@ -209,7 +209,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .myplantcontainer {

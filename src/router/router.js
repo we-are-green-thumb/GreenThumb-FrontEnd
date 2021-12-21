@@ -154,6 +154,7 @@ const routes = [
     component: editcomment,
   },
   {
+
     path: "/comment/writecomment/:postId",
     name: "WriteComment",
     component: writecomment,
@@ -163,7 +164,6 @@ const routes = [
     path: "/test",
     name: "test",
     component: test,
-
   },
   {
     path: '/plant/:plantId',
@@ -171,12 +171,10 @@ const routes = [
     component: EditPlant,
     props: true
   },
-  {
-    path: '/*',
-    redirect: '/'
-
-    
-  }
+  // {
+  //   path: '/*',
+  //   redirect: '/'
+  // }
 
 ];
 
