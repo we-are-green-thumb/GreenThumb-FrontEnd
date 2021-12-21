@@ -4,17 +4,17 @@
       href="http://localhost:80/oauth2/authorization/kakao?redirect_uri=http://localhost:8081/login/oauth2/code/kakao"
       class="kakao btn"
     >
-      <i class="fas fa-comment"></i> 카카오로 회원가입 하기
+      <i class="fas fa-comment"></i> 카카오로 로그인
     </a>
     <a
       href="http://localhost:80/oauth2/authorization/google?redirect_uri=http://localhost:8081/login/oauth2/code/google"
       class="google btn"
-      ><i class="fab fa-google"></i> 구글로 회원가입 하기
+      ><i class="fab fa-google"></i> 구글로 로그인
     </a>
     <a
       href="http://localhost:80/oauth2/authorization/naver?redirect_uri=http://localhost:8081/login/oauth2/code/naver"
       class="naver btn"
-      ><i class="fab fa-google"></i> 네이버로 회원가입 하기
+      ><i class="fab fa-google"></i> 네이버로 로그인
     </a>
   </div>
 </template>
@@ -33,12 +33,12 @@ window.onload = function () {
       .then((res) => {
         let token = res.data.accessToken;
         let id = res.data.id;
-        let Bearer = res.data.tokenType;
+        // let Bearer = res.data.tokenType;
 
         //일단 토큰 저장함
         localStorage.setItem("getToken", token);
         localStorage.setItem("getId", id);
-        localStorage.setItem("getB", Bearer);
+        // localStorage.setItem("getB", Bearer);
 
         this.router.push({ name: "IndexMain" });
         localStorage.removeItem("getTk");
@@ -48,7 +48,6 @@ window.onload = function () {
 
 export default {};
 </script>
-
 
 <style scoped>
 .col {
@@ -60,7 +59,7 @@ export default {};
 }
 input,
 .btn {
-  width: 100%;
+  width: 700px;
   padding: 12px;
   border: none;
   border-radius: 4px;
