@@ -19,7 +19,6 @@
     <plant-resultlist></plant-resultlist>
     <Footer/>
   </div>
-    </div>
 </template>
 
 <script>
@@ -45,9 +44,10 @@ export default {
     // NavigationBar
     }
 }
+</script>
 
-
-.midmar{
+<style>
+.midmar {
   align-content: center;
   margin-top: 10px;
   padding : 30px 90px 90px 90px;
