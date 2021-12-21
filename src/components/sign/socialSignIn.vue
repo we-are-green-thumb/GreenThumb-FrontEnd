@@ -1,4 +1,5 @@
 <template>
+
   <div style="text-align: center;">
         <a href="http://localhost:80/oauth2/authorization/kakao?redirect_uri=http://localhost:8081/login/oauth2/code/kakao" class="kakao btn">
           <i class="fas fa-comment"></i> 카카오로 회원가입 하기
@@ -16,9 +17,7 @@ export default {
 };
 </script>
 
-
 <style scoped>
-
 .col {
   float: left;
   width: 50%;

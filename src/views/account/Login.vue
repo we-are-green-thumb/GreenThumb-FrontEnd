@@ -2,36 +2,35 @@
   <v-container fill-height style="width: 700px">
     <v-layout align-center row wrap>
       <v-flex xs12>
-        <v-toolbar>
-          <v-toolbar-title>로그인 하기</v-toolbar-title>
-        </v-toolbar>
         <div class="pa-3" style="width: 700px">
+        <br>
+        <center>
+        <v-img src="https://i.ibb.co/1ZYtvQ8/logo.png" height="100px" width="500px"/>
+          <br>
           <v-text-field
             v-model="email"
             :rules="emailRules"
-            label="이메일 입력하기"
+            label="이메일 입력"
             required
           ></v-text-field>
-
           <v-text-field
             v-model="password"
             type="password"
             :counter="10"
-            label="비밀번호 입력하기"
+            label="비밀번호 입력"
             required
           ></v-text-field>
           <v-btn @click="login({email,password})">로그인</v-btn>
+        <br><br>
+      <googlelogin/>
+        </center>
         </div>
       </v-flex>
     </v-layout>
-    <googlelogin/>
-    
   </v-container>
 </template>
 
-
 <script>
-// import http from "@/util/http-common"
 import {mapState, mapActions} from "vuex"
 import Googlelogin from '../../components/sign/googlelogin.vue';
 
@@ -74,6 +73,7 @@ computed : {
     this.$refs.form.resetValidation();
   },
 };
+
 </script>
 <style>
 </style>

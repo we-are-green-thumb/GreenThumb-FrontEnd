@@ -1,12 +1,16 @@
 <template>
   <div>
+    <center>
+      <br>
+      <v-img src="https://i.ibb.co/1ZYtvQ8/logo.png" height="100px" width="500px"/>
+    </center>
     <v-form ref="form" v-model="form" class="pa-4 pt-6">
       <v-text-field
         v-model="email"
         :rules="[rules.email]"
         filled
         color="deep-purple"
-        label="Email address"
+        label="이메일 입력"
         type="email"
       ></v-text-field>
 
@@ -15,7 +19,7 @@
         auto-grow
         filled
         color="deep-purple"
-        label="nickName"
+        label="닉네임 입력"
         rows="1"
       ></v-textarea>
       <v-text-field
@@ -24,7 +28,7 @@
         filled
         color="deep-purple"
         counter="6"
-        label="Password"
+        label="비밀번호 입력"
         style="min-height: 96px"
         type="password"
       ></v-text-field>
@@ -34,7 +38,7 @@
         filled
         color="deep-purple"
         counter="6"
-        label="password2"
+        label="비밀번호 확인"
         style="min-height: 96px"
         type="password"
       ></v-text-field>

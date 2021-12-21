@@ -71,6 +71,7 @@ export default new Vuex.Store({
         //토큰 -> 멤버 정보 반환 .. 토큰만 저장해두면 새로고침해도 사용가능 local storage에 저장하자. 밑에 새로 만든다.
         let token = localStorage.getItem("getToken");
         let id = localStorage.getItem("getId");
+        
         // let Bearer = localStorage.getItem("getB")
         // let config = {
         //   headers: {

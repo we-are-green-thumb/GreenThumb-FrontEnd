@@ -5,20 +5,18 @@
      -->
                <nav>
       <h6><h2>&nbsp;</h2></h6>
-
       <v-btn  color: black @click="editClick">회원정보 수정</v-btn>
       &nbsp;
       <v-btn  color: black @click="postClick">내가 쓴 글</v-btn>
       &nbsp;
       <v-btn  color: black @click="commentClick">내가 쓴 댓글</v-btn>
-
           </nav>
+          
     <div v-if="editFlag">
     <MyInfo></MyInfo>
     <br /><br />
     <WithdrawUser></WithdrawUser>
     </div>
-
     <div v-if="postFlag">
       <MyPagePost></MyPagePost>
     </div>
@@ -65,19 +63,24 @@ data() {
   // },
   methods: {
     editClick(){
-      this.editFlag=true;
-      this.postFlag =false,
-    this.commentFlag =false
+      this.editFlag = true;
+      this.postFlag = false;
+    this.commentFlag = false;
     },
     postClick(){
-      this.editFlag=false;
-      this.postFlag =true,
-    this.commentFlag =false
+      this.editFlag = false;
+      this.postFlag = true;
+    this.commentFlag = false
     },
     commentClick(){
- this.editFlag=false;
-      this.postFlag =false,
-    this.commentFlag =true
+ this.editFlag = false;
+      this.postFlag = false;
+    this.commentFlag = true;
+    },
+
+    created() {
+      this.postFlag = false;
+      this.commentFlag = false;
     },
     // test() {
     //   axios

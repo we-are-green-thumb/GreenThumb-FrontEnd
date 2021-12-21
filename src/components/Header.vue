@@ -61,7 +61,6 @@ export default {
   text-decoration: none;
 }
 
-.header {
   align-content: center;
   margin: 0px;
   padding: 0px;

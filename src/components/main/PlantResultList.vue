@@ -27,20 +27,7 @@
               </li>
             </router-link>
           </div>
-          <!-- <div v-for="(u, i) in allPlant.slice(0, 15)" :key="i">
-            <router-link
-              :to="{
-                name: 'Detailmyplant',
-                params: { userId: u.userId, plantId: u.plantId },
-              }"
-            >
-              <li>
-                <a> <img class="box" :src="u.imageUrl" /></a>
-                <a> {{ u.name }} </a><br />
-                <a> {{ u.nickName }} </a>
-              </li>
-            </router-link>
-          </div> -->
+          <!-- <div  -->
         </ul>
       </section>
     </div>

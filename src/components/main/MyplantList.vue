@@ -60,7 +60,7 @@ export default {
   grid-template-rows: 210px;
   width: 100%;
   
-}
+} */
 
 .myplantform {
   background-color: #f5f5f5;

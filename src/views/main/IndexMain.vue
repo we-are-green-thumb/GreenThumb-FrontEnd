@@ -19,7 +19,7 @@
     <plant-resultlist></plant-resultlist>
     <Footer/>
   </div>
-
+    </div>
 </template>
 
 <script>
@@ -31,34 +31,21 @@ import PlantResultList from "../../components/main/PlantResultList.vue";
 import Footer from "../../components/Footer.vue";
 // import NavigationBar from "../../components/NavigationBar.vue"
 // import Header from "../../components/Header.vue";
-import {mapState} from 'vuex';
 
 export default {
-  name      : "IndexMain",
-  components: {
-    // "NavigationBar"    : NavigationBar,
-    "plant-register"   : PlantRegister,
-    "plant-mylist"     : MyplantList,
+    name: "IndexMain",
+    components:{
+    "plant-register": PlantRegister,
+    "plant-mylist": MyplantList,
     "plant-followrlist": FollowerPlantList,
-    "plant-search"     : PlantSearchBar,
-    "plant-resultlist" : PlantResultList,
+    "plant-search": PlantSearchBar,
+    "plant-resultlist": PlantResultList,
     Footer,
     // Header,
     // NavigationBar
-  },
-  computed  : {
-    ...mapState(["isLogin"])
-
-  },
+    }
 }
-</script>
 
-<style>
-.hr {
-  border: 0;
-  height: 5px;
-  background-color: #81C784;
-}
 
 .midmar{
   align-content: center;

@@ -64,8 +64,8 @@
           <button @click="isModalViewed = true">식물 등록</button>
         </div>
       </li>
-      <!-- 내 식물 리스트 --->
 
+      <!-- 내 식물 리스트 --->
       <div v-for="(u, i) in myplants" :key="i">
         <router-link
           :to="{
@@ -217,7 +217,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .myplantcontainer {
