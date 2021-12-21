@@ -79,8 +79,9 @@ export default {
   },
   methods: {
     clicketest(value) {
-      // console.log(value);
+      console.log('밸류',value);
       let PostId = value.id;
+      console.log('포스트',PostId);
       let UserId = localStorage.getItem("getId");
       // console.log(value);
       let token = localStorage.getItem("getToken");
@@ -165,6 +166,9 @@ export default {
 };
 </script>
 <style>
+.body {
+  width: 100%;
+}
 .searchResult {
   width: 100%;
 }

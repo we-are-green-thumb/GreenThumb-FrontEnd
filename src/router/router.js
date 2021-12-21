@@ -145,6 +145,7 @@ const routes = [
     path: "/post/editpost",
     name: "EditPost",
     component: editpost,
+    props: true,
   },
   {
     path: "/comment/editcomment",
