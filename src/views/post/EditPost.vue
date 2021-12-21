@@ -39,7 +39,6 @@
 <script>
 import http from "@/util/http-common";
 import $ from "jquery";
-
 export default {
   data: () => ({
     cateList: [
@@ -53,13 +52,14 @@ export default {
     post: [],
   }),
   props: {
-    postId: String,
-  },
+    postId: {
 
+    }
+  },
   created() {
     let token = localStorage.getItem("getToken");
     http
-      .get("post/" + this.$route.params.postId, {
+      .get("post/" + this.postId, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -75,7 +75,6 @@ export default {
       var file = document.getElementById("input_img");
       var form = new FormData();
       form.append("image", file.files[0]);
-
       var settings = {
         url: "https://api.imgbb.com/1/upload?key=076f41cee131349132a08f6320271a31",
         method: "POST",

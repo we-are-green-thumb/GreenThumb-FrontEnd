@@ -78,7 +78,7 @@
               <img class="imgSize" :src="u.imageUrl" />
             </div>
             <div class="plantcontent">
-              <h3>{{ u.nickName }}</h3>
+              <h3>{{ u.name }}</h3>
               <a> {{ u.water }}일 뒤 물을 주세요! </a><br />
               <a> 온도는 {{ u.temp }}도가 딱이에요! </a><br />
             </div>
