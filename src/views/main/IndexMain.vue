@@ -3,11 +3,13 @@
     <!-- <Header/>
     <NavigationBar/>  -->
     <hr class="hr">
+    <div class="plantlist">
     <br>
     <plant-register></plant-register>
     <plant-mylist></plant-mylist>
     <plant-followrlist></plant-followrlist>
     <br>
+    </div>
     <hr class="hr">
     <br>
 
@@ -59,6 +61,6 @@ export default {
 .midmar{
   align-content: center;
   margin-top: 10px;
-  padding : 10px;
+  padding : 30px 90px 90px 90px;
 }
 </style>

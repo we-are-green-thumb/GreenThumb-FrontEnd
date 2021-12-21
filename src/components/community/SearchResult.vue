@@ -1,5 +1,5 @@
 <template>
-  <div class="searchResult">
+  <div class="card">
     <v-btn  @click="clickFree">자유</v-btn>
     <v-btn  @click="clickQuestion">질문</v-btn>
     <v-btn  @click="clickTrade">나눔&거래</v-btn>
@@ -17,12 +17,15 @@
           hide-details
         ></v-text-field>
       </v-card-title>
+      <v-container>
       <v-data-table
         :headers="headers"
         :items="posts"
         :search="search"
-        @click:row="clicketest" class="card"
+        @click:row="clicketest"
+        expand
       ></v-data-table>
+      </v-container>
     </v-card>
   </div>
 </template>
@@ -44,11 +47,12 @@ export default {
           align: "start",
           filterable: true,
           value: "title",
+          width: "300px"
         },
-        { text: "내용", value: "content" },
-        { text: "작성자", value: "writer" },
-        { text: "조회수", value: "hits" },
-        { text: "좋아요", value: "like" },
+        { text: "내용", value: "content", width: "400px"},
+        { text: "작성자", value: "writer", width: "200px", align: "center"},
+        { text: "조회수", value: "hits", width: "100px", align: "center"},
+        { text: "좋아요", value: "like", width: "100px", align: "center"},
       ],
       posts:[
           
@@ -142,7 +146,7 @@ export default {
 
 .card{
  align-content: center;
- width: 1100px
+ width: 100%
 }
 
 /* 화면 너비가 0 ~ 1280px : 데스크탑 */

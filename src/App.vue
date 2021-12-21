@@ -6,8 +6,8 @@
       </v-system-bar>
 
       <v-app-bar app absolute dense hide-on-scroll flat color="white">
-        <v-tabs absolute centered class="purple">
-          <v-tab>
+        <v-tabs absolute centered class="white">
+          <v-tab class="mainicon">
             <a href="http://localhost:8081/">
               <v-img src="https://i.ibb.co/6yxTkKg/Green-Thumb.png" height="64px" width="146px"/>
             </a>
@@ -45,7 +45,7 @@
       <v-main>
         <v-row>
           <!--      rounded="lg" min-height="268" 두 옵션 없애도 되나?-->
-          <v-col cols="12" lg="2" class="blue">
+          <v-col cols="12" lg="2" class="white">
             <v-sheet color="white"></v-sheet>
           </v-col>
 
@@ -56,7 +56,7 @@
             </v-sheet>
           </v-col>
 
-          <v-col cols="12" lg="2" class="blue">
+          <v-col cols="12" lg="2" class="white">
             <v-sheet></v-sheet>
           </v-col>
 
@@ -100,6 +100,10 @@ ol, ul {
 }
 
 .body {
+}
+
+.mainicon{
+  padding-right: 30%
 }
 
 /* 화면 너비가 0 ~ 1280px : 데스크탑 */
