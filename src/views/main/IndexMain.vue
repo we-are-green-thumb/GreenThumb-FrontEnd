@@ -11,11 +11,11 @@
     <plant-mylist style="padding-left:7.8%"></plant-mylist>
     <plant-followrlist></plant-followrlist>
     <br>
-    <!-- </div> -->
     <hr class="hr">
     <br>
 
     <plant-search></plant-search>
+    
     <plant-resultlist></plant-resultlist>
     <Footer/>
   </div>

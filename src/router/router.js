@@ -9,7 +9,6 @@ import store from "../store"
 
 Vue.use(VueRouter);
 
-
 const rejectAuthuser = (to, from, next) => {
   if(store.state.isLogin === true){
     alert("이미 로그인했어요!")
