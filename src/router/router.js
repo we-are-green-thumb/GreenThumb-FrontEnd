@@ -52,9 +52,6 @@ const PostDetail = () => {
     return import("../views/post/PostDetail.vue")
 }
 
-const test = () => {
-    return import("../components/community/test.vue")
-}
 
 const writepost = () => {
     return import("../views/post/WritePost.vue")
@@ -73,6 +70,108 @@ const EditPlant = () => {
 }
 
 const routes = [
+  {
+    path: "/",
+    name: "IndexMain",
+    component: IndexMain,
+  },
+
+  {
+    path: "/myplant/:userId",
+    name: "IndexMyplant",
+    component: IndexMyplant,
+    props: true,
+  },
+
+  {
+    path: "/myplant/:userId/:plantId",
+    name: "Detailmyplant",
+    component: Detailmyplant,
+    props: true
+    
+  },
+  {
+    path : '/mypage/editpage',
+    name : 'editpage',
+    beforeEnter : checkInUser,
+    component : editpage,
+    props: true
+  }, 
+  {
+    path : '/community',
+    name : 'community',
+    component : community
+  }, 
+  {
+    path: "/hospital",
+    name: "Hospital",
+    component: Hospital,
+  },
+  {
+    path: "/post/writepost",
+    name: "WritePost",
+    component: writepost,
+  },
+  // {
+  //   path: "/modal",
+  //   name: "modal",
+  //   component: modal,
+  // },
+  {
+    path: "/login",
+    name: "loginform",
+    beforeEnter: rejectAuthuser,
+    component: loginform,
+  },
+
+  {
+    path: "/user2/findpassword",
+    name: "findPassword",
+    component: findPassword,
+  },
+
+  {
+    path: "/user2/register",
+    name: "register",
+    beforeEnter : rejectAuthuser,
+    component: register,
+  },
+  {
+    path: "/post/postDetail/:userId/:postId",
+    name: "PostDetail",
+    component: PostDetail,
+    props: true,
+  },
+  {
+    path: "/post/editpost",
+    name: "EditPost",
+    component: editpost,
+  },
+  {
+    path: "/comment/editcomment",
+    name: "EditComment",
+    component: editcomment,
+  },
+  {
+    path: "/comment/writecomment/:postId",
+    name: "WriteComment",
+    component: writecomment,
+    props: true,
+  },
+ 
+  {
+    path: '/plant/:plantId',
+    name: 'EditPlant',
+    component: EditPlant,
+    props: true
+  },
+  
+  // {
+  //   path: '/*',
+  //   redirect: '/'
+
+    
+  // }
     {
         path     : "/",
         name     : "IndexMain",

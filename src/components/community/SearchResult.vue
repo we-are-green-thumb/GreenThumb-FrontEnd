@@ -1,4 +1,5 @@
 <template>
+<v-container fluid style="margin: 0px; padding: 0px; width: 100%">
   <div class="searchResult">
     <v-btn  @click="clickFree">자유</v-btn>
     <v-btn  @click="clickQuestion">질문</v-btn>
@@ -25,6 +26,7 @@
       ></v-data-table>
     </v-card>
   </div>
+</v-container>
 </template>
 <script>
 import http from "@/util/http-common"

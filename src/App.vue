@@ -5,6 +5,7 @@
         <Header/>
       </v-system-bar>
 
+    <v-main class="grey lighten-3">
       <v-app-bar app absolute dense hide-on-scroll flat color="white">
         <v-tabs absolute centered class="purple">
           <v-tab>
@@ -96,4 +97,8 @@ export default {
 ol, ul {
   list-style: none;
 }
+
+
+
+
 </style>
