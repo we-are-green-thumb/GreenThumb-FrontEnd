@@ -1,5 +1,5 @@
 <template>
-  <v-container absolute class="yellow">
+  <v-container absolute class="header">
       <div class="headerBtn">
         <section v-if="isLogin === true">
           <div @click="logout">
@@ -59,6 +59,13 @@ export default {
   font-size: 100%;
   background-color: red;
   text-decoration: none;
+}
+
+.header {
+  align-content: center;
+  margin: 0px;
+  padding: 0px;
+  background-color: black;
 }
 
 

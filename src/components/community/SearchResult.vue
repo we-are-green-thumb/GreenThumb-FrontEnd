@@ -1,6 +1,5 @@
 <template>
-<v-container fluid style="margin: 0px; padding: 0px; width: 100%">
-  <div class="searchResult">
+  <div class="card">
     <v-btn  @click="clickFree">자유</v-btn>
     <v-btn  @click="clickQuestion">질문</v-btn>
     <v-btn  @click="clickTrade">나눔&거래</v-btn>
@@ -18,12 +17,15 @@
           hide-details
         ></v-text-field>
       </v-card-title>
+      <v-container>
       <v-data-table
         :headers="headers"
         :items="posts"
         :search="search"
         @click:row="clicketest"
+        expand
       ></v-data-table>
+      </v-container>
     </v-card>
   </div>
 </v-container>
@@ -46,11 +48,12 @@ export default {
           align: "start",
           filterable: true,
           value: "title",
+          width: "300px"
         },
-        { text: "내용", value: "content" },
-        { text: "작성자", value: "writer" },
-        { text: "조회수", value: "hits" },
-        { text: "좋아요", value: "like" },
+        { text: "내용", value: "content", width: "400px"},
+        { text: "작성자", value: "writer", width: "200px", align: "center"},
+        { text: "조회수", value: "hits", width: "100px", align: "center"},
+        { text: "좋아요", value: "like", width: "100px", align: "center"},
       ],
       posts:[
           
@@ -140,5 +143,45 @@ export default {
 <style>
 .searchResult {
   width: 100%;
+}
+
+.card{
+ align-content: center;
+ width: 100%
+}
+
+/* 화면 너비가 0 ~ 1280px : 데스크탑 */
+@media (max-width: 1280px){
+    body {background: #880e4f;}
+    h1::before {content: '2. '}
+    h1::after {content: ' - 1025px ~ 1280px'}
+}
+
+/* 화면 너비가 0 ~ 1024px : 데스크탑 */
+@media (max-width: 1024px){
+    body {background: #4a148c;}
+    h1::before {content: '3. '}
+    h1::after {content: ' - 961px ~ 1024px'}
+}
+
+/* 화면 너비가 0 ~ 960px : 노트북 */
+@media (max-width: 960px){
+    body {background: #311b92;}
+    h1::before {content: '4. '}
+    h1::after {content: ' - 769px ~ 960px'}
+}
+
+/* 화면 너비가 0 ~ 768 : 타블렛 */
+@media (max-width: 768px){
+    body {background: #4a148c;}
+    h1::before {content: '5. '}
+    h1::after {content: ' - 577px ~ 768px'}
+}
+
+/* 화면 너비가 0 ~ 576 : 모바일 */
+@media (max-width: 576px){
+    body {background: #004D40;}
+    h1::before {content: '6. '}
+    h1::after {content: ' - 0px ~ 576px'}
 }
 </style>
