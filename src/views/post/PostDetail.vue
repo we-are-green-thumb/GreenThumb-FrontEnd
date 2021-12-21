@@ -10,8 +10,7 @@
           <v-card class="body" style="padding: 40px">
             <div style="float: left; width=50%">
               <b
-                ><v-text>작성자 {{ post.writer }}</v-text></b
-              >
+                ><v-text>작성자 {{ post.writer }}</v-text></b>
               <br />
             </div>
             <div style="float: right; width=50%">
@@ -27,15 +26,17 @@
             <div style="height: 60%">
               <v-text>{{ post.content }} </v-text>
             </div>
-            <br><br>
+            <br /><br />
             <!-- 이미지의 경우 몇개를 가지고 있는지 몰라 반복문으로 대체. file이 있을 경우 ..  -->
-            <v-img :src="`${post.fileUrl}`" style="max-width: 300px; height: auto;">
+            <v-img
+              :src="`${post.fileUrl}`"
+              style="max-width: 300px; height: auto"
+            >
               <span
                 class="text-h5 white--text pl-4 pt-4 d-inline-block"
                 v-text="card"
-              ></span>
-              
-            </v-img><br>
+              ></span> </v-img
+            ><br />
             <div style="float: left; width: 50%; padding-top: 12px">
               <v-img
                 max-height="30px"
@@ -46,14 +47,14 @@
             </div>
             <div style="width: 50%; padding-left: 20%">
               <div v-if="chekcWrite">
-                <v-btn class="btn">
-                  <router-link
-                    :to="{ name: 'EditPost' }"
-                    para
+                <v-btn class="btn" @click="clickEdit">수정</v-btn>
+                  <!-- <router-link
+                    :to="{ name: 'EditPost', params: { postId: postId } }"
                     style="text-decoration: none; color: hsl(94, 10%, 46%)"
                     >수정하기
-                  </router-link>
-                </v-btn>
+                  </router-link> -->
+                  
+                <!-- </v-btn> -->
                 <v-btn class="btn">
                   <router-link
                     :to="{ name: 'WriteComment' }"
@@ -107,12 +108,8 @@ export default {
     comments: [],
     props: {
       postId: {
-        type: String,
-        default: "",
       },
       userId: {
-        type: String,
-        default: "",
       },
     },
     resultPost: [],
@@ -123,6 +120,12 @@ export default {
   }),
 
   methods: {
+    clickEdit(){
+      let postId = this.$route.params.postId;
+      localStorage.setItem('tpostid',postId);
+      console.log("postIDpostID",postId);
+      this.$router.push({ name: 'EditPost', params: { postId: postId }});
+    },
     // clickComment(){
     //   let postid = this.$route.params.postId;
     //   this.$router.push({name : 'WriteComment' ,params: { postid: postid }})
@@ -153,9 +156,9 @@ export default {
   created() {
     // let userId = localStorage.getItem("getId");
     let token = localStorage.getItem("getToken");
-    // let postId = this.$route.params.postIdthis.$route.params.postId;
-    // console.log("=================");
-    // console.log(postId);
+    let postId = this.$route.params.postId;
+    console.log("=================");
+    console.log(postId);
     // 게시글
     http
       .get("http://localhost:80/post/" + this.$route.params.postId, {
@@ -163,10 +166,9 @@ export default {
       }) //게시글을 불러옴.
       .then((res) => {
         this.post = res.data;
-        console.log(this.post)
+        console.log(this.post);
         this.writerId = res.data.writerId;
         this.logId = localStorage.getItem("getId");
-
         if (this.writerId == this.logId) {
           this.chekcWrite = true;
         }

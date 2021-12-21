@@ -28,7 +28,6 @@
       </v-container>
     </v-card>
   </div>
-</v-container>
 </template>
 <script>
 import http from "@/util/http-common"
@@ -79,17 +78,16 @@ export default {
       // console.log(value);
       let PostId = value.id;
       let UserId = localStorage.getItem('getId');
-      // console.log(value);
+      console.log(value);
       let token = localStorage.getItem("getToken");
       let hits = value.hits+1;
-      // console.log(UserId);
-   
+
       http.put("/post/"+PostId ,{
         "title" : value.title,
       "category" : value.category,
       "content": value.content,
-      "fileUrl" : value.fileUrl,
-      "hits" : hits
+      "hits" : hits,
+      "fileUrl" : value.fileUrl
     },
       { headers: { Authorization: `Bearer ${token}` }}).then((response) => {
                 this.posts =response.data;
