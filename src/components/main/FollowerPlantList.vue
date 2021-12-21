@@ -1,6 +1,6 @@
 <template>
 <div>
- <h2>친구들의 식물을 살펴볼까요?</h2>
+ <h2 style="color:#2E7D32;">친구들의 식물을 살펴볼까요?</h2>
 <ul class="myplantcontainer" >
     <li class="myplantform">
       <div>

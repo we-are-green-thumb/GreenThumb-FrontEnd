@@ -2,8 +2,8 @@
 <template>
   <div>
       <div class="container1">
-        <h1>회원가입</h1>
-        <hr />
+        <h1></h1>
+        <hr/>
         <label for="email"><b>이메일</b></label>
         <input
           v-model="email"

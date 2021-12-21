@@ -26,6 +26,7 @@
     </v-card>
   </div>
 </template>
+
 <script>
 import http from "@/util/http-common"
 import {  mapState } from 'vuex';

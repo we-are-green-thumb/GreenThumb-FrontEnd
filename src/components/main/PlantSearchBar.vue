@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>다른 사람들의 식물을 살펴보세요!</h1>
+    <h1 style="color:#2E7D32;">다른 사람들의 식물을 살펴보세요!</h1>
   </div>
 </template>
 
