@@ -49,7 +49,7 @@ export default {
   min-width: 1130px;
   height: 50px;
   margin: 0 auto;
-  background-color: black;
+  background-color: #C8E6C9;
 }
 
 .headerBtn {
@@ -57,7 +57,7 @@ export default {
   text-align: center;
   margin: 0 auto;
   font-size: 100%;
-  background-color: red;
+  background-color: #C8E6C9;
   text-decoration: none;
 }
 
@@ -65,7 +65,7 @@ export default {
   align-content: center;
   margin: 0px;
   padding: 0px;
-  background-color: black;
+  background-color: #C8E6C9;
 }
 
 

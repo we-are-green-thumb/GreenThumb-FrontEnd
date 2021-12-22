@@ -55,8 +55,6 @@ export default {
   },
 
 
-    }
-  },
   created() {
     let postId= localStorage.getItem('tpostid'); 
     let token = localStorage.getItem("getToken");
