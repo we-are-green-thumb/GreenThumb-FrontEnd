@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import router from "./router/router";
 import http from "@/util/http-common";
 
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -72,6 +71,7 @@ export default new Vuex.Store({
         //토큰 -> 멤버 정보 반환 .. 토큰만 저장해두면 새로고침해도 사용가능 local storage에 저장하자. 밑에 새로 만든다.
         let token = localStorage.getItem("getToken");
         let id = localStorage.getItem("getId");
+        
         // let Bearer = localStorage.getItem("getB")
         // let config = {
         //   headers: {
@@ -83,18 +83,20 @@ export default new Vuex.Store({
           .get("/user/" + id, { headers: { Authorization: `Bearer ${token}` } })
           .then((response) => {
             console.log(response);
+
             let userInfo = {
               userId: id,
               email: response.data.email,
-            };
+            }
             commit("loginSuccess", userInfo)
-              .catch((error) => {
+            })              
+            .catch((error) => {
                 console.log(error);
                 alert("로그인을 실패했어요.");
               })
               .then(() => {});
-          });
-      } else {
+          
+          } else {
         commit("logouted");
         // console.log("로그아웃 성공")
       }
@@ -122,15 +124,17 @@ export default new Vuex.Store({
       let token = localStorage.getItem("getToken");
       let userId = localStorage.getItem("getId");
       http
-//       .delete("/auth/logout",  { headers: { Authorization: `Bearer ${token}` }})
-      .post("http://localhost:80/auth/logout/"+userId,{ headers: { Authorization: `Bearer ${token}` }} )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      
+        //       .delete("/auth/logout",  { headers: { Authorization: `Bearer ${token}` }})
+        .post("http://localhost:80/auth/logout/" + userId, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
       localStorage.removeItem("getToken");
       localStorage.clear();
       commit("logouted");

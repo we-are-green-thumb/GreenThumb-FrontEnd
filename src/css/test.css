@@ -1,0 +1,9 @@
+.container {
+    float: center;
+    width: 180px;
+    height: 120px;
+    vertical-align: 70px;
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 16px 0 10px
+  }

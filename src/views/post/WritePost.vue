@@ -87,7 +87,7 @@ export default {
         http
       .post("user/"+userId+"/post", data,
         // {headers: { Authorization: `Bearer ${token}`,'Content-Type': 'multipart/form-data'}
-        {headers: { Authorization: `Bearer ${token}`}
+        {headers: { Authorization: `Bearer ${token}`, "userId": userId}
          }
       ) //게시글을 추가
       .then((response) => {

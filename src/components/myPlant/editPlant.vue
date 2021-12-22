@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import http from "@/util/http-common";
 import $ from 'jquery';
 
@@ -64,14 +65,18 @@ export default {
   },
   props: {
     plantId: {
-      type: String,
-      default: "",
     },
+    userId:{
+      
+    }
+  },
+    computed: {
+    ...mapState(["userInfo"]),
   },
   created() {
     let token = localStorage.getItem("getToken");
     http
-      .get("/plant/" + this.$route.params.plantId, {
+      .get("plant/" + this.$route.params.plantId, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -121,7 +126,7 @@ export default {
         imageUrl: fileUrl,
       };
       http
-        .put("plant/" + this.$route.params.plantId, data, {
+        .put("user/" +this.$route.params.userId +"/plant/"+this.$route.params.plantId, data, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

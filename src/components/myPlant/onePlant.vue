@@ -7,15 +7,17 @@
         </div>
 
         <div class="plantcontent"> 
+          <h3>{{ myplant.name }}</h3>
           <p>{{ myplant.water }}일 뒤에 물이 필요해요!</p>
           <p>{{ myplant.temp }}도에서 제일 잘 자랄 수 있어요!</p>
 
         </div>
-        <div v-show="contentOwner">
         <router-link
-          :to="{ name: 'EditPlant', params: { plantId: myplant.plantId } }"
-          ><a>수정하기</a></router-link
+          :to="{ name: 'EditPlant', params: { plantId: this.myplant.plantId,  userId: this.myplant.userId } }"
+          ><a>수정</a></router-link
         >
+        <div v-show="contentOwner">
+        
         </div>
       </li>
     </ul>
@@ -35,8 +37,7 @@ export default {
   },
   props: {
     plantId: {
-      type: String,
-      default: "",
+
     },
   },
   computed: {
