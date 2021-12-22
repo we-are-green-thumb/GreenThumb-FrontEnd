@@ -63,7 +63,7 @@
         <v-main>
           <v-row>
             <!--      rounded="lg" min-height="268" 두 옵션 없애도 되나?-->
-            <v-col cols="12" lg="2" class="blue">
+            <v-col cols="12" lg="2" class="white">
               <v-sheet color="white"></v-sheet>
             </v-col>
             <!--      min-height="70vh" rounded="lg" 두 옵션 없애도 되나?-->
@@ -72,13 +72,12 @@
                 <router-view />
               </v-sheet>
             </v-col>
-            <v-col cols="12" lg="2" class="blue">
+            <v-col cols="12" lg="2" class="white">
               <v-sheet></v-sheet>
             </v-col>
           </v-row>
         </v-main>
       </v-main>
-    </v-main>
 
     </v-app>
   </v-container>
