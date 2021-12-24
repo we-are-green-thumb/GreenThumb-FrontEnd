@@ -82,7 +82,6 @@ export default new Vuex.Store({
         http
           .get("/user/" + id, { headers: { Authorization: `Bearer ${token}` } })
           .then((response) => {
-            console.log(response);
 
             let userInfo = {
               userId: id,

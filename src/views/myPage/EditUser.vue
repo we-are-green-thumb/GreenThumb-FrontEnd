@@ -40,9 +40,9 @@ export default {
   name: "EditUser",
 data() {
   return {
-    editFlag :"false",
-    postFlag :"false",
-    commentFlag :"false",
+    editFlag :false,
+    postFlag :false,
+    commentFlag :false,
   }
 },
   components: {
